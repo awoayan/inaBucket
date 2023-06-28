@@ -1,20 +1,22 @@
 volumes:
   pintrip:
     external: true
+  pg-admin:
+    external: true
 services:
   fastapi:
     build:
       context: api
       dockerfile: Dockerfile.dev
     ports:
-      - 8000:8000
+      - "8000:8000"
     volumes:
       - ./api:/app
     environment:
       CORS_HOST: http://localhost:3000
       DATABASE_URL: postgresql://pintrip:pintrip@data/pintrip
-      # WAIT_HOSTS: data:5432
-      # PORT: 8000
+      WAIT_HOSTS: data:5432
+      PORT: 8000
   data:
     image: postgres:14.5-bullseye
     build:
@@ -28,17 +30,27 @@ services:
       POSTGRES_DB: pintrip
     ports:
       - "15432:5432"
-  # ghi:
-  #   image: node:lts-bullseye
-  #   command: /bin/bash run.sh
-  #   working_dir: /app
-  #   volumes:
-  #     - ./ghi:/app
-  #   ports:
-  #     - "3000:3000"
-  #   environment:
-  #     HOST_OS: ${OS}
-  #     NODE_ENV: development
-  #     HOST: "0.0.0.0"
-  #     PUBLIC_URL: http://localhost:3000
-  #     REACT_APP_API_HOST: ${REACT_APP_API_HOST}
+  ghi:
+    image: node:lts-bullseye
+    command: /bin/bash run.sh
+    working_dir: /app
+    volumes:
+      - ./ghi:/app
+    ports:
+      - "3000:3000"
+    environment:
+      HOST_OS: ${OS}
+      NODE_ENV: development
+      HOST: "0.0.0.0"
+      PUBLIC_URL: http://localhost:3000
+      REACT_APP_API_HOST: ${REACT_APP_API_HOST}
+  pg-admin:
+    image: dpage/pgadmin4
+    volumes:
+      - ./pg-admin:/var/lib/pgadmin4
+    ports:
+      - "8082:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_DISABLE_POSTFIX: 1 
