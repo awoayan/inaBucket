@@ -1,4 +1,6 @@
-# volumes:
+volumes:
+  pintrip:
+    external: true
 services:
   fastapi:
     build:
@@ -11,31 +13,32 @@ services:
     environment:
       CORS_HOST: http://localhost:3000
       DATABASE_URL: postgresql://pintrip:pintrip@data/pintrip
-      WAIT_HOSTS: data:5432
-      PORT: 8000
+      # WAIT_HOSTS: data:5432
+      # PORT: 8000
   data:
+    image: postgres:14.5-bullseye
     build:
       context: data
       dockerfile: Dockerfile.dev
     volumes:
-      - pintrip:/var/lib/postgresql/data
+      - ./pintrip:/var/lib/postgresql/:data
     environment:
       POSTGRES_PASSWORD: pintrip
       POSTGRES_USER: pintrip
       POSTGRES_DB: pintrip
     ports:
       - "15432:5432"
-  ghi:
-    image: node:lts-bullseye
-    command: /bin/bash run.sh
-    working_dir: /app
-    volumes:
-      - ./ghi:/app
-    ports:
-      - "3000:3000"
-    environment:
-      HOST_OS: ${OS}
-      NODE_ENV: development
-      HOST: "0.0.0.0"
-      PUBLIC_URL: http://localhost:3000
-      REACT_APP_API_HOST: ${REACT_APP_API_HOST}
+  # ghi:
+  #   image: node:lts-bullseye
+  #   command: /bin/bash run.sh
+  #   working_dir: /app
+  #   volumes:
+  #     - ./ghi:/app
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     HOST_OS: ${OS}
+  #     NODE_ENV: development
+  #     HOST: "0.0.0.0"
+  #     PUBLIC_URL: http://localhost:3000
+  #     REACT_APP_API_HOST: ${REACT_APP_API_HOST}
