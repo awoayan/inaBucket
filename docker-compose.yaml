@@ -1,8 +1,6 @@
 # volumes:
 services:
   fastapi:
-    environment:
-      CORS_HOST: http://localhost:3000
     build:
       context: api
       dockerfile: Dockerfile.dev
@@ -10,7 +8,23 @@ services:
       - 8000:8000
     volumes:
       - ./api:/app
-
+    environment:
+      CORS_HOST: http://localhost:3000
+      DATABASE_URL: postgresql://pintrip:pintrip@data/pintrip
+      WAIT_HOSTS: data:5432
+      PORT: 8000
+  data:
+    build:
+      context: data
+      dockerfile: Dockerfile.dev
+    volumes:
+      - pintrip:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: pintrip
+      POSTGRES_USER: pintrip
+      POSTGRES_DB: pintrip
+    ports:
+      - "15432:5432"
   ghi:
     image: node:lts-bullseye
     command: /bin/bash run.sh
