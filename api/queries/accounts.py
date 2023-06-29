@@ -6,7 +6,7 @@ class DuplicateAccountError(ValueError):
     pass
 
 
-class AccountRepo(BaseModel):
+class AccountIn(BaseModel):
     email: str
     password: str
     full_name: str
@@ -18,9 +18,13 @@ class AccountOut(BaseModel):
     full_name: str
 
 
+class AccountOutWithPassword(AccountOut):
+    hashed_password: str
+
+
 class AccountQueries:
 
-    def get_one(self, email: str) -> AccountRepo:
+    def get_one(self, email: str) -> AccountOutWithPassword:
         with pool.connection() as conn:
             with conn.cursor() as data:
                 result = data.execute(
@@ -37,14 +41,14 @@ class AccountQueries:
                 record = result.fetchone()
                 if record is None:
                     return None
-                return AccountRepo(
+                return AccountIn(
                     id=record[0],
                     email=record[1],
                     hashed_password=record[2],
                     full_name=record[3],
                 )
-            
-    def create(self, account: AccountRepo, hashed_password: str) -> AccountOut:
+
+    def create(self, account: AccountIn, hashed_password: str) -> AccountOut:
         with pool.connection() as conn:
             with conn.cursor() as data:
                 result = data.execute(
@@ -56,7 +60,7 @@ class AccountQueries:
                     [account.email, hashed_password, account.full_name]
                 )
                 id = result.fetchone()[0]
-                return AccountRepo(
+                return AccountIn(
                     id=id,
                     email=account.email,
                     hashed_password=hashed_password,
