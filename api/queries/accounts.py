@@ -48,7 +48,7 @@ class AccountQueries:
                     full_name=record[3],
                 )
 
-    def create(self, account: AccountIn, hashed_password: str) -> AccountOut:
+    def create(self, account: AccountIn, hashed_password: str) -> AccountOutWithPassword:
         with pool.connection() as conn:
             with conn.cursor() as data:
                 result = data.execute(

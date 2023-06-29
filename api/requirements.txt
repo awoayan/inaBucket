@@ -1,4 +1,4 @@
-fastapi[all]==0.78.0
+fastapi[all]==0.85.1
 uvicorn[standard]==0.17.6
 jwtdown-fastapi>=0.2.0
 pytest
