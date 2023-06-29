@@ -10,12 +10,14 @@ class AccountIn(BaseModel):
     email: str
     password: str
     full_name: str
+    username: str
 
 
 class AccountOut(BaseModel):
     id: str
     email: str
     full_name: str
+    username: str
 
 
 class AccountOutWithPassword(AccountOut):
@@ -32,7 +34,8 @@ class AccountQueries:
                     SELECT id
                         , email
                         , hashed_password
-                        full_name
+                        , full_name
+                        , username
                     FROM accounts
                     WHERE email = %s;
                     """,
@@ -41,11 +44,12 @@ class AccountQueries:
                 record = result.fetchone()
                 if record is None:
                     return None
-                return AccountIn(
+                return AccountOutWithPassword(
                     id=record[0],
                     email=record[1],
                     hashed_password=record[2],
                     full_name=record[3],
+                    username=record[4],
                 )
 
     def create(self, account: AccountIn, hashed_password: str) -> AccountOutWithPassword:
@@ -53,16 +57,17 @@ class AccountQueries:
             with conn.cursor() as data:
                 result = data.execute(
                     """
-                    INSERT INTO accounts (email, hashed_password, full_name)
-                    VALUES (%s, %s, %s)
+                    INSERT INTO accounts (email, hashed_password, full_name, username)
+                    VALUES (%s, %s, %s, %s)
                     RETURNING id;
                     """,
-                    [account.email, hashed_password, account.full_name]
+                    [account.email, hashed_password, account.full_name, account.username]
                 )
                 id = result.fetchone()[0]
-                return AccountIn(
+                return AccountOutWithPassword(
                     id=id,
                     email=account.email,
                     hashed_password=hashed_password,
                     full_name=account.full_name,
+                    username=account.username,
                 )
