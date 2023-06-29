@@ -1,14 +1,14 @@
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS accounts;
 DROP TABLE IF EXISTS buckets;
 DROP TABLE IF EXISTS drops;
 DROP TABLE IF EXISTS bucket_drops; 
 
-CREATE TABLE users (
+CREATE TABLE accounts (
     id SERIAL NOT NULL UNIQUE,
-    name TEXT NOT NULL,
+    full_name VARCHAR(250) NOT NULL,
     email TEXT NOT NULL UNIQUE,
-    username TEXT NOT NULL UNIQUE
-    -- password??????
+    username TEXT NOT NULL UNIQUE,
+    hashed_password VARCHAR(200) NOT NULL
 );
 
 CREATE TABLE buckets (
@@ -18,7 +18,7 @@ CREATE TABLE buckets (
     cover_photo BYTEA,
     description TEXT NOT NULL,
     url TEXT NOT NULL, 
-    user_id INTEGER NOT NULL REFERENCES users("id") ON DELETE CASCADE
+    user_id INTEGER NOT NULL REFERENCES accounts("id") ON DELETE CASCADE
 );
 
 CREATE TABLE drops (
