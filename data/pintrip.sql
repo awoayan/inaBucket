@@ -14,7 +14,7 @@ CREATE TABLE accounts (
 CREATE TABLE buckets (
     id SERIAL NOT NULL UNIQUE,
     title TEXT NOT NULL,
-    username TEXT NOT NULL UNIQUE,
+    username TEXT NOT NULL REFERENCES accounts("username") ON DELETE CASCADE,
     cover_photo BYTEA,
     description TEXT NOT NULL,
     url TEXT NOT NULL, 
