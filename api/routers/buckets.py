@@ -1,19 +1,30 @@
 from fastapi import APIRouter, Depends, Response
-from typing import List, Optional, Union
-from queries.buckets import (
-    Error,
-    BucketIn,
-    BucketRepository,
-    BucketOut,
-)
-
+from pydantic import BaseModel
+from queries.pool import BucketQueries
 router = APIRouter()
 
-@router.post("/api/buckets", response_model=Union[BucketOut, Error])
+class Error(BaseModel):
+    message: str
+    
+class BucketIn(BaseModel):
+    title: str
+    cover_photo: str
+    description: str
+    url: str
+    user_id: int
+
+class BucketOut(BaseModel):
+    id: int
+    title: str
+    username: str
+    cover_photo: str
+    description: str
+    url: str
+    user_id: int
+
+@router.post("/api/buckets", response_model=BucketOut)
 def create_bucket(
     bucket: BucketIn,
-    response: Response,
-    repo: BucketRepository = Depends(),
+    queries:BucketQueries=Depends(),
 ):
-    response.status_code = 400
-    return repo.create(bucket)
+    return queries.create_bucket(bucket)
