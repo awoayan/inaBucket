@@ -29,6 +29,7 @@ class BucketOut(BaseModel):
     descriptionxxx: str
     url: str
     username: str
+    ## See above - shouldnt username be accountOut? cant get it to work with just account out 
     owner: AccountOut  
 
 
