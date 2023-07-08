@@ -17,7 +17,7 @@ class BucketIn(BaseModel):
     title: str
     username: str
     cover_photo: str
-    description: str
+    descriptionxxx: str
     url: str
     user_id: int
 
@@ -26,10 +26,10 @@ class BucketOut(BaseModel):
     id: int
     title: str
     cover_photo: str
-    description: str
+    descriptionxxx: str
     url: str
-    username: AccountOut
-    user_id: AccountOut  
+    username: str
+    owner: AccountOut  
 
 
 @router.post("/api/buckets", response_model=BucketOut)
