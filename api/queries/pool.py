@@ -59,7 +59,23 @@ class BucketQueries:
                 if row is None:
                     return None
                 return self.bucket_record_to_dict(row, cur.description)
-
+            
+    def get_all_buckets(self):
+        with pool.connection()as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT a.id, a. full_name, a.email, a.username,
+                        b.id, b.title, b.username, b.cover_photo, b.descriptionxxx, b.url, b.user_id
+                    FROM accounts a
+                    JOIN buckets b ON (a.id = b.user_id)
+                    """
+                )
+                rows = cur.fetchall()
+                if rows is None: 
+                    return []
+                return [self.bucket_record_to_dict(row, cur.description) for row in rows]
+            
     def create_bucket(self, bucket):
             id = None
             with pool.connection() as conn:
