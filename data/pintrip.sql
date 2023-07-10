@@ -24,7 +24,7 @@ CREATE TABLE buckets (
 CREATE TABLE drops (
     id SERIAL NOT NULL UNIQUE,
     name TEXT NOT NULL,
-    photo BYTEA,
+    photo TEXT NOT NULL,
     description TEXT NOT NULL,
     city TEXT NOT NULL,
     address TEXT NOT NULL,
