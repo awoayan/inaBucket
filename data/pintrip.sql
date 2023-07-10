@@ -14,18 +14,17 @@ CREATE TABLE accounts (
 CREATE TABLE buckets (
     id SERIAL NOT NULL UNIQUE,
     title TEXT NOT NULL,
-    username TEXT NOT NULL REFERENCES accounts("username") ON DELETE CASCADE,
     cover_photo TEXT NOT NULL,
-    descriptionxxx TEXT NOT NULL,
+    details TEXT NOT NULL,
     url TEXT NOT NULL, 
-    user_id INTEGER NOT NULL REFERENCES accounts("id") ON DELETE CASCADE
+    account_id INTEGER NOT NULL REFERENCES accounts("id") ON DELETE CASCADE
 );
 
 CREATE TABLE drops (
     id SERIAL NOT NULL UNIQUE,
     name TEXT NOT NULL,
     photo TEXT NOT NULL,
-    description TEXT NOT NULL,
+    details TEXT NOT NULL,
     city TEXT NOT NULL,
     address TEXT NOT NULL,
     url TEXT NOT NULL

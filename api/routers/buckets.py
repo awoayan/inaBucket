@@ -14,21 +14,18 @@ class Error(BaseModel):
 
 class BucketIn(BaseModel):
     title: str
-    username: str
     cover_photo: str
-    descriptionxxx: str
+    details: str
     url: str
-    user_id: int
+    account_id: int
 
 
 class BucketOut(BaseModel):
     id: int
     title: str
     cover_photo: str
-    descriptionxxx: str
+    details: str
     url: str
-    username: str
-    ## See above - shouldnt username be accountOut? cant get it to work with just account out 
     owner: AccountOut  
 
 
@@ -53,11 +50,11 @@ def get_bucket(
         return record
     
 @router.get("/api/buckets", response_model=List[BucketOut])
-def get_all_buckets(
+def get_buckets(
     response: Response,
     queries: BucketQueries = Depends(),
 ):
-    records = queries.get_all_buckets()
+    records = queries.get_buckets()
     if not records:
         response.status_code = 404
     else:

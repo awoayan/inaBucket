@@ -3,7 +3,6 @@ from pydantic import BaseModel
 
 
 from queries.drops import DropQueries
-from queries.accounts import AccountOut
 
 router = APIRouter()
 
@@ -30,9 +29,8 @@ class DropOut(BaseModel):
     city: str
     address: str
     url: str
-    username: str
-    ## See above - shouldnt username be accountOut? cant get it to work with just account out 
-    owner: AccountOut
+    bucket_id: int
+
 
 @router.post("/api/drops", response_model=DropOut)
 def create_drop(
@@ -53,3 +51,14 @@ def get_drop(
         response.status_code = 404
     else:
         return record
+
+@router.get("/api/drops", response_model=DropOut)
+def get_drops(
+    response: Response,
+    queries: DropQueries = Depends(),
+):
+    records = queries.get_drops()
+    if not records:
+        response.status_code = 404
+    else:
+        return records

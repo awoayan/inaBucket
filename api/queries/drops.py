@@ -12,22 +12,12 @@ class DropQueries:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    SELECT b.id, b.title, b.username,
-                        b.cover_photo, b.descriptionxxx, b.url,
-                        b.user_id, d.id, d.name,
-                        d.photo, d.description, d.city,
-                        d.address, d.url, d.bucket_id
-                    FROM buckets b 
-                    JOIN drops d ON(b.id = d.drop_id)
-                
-                    GROUP BY 
-                        b.title, b.username, b.cover_photo, 
-                        b.descriptionxxx, b.url, b.user_id, 
-                        d.id, d.name, d.photo,
-                        d.description, d.city,
-                        d.address, d.url, d.bucket_id
+                    SELECT drops.id, drops.name
+                    FROM drops 
+                    JOIN bucket_drops ON(drops.id = bucket_drops.drop_id)
+                    GROUP BY drops.id, drops.name
 
-                    ORDER BY d.name
+                    ORDER BY drops.name
                     """,
                 )
 
@@ -39,26 +29,27 @@ class DropQueries:
                 return drops
             
     def get_drop(self, drop_id):
-        with pool.connection() as conn:
-            with conn.cursor() as cur:
-                cur.execute(
-                    """
-                    SELECT b.id, b.title, b.username,
-                        b.cover_photo, b.descriptionxxx, b.url,
-                        b.user_id, d.id, d.name, 
-                        d.photo, d.description, d.city,
-                        d.address, d.url, d.bucket_id
-                    FROM buckets b
-                    JOIN drops d ON(b.id = d.bucket_id)
-                    WHERE d.id = %s
-                    """,
-                    [drop_id],
-                )
+        pass
+        # with pool.connection() as conn:
+        #     with conn.cursor() as cur:
+        #         cur.execute(
+        #             """
+        #             SELECT b.id, b.title, b.username,
+        #                 b.cover_photo, b.descriptionxxx, b.url,
+        #                 b.user_id, d.id, d.name, 
+        #                 d.photo, d.description, d.city,
+        #                 d.address, d.url, d.bucket_id
+        #             FROM bucket_drops b
+        #             JOIN drops d ON(b.id = d.bucket_id)
+        #             WHERE d.id = %s
+        #             """,
+        #             [drop_id],
+        #         )
 
-                row = cur.fetchone()
-                if row is None:
-                    return None
-                return self.drop_record_to_dict(row, cur.description)
+                # row = cur.fetchone()
+                # if row is None:
+                #     return None
+                # return self.drop_record_to_dict(row, cur.description)
 
     def create_drop(self, drop):
             id = None
@@ -67,8 +58,8 @@ class DropQueries:
                     cur.execute(
                         """
                         INSERT INTO drops( 
-                            name, photo, description, city, address, url, bucket_id )
-                        VALUES ( %s, %s, %s, %s, %s, %s, %s)
+                            name, photo, description, city, address, url )
+                        VALUES ( %s, %s, %s, %s, %s, %s)
                         RETURNING id;
                         """,
                         [
@@ -78,7 +69,6 @@ class DropQueries:
                             drop.city,
                             drop.address,
                             drop.url,
-                            drop.bucket_id,
                         ],
                     )
                     row = cur.fetchone()
@@ -106,17 +96,17 @@ class DropQueries:
                     drop[column.name] = row[i]
             drop["id"] = drop["bucket_id"]
 
-            owner = {}
-            owner_fields = [
-                "user_id",
-                "full_name",
-                "email",  
-                "username",          
-            ]
-            for i, column in enumerate(description):
-                if column.name in owner_fields:
-                    owner[column.name] = row[i]
-            owner["id"] = owner["user_id"]
+            # owner = {}
+            # owner_fields = [
+            #     "user_id",
+            #     "full_name",
+            #     "email",  
+            #     "username",          
+            # ]
+            # for i, column in enumerate(description):
+            #     if column.name in owner_fields:
+            #         owner[column.name] = row[i]
+            # owner["id"] = owner["user_id"]
 
-            drop["owner"] = owner
+            # drop["owner"] = owner
         return drop

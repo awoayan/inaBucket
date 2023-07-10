@@ -14,18 +14,18 @@ class BucketQueries:
                     """
                     SELECT a.id, a.full_name,
                         a.email, a.username,
-                        b.id, b.title, b.username,
-                        b.cover_photo, b.descriptionxxx, b.url,
-                        b.user_id
+                        b.id, b.title,
+                        b.cover_photo, b.details, 
+                        b.url, b.account_id
 
                     FROM accounts a 
-                    JOIN buckets b ON(a.id = b.user_id)
+                    JOIN buckets b ON(a.id = b.account_id)
                 
                     GROUP BY 
-                        a.id, a.full_name, a.username, b.email,
-                        b.id, b.title, b.username, b.cover_photo, 
-                        b.descriptionxxx,
-                        b.url, b.user_id
+                        a.id, a.full_name, a.username, a.email,
+                        b.id, b.title, b.cover_photo, 
+                        b.details,
+                        b.url, b.account_id
 
                     ORDER BY b.title
                     """,
@@ -45,11 +45,11 @@ class BucketQueries:
                     """
                     SELECT a.id, a.full_name,
                         a.email, a.username,
-                        b.id, b.title, b.username,
-                        b.cover_photo, b.descriptionxxx, b.url,
-                        b.user_id
+                        b.id, b.title,
+                        b.cover_photo, b.details, b.url,
+                        b.account_id
                     FROM accounts a
-                    JOIN buckets b ON(a.id = b.user_id)
+                    JOIN buckets b ON(a.id = b.account_id)
                     WHERE b.id = %s
                     """,
                     [bucket_id],
@@ -59,23 +59,7 @@ class BucketQueries:
                 if row is None:
                     return None
                 return self.bucket_record_to_dict(row, cur.description)
-            
-    def get_all_buckets(self):
-        with pool.connection()as conn:
-            with conn.cursor() as cur:
-                cur.execute(
-                    """
-                    SELECT a.id, a. full_name, a.email, a.username,
-                        b.id, b.title, b.username, b.cover_photo, b.descriptionxxx, b.url, b.user_id
-                    FROM accounts a
-                    JOIN buckets b ON (a.id = b.user_id)
-                    """
-                )
-                rows = cur.fetchall()
-                if rows is None: 
-                    return []
-                return [self.bucket_record_to_dict(row, cur.description) for row in rows]
-            
+
     def create_bucket(self, bucket):
             id = None
             with pool.connection() as conn:
@@ -83,17 +67,16 @@ class BucketQueries:
                     cur.execute(
                         """
                         INSERT INTO buckets( 
-                            title, username, cover_photo, descriptionxxx, url, user_id )
-                        VALUES ( %s, %s, %s, %s, %s, %s)
+                            title, cover_photo, details, url, account_id )
+                        VALUES (%s, %s, %s, %s, %s)
                         RETURNING id;
                         """,
-                        [
+                        [                   
                             bucket.title, 
-                            bucket.username,
                             bucket.cover_photo,
-                            bucket.descriptionxxx,
+                            bucket.details,
                             bucket.url,
-                            bucket.user_id,
+                            bucket.account_id,
                         ],
                     )
                     row = cur.fetchone()
@@ -107,30 +90,30 @@ class BucketQueries:
         if row is not None:
             bucket = {}
             bucket_fields = [
-                "user_id",
+                "id",
                 "title",
-                "username",
                 "cover_photo",
-                "descriptionxxx",
-                "url"              
+                "details",
+                "url",
+                "account_id",              
             ]
 
             for i, column in enumerate(description):
                 if column.name in bucket_fields:
                     bucket[column.name] = row[i]
-            bucket["id"] = bucket["user_id"]
+            # bucket["id"] = bucket["bucket_id"]
 
             owner = {}
             owner_fields = [
-                "user_id",
+                "account_id",
                 "full_name",
-                "email",  
-                "username",          
+                "email",
+                "username",            
             ]
             for i, column in enumerate(description):
                 if column.name in owner_fields:
                     owner[column.name] = row[i]
-            owner["id"] = owner["user_id"]
+            owner["id"] = owner["account_id"]
 
             bucket["owner"] = owner
         return bucket
