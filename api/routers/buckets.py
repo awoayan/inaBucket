@@ -1,7 +1,6 @@
-from typing import Literal
+from typing import Literal, List
 from fastapi import APIRouter, Depends, Response
 from pydantic import BaseModel
-
 
 from queries.pool import BucketQueries
 from queries.accounts import AccountOut
@@ -52,3 +51,14 @@ def get_bucket(
         response.status_code = 404
     else:
         return record
+    
+@router.get("/api/buckets", response_model=List[BucketOut])
+def get_all_buckets(
+    response: Response,
+    queries: BucketQueries = Depends(),
+):
+    records = queries.get_all_buckets()
+    if not records:
+        response.status_code = 404
+    else:
+        return records
