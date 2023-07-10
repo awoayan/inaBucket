@@ -12,12 +12,15 @@ class DropQueries:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    SELECT drops.id, drops.name
-                    FROM drops 
-                    JOIN bucket_drops ON(drops.id = bucket_drops.drop_id)
-                    GROUP BY drops.id, drops.name
+                    SELECT d.id, d.name, 
+                        d.photo, d.details, d.city,
+                        d.address, d.url
+                    FROM drops d
+                    GROUP BY d.id, d.name,
+                        d.photo, d.details, d.city,
+                        d.address, d.url 
 
-                    ORDER BY drops.name
+                    ORDER BY d.name
                     """,
                 )
 
@@ -30,26 +33,23 @@ class DropQueries:
             
     def get_drop(self, drop_id):
         pass
-        # with pool.connection() as conn:
-        #     with conn.cursor() as cur:
-        #         cur.execute(
-        #             """
-        #             SELECT b.id, b.title, b.username,
-        #                 b.cover_photo, b.descriptionxxx, b.url,
-        #                 b.user_id, d.id, d.name, 
-        #                 d.photo, d.description, d.city,
-        #                 d.address, d.url, d.bucket_id
-        #             FROM bucket_drops b
-        #             JOIN drops d ON(b.id = d.bucket_id)
-        #             WHERE d.id = %s
-        #             """,
-        #             [drop_id],
-        #         )
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    SELECT d.id, d.name, 
+                        d.photo, d.details, d.city,
+                        d.address, d.url
+                    FROM drops d
+                    WHERE d.id = %s
+                    """,
+                    [drop_id],
+                )
 
-                # row = cur.fetchone()
-                # if row is None:
-                #     return None
-                # return self.drop_record_to_dict(row, cur.description)
+                row = cur.fetchone()
+                if row is None:
+                    return None
+                return self.drop_record_to_dict(row, cur.description)
 
     def create_drop(self, drop):
             id = None
@@ -58,14 +58,14 @@ class DropQueries:
                     cur.execute(
                         """
                         INSERT INTO drops( 
-                            name, photo, description, city, address, url )
+                            name, photo, details, city, address, url )
                         VALUES ( %s, %s, %s, %s, %s, %s)
                         RETURNING id;
                         """,
                         [
                             drop.name, 
                             drop.photo,
-                            drop.description,
+                            drop.details,
                             drop.city,
                             drop.address,
                             drop.url,
@@ -82,10 +82,10 @@ class DropQueries:
         if row is not None:
             drop = {}
             drop_fields = [
-                "bucket_id",
+                "id",
                 "name",
                 "photo",
-                "description",
+                "details",
                 "city",
                 "address",
                 "url",           
@@ -94,7 +94,7 @@ class DropQueries:
             for i, column in enumerate(description):
                 if column.name in drop_fields:
                     drop[column.name] = row[i]
-            drop["id"] = drop["bucket_id"]
+            # drop["id"] = drop["bucket_id"]
 
             # owner = {}
             # owner_fields = [

@@ -1,3 +1,4 @@
+from typing import Literal, List
 from fastapi import APIRouter, Depends, Response
 from pydantic import BaseModel
 
@@ -14,22 +15,23 @@ class Error(BaseModel):
 class DropIn(BaseModel):
     name: str
     photo: str
-    description: str
+    details: str
     city: str
     address: str
     url: str
-    bucket_id: int
 
 
 class DropOut(BaseModel):
     id: int
     name: str
     photo: str
-    description: str
+    details: str
     city: str
     address: str
     url: str
-    bucket_id: int
+
+# class DropsOut(BaseModel):
+#     drops: list[DropOut]
 
 
 @router.post("/api/drops", response_model=DropOut)
@@ -52,13 +54,13 @@ def get_drop(
     else:
         return record
 
-@router.get("/api/drops", response_model=DropOut)
+@router.get("/api/drops", response_model=List[DropOut])
 def get_drops(
     response: Response,
     queries: DropQueries = Depends(),
 ):
     records = queries.get_drops()
-    if not records:
+    if records is None:
         response.status_code = 404
     else:
         return records
