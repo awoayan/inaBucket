@@ -40,15 +40,16 @@ class DropQueries:
                 return drops
             
     def get_drop(self, drop_id):
-        pass
         with pool.connection() as conn:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    SELECT d.id, d.name, 
+                    SELECT a.id, a.full_name,
+                        a.email, a.username, d.id, d.name, 
                         d.photo, d.details, d.city,
                         d.address, d.url, d.creator
-                    FROM drops d
+                    FROM accounts a 
+                    JOIN drops d ON(a.id = d.creator)
                     WHERE d.id = %s
                     """,
                     [drop_id],
@@ -56,8 +57,7 @@ class DropQueries:
 
                 row = cur.fetchone()
                 if row is None:
-                    return None
-                return self.drop_record_to_dict(row, cur.description)
+                    return self.drop_record_to_dict(row, cur.description)
 
     def create_drop(self, drop):
         with pool.connection() as conn:
@@ -100,10 +100,11 @@ class DropQueries:
                 row2 = cur.fetchone()   
                 print("row2:", row2)
                 
-            if row2[0] is not None: 
-                return_drop = self.get_drop(drop_id)  
-                print(return_drop)                
-                return return_drop
+                if row2[0] is not None: 
+                    
+                    return_drop = self.get_drop(drop_id)  
+                    print("returndrop:", return_drop)                
+                    return return_drop
 
     def drop_record_to_dict(self, row, description):
         
@@ -128,7 +129,7 @@ class DropQueries:
 
             creator = {}
             creator_fields = [
-                "account_id",
+                "creator",
                 "full_name",
                 "email",  
                 "username",          
@@ -136,7 +137,7 @@ class DropQueries:
             for i, column in enumerate(description):
                 if column.name in creator_fields:
                     creator[column.name] = row[i]
-            creator["id"] = creator["account_id"]
+            creator["id"] = creator["creator"]
 
             drop["creator"] = creator
         return drop
