@@ -27,7 +27,9 @@ CREATE TABLE drops (
     details TEXT NOT NULL,
     city TEXT NOT NULL,
     address TEXT NOT NULL,
-    url TEXT NOT NULL
+    url TEXT NOT NULL,
+    creator INTEGER NOT NULL REFERENCES accounts("id") ON DELETE CASCADE
+
 );
 
 CREATE TABLE bucket_drops (

@@ -4,6 +4,7 @@ from pydantic import BaseModel
 
 
 from queries.drops import DropQueries
+from queries.accounts import AccountOut
 
 router = APIRouter()
 
@@ -19,6 +20,8 @@ class DropIn(BaseModel):
     city: str
     address: str
     url: str
+    creator: int
+    bucket_id: int
 
 
 class DropOut(BaseModel):
@@ -29,14 +32,17 @@ class DropOut(BaseModel):
     city: str
     address: str
     url: str
+    creator: AccountOut
 
-# class DropsOut(BaseModel):
-#     drops: list[DropOut]
 
+
+    
+    
 
 @router.post("/api/drops", response_model=DropOut)
 def create_drop(
     drop: DropIn,
+
     queries: DropQueries = Depends(),
 ):
     return queries.create_drop(drop)
