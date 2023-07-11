@@ -12,21 +12,13 @@ class DropQueries:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    SELECT a.id, a.full_name,
-                        a.email, a.username,
-                        d.id, d.name, 
+                    SELECT d.id, d.name, 
                         d.photo, d.details, d.city,
-                        d.address, d.url, d.creator
-                    
-                    FROM accounts a
-
-                    JOIN drops d ON(a.id = d.creator)
-
-                    GROUP BY 
-                        a.id, a.full_name, a.username, a.email,
-                        d.id, d.name,
+                        d.address, d.url
+                    FROM drops d
+                    GROUP BY d.id, d.name,
                         d.photo, d.details, d.city,
-                        d.address, d.url, d.creator
+                        d.address, d.url 
 
                     ORDER BY d.name
                     """,
@@ -47,7 +39,7 @@ class DropQueries:
                     """
                     SELECT d.id, d.name, 
                         d.photo, d.details, d.city,
-                        d.address, d.url, d.creator
+                        d.address, d.url
                     FROM drops d
                     WHERE d.id = %s
                     """,
@@ -60,50 +52,29 @@ class DropQueries:
                 return self.drop_record_to_dict(row, cur.description)
 
     def create_drop(self, drop):
-        with pool.connection() as conn:
-            with conn.cursor() as cur:
-                cur.execute(
-                    """
-                    INSERT INTO drops( 
-                        name, photo, details, city, address, url, creator)
-                    VALUES (%s, %s, %s, %s, %s, %s, %s)
-                    RETURNING id;
-                    """,
-                    [
-                        drop.name, 
-                        drop.photo,
-                        drop.details,
-                        drop.city,
-                        drop.address,
-                        drop.url,
-                        drop.creator,
-                    ],
-                )
-                row = cur.fetchone()
-                drop_id = row[0]
-                print("dropID:",  drop_id)
-                cur.execute(
-                    """ 
-                    INSERT INTO bucket_drops(
-                        bucket_id,
-                        drop_id
-                        )
-                    VALUES (%s, %s)
-                    RETURNING *;
-                    """,
-                    [
-                        drop.bucket_id,
-                        drop_id
-                        
-                    ],
-                )
-                row2 = cur.fetchone()   
-                print("row2:", row2)
-                
-            if row2[0] is not None: 
-                return_drop = self.get_drop(drop_id)  
-                print(return_drop)                
-                return return_drop
+            id = None
+            with pool.connection() as conn:
+                with conn.cursor() as cur:
+                    cur.execute(
+                        """
+                        INSERT INTO drops( 
+                            name, photo, details, city, address, url )
+                        VALUES ( %s, %s, %s, %s, %s, %s)
+                        RETURNING id;
+                        """,
+                        [
+                            drop.name, 
+                            drop.photo,
+                            drop.details,
+                            drop.city,
+                            drop.address,
+                            drop.url,
+                        ],
+                    )
+                    row = cur.fetchone()
+                    id = row[0]
+            if id is not None:
+                return self.get_drop(id)
 
     def drop_record_to_dict(self, row, description):
         
@@ -117,8 +88,7 @@ class DropQueries:
                 "details",
                 "city",
                 "address",
-                "url",
-                "creator",       
+                "url",           
             ]
 
             for i, column in enumerate(description):
@@ -126,17 +96,17 @@ class DropQueries:
                     drop[column.name] = row[i]
             # drop["id"] = drop["bucket_id"]
 
-            creator = {}
-            creator_fields = [
-                "account_id",
-                "full_name",
-                "email",  
-                "username",          
-            ]
-            for i, column in enumerate(description):
-                if column.name in creator_fields:
-                    creator[column.name] = row[i]
-            creator["id"] = creator["account_id"]
+            # owner = {}
+            # owner_fields = [
+            #     "user_id",
+            #     "full_name",
+            #     "email",  
+            #     "username",          
+            # ]
+            # for i, column in enumerate(description):
+            #     if column.name in owner_fields:
+            #         owner[column.name] = row[i]
+            # owner["id"] = owner["user_id"]
 
-            drop["creator"] = creator
+            # drop["owner"] = owner
         return drop
