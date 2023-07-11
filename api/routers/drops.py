@@ -32,16 +32,12 @@ class DropOut(BaseModel):
     city: str
     address: str
     url: str
-    creator: int
+    creator: AccountOut
 
-
-
-    
-    
 
 @router.post("/api/drops", response_model=DropOut)
 def create_drop(
-    drop: DropIn,
+    drop: DropIn,  
     queries: DropQueries = Depends(),
 ):
     return queries.create_drop(drop)
