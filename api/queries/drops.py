@@ -56,10 +56,11 @@ class DropQueries:
                 )
 
                 row = cur.fetchone()
-                if row is None:
+                if row is not None:
                     return self.drop_record_to_dict(row, cur.description)
 
     def create_drop(self, drop):
+        id = None
         with pool.connection() as conn:
             with conn.cursor() as cur:
                 cur.execute(
@@ -97,14 +98,15 @@ class DropQueries:
                         
                     ],
                 )
-                row2 = cur.fetchone()   
+                row2 = cur.fetchone() 
+                id = row2[2]  
                 print("row2:", row2)
                 
-                if row2[0] is not None: 
-                    
-                    return_drop = self.get_drop(drop_id)  
-                    print("returndrop:", return_drop)                
-                    return return_drop
+        if id is not None: 
+            
+            return_drop = self.get_drop(id)  
+            print("returndrop:", return_drop)                
+            return return_drop
 
     def drop_record_to_dict(self, row, description):
         
