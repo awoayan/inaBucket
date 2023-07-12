@@ -4,8 +4,8 @@ from psycopg_pool import ConnectionPool
 
 pool = ConnectionPool(conninfo=os.environ["DATABASE_URL"])
 
-class DropQueries:
 
+class DropQueries:
 
     def get_drops(self):
         with pool.connection() as conn:
@@ -58,6 +58,17 @@ class DropQueries:
                 row = cur.fetchone()
                 if row is not None:
                     return self.drop_record_to_dict(row, cur.description)
+                
+    def delete_drop(self, drop_id):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    DELETE FROM drops
+                    WHERE id = %s
+                    """,
+                    [drop_id],
+                )
 
     def create_drop(self, drop):
         id = None
@@ -107,7 +118,9 @@ class DropQueries:
             return_drop = self.get_drop(id)  
             print("returndrop:", return_drop)                
             return return_drop
+        
 
+    
     def drop_record_to_dict(self, row, description):
         
         drop = None

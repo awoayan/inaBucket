@@ -4,8 +4,8 @@ from psycopg_pool import ConnectionPool
 
 pool = ConnectionPool(conninfo=os.environ["DATABASE_URL"])
 
-class BucketQueries:
 
+class BucketQueries:
 
     def get_buckets(self):
         with pool.connection() as conn:
@@ -61,26 +61,26 @@ class BucketQueries:
                 return self.bucket_record_to_dict(row, cur.description)
 
     def create_bucket(self, bucket):
-            id = None
-            with pool.connection() as conn:
-                with conn.cursor() as cur:
-                    cur.execute(
-                        """
-                        INSERT INTO buckets( 
-                            title, cover_photo, details, url, account_id )
+        id = None
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    INSERT INTO buckets( 
+                        title, cover_photo, details, url, account_id )
                         VALUES (%s, %s, %s, %s, %s)
                         RETURNING id;
                         """,
-                        [                   
+                    [
                             bucket.title, 
                             bucket.cover_photo,
                             bucket.details,
                             bucket.url,
                             bucket.account_id,
-                        ],
+                    ],
                     )
-                    row = cur.fetchone()
-                    id = row[0]
+                row = cur.fetchone()
+                id = row[0]
             if id is not None:
                 return self.get_bucket(id)
 
@@ -117,8 +117,15 @@ class BucketQueries:
 
             bucket["owner"] = owner
         return bucket
+    
+    def delete_user(self, user_id):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    DELETE FROM users
+                    WHERE id = %s
+                    """,
+                    [user_id],
+                )
 
-
-
-
-       

@@ -49,6 +49,7 @@ def get_bucket(
     else:
         return record
     
+    
 @router.get("/api/buckets", response_model=List[BucketOut])
 def get_buckets(
     response: Response,
@@ -59,3 +60,9 @@ def get_buckets(
         response.status_code = 404
     else:
         return records
+    
+    
+@router.delete("/api/buckets/{bucket_id}", response_model=bool)
+def delete_bucket(bucket_id: int, queries: BucketQueries = Depends()):
+    queries.delete_bucket(bucket_id)
+    return True

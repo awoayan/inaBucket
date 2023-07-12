@@ -55,6 +55,7 @@ def get_drop(
     else:
         return record
 
+
 @router.get("/api/drops", response_model=List[DropOut])
 def get_drops(
     response: Response,
@@ -65,3 +66,9 @@ def get_drops(
         response.status_code = 404
     else:
         return records
+    
+
+@router.delete("/api/drops/{drop_id}", response_model=bool)
+def delete_drop(drop_id: int, queries: DropQueries = Depends()):
+    queries.delete_drop(drop_id)
+    return True
