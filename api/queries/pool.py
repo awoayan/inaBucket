@@ -118,14 +118,14 @@ class BucketQueries:
             bucket["owner"] = owner
         return bucket
     
-    def delete_user(self, user_id):
+    def delete_bucket(self, bucket_id):
         with pool.connection() as conn:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    DELETE FROM users
+                    DELETE FROM bucket
                     WHERE id = %s
                     """,
-                    [user_id],
+                    [bucket_id],
                 )
 

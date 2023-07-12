@@ -5,7 +5,6 @@ from psycopg_pool import ConnectionPool
 pool = ConnectionPool(conninfo=os.environ["DATABASE_URL"])
 
 
-
 class BucketDropQueries: 
 
     def save_drop(self, bucket_drop):

@@ -5,15 +5,16 @@ from queries.bucket_drops import BucketDropQueries
 
 router = APIRouter()
 
+
 class BucketDropsIn(BaseModel):
     bucket_id: int
     drop_id: int
 
 
-
 class BucketDropsOut(BaseModel):
     bucket_id: int
     drop_id: int
+
 
 class ABucketsDropsOut(BaseModel):
     cover_photo: str
