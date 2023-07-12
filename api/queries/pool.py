@@ -61,28 +61,28 @@ class BucketQueries:
                 return self.bucket_record_to_dict(row, cur.description)
 
     def create_bucket(self, bucket):
-            id = None
-            with pool.connection() as conn:
-                with conn.cursor() as cur:
-                    cur.execute(
-                        """
-                        INSERT INTO buckets( 
-                            title, cover_photo, details, url, account_id )
-                        VALUES (%s, %s, %s, %s, %s)
-                        RETURNING id;
-                        """,
-                        [                   
-                            bucket.title, 
-                            bucket.cover_photo,
-                            bucket.details,
-                            bucket.url,
-                            bucket.account_id,
-                        ],
-                    )
-                    row = cur.fetchone()
-                    id = row[0]
-            if id is not None:
-                return self.get_bucket(id)
+        id = None
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    INSERT INTO buckets( 
+                        title, cover_photo, details, url, account_id )
+                    VALUES (%s, %s, %s, %s, %s)
+                    RETURNING id;
+                    """,
+                    [                   
+                        bucket.title, 
+                        bucket.cover_photo,
+                        bucket.details,
+                        bucket.url,
+                        bucket.account_id,
+                    ],
+                )
+                row = cur.fetchone()
+                id = row[0]
+        if id is not None:
+            return self.get_bucket(id)
 
     def bucket_record_to_dict(self, row, description):
         
