@@ -16,20 +16,15 @@ class BucketDropsOut(BaseModel):
     drop_id: int
 
 class ABucketsDropsOut(BaseModel):
-    cover_photo: str
-    details: str
-    url: str
-    account_id: int
-    name: str
-    photo: str
-    details: str
-    city: str
-    address: str
-    url: str
-    creator: str
-    id: int
     bucket_id: int
+    bucket_title: str
     drop_id: int
+    drop_name: str
+    drop_photo: str
+    drop_details: str
+    drop_city: str
+    drop_address: str
+    drop_url: str
 
 
 @router.post("/api/bucket_drops", response_model=BucketDropsOut)
@@ -41,7 +36,7 @@ def save_drop(
     return queries.save_drop(bucket_drop)
 
 
-@router.get("/api/bucket_drops/{bucket_id}", response_model=ABucketsDropsOut)
+@router.get("/api/bucket_drops/{bucket_id}", response_model=List[ABucketsDropsOut])
 def get_buckets_drops(
     bucket_id: int,
     response: Response,
