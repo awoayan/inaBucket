@@ -26,7 +26,7 @@ class BucketOut(BaseModel):
     cover_photo: str
     details: str
     url: str
-    owner: AccountOut  
+    owner: AccountOut
 
 
 @router.post("/api/buckets", response_model=BucketOut)

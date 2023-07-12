@@ -66,13 +66,13 @@ class BucketQueries:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    INSERT INTO buckets( 
+                    INSERT INTO buckets(
                         title, cover_photo, details, url, account_id )
                         VALUES (%s, %s, %s, %s, %s)
                         RETURNING id;
                         """,
                     [
-                            bucket.title, 
+                            bucket.title,
                             bucket.cover_photo,
                             bucket.details,
                             bucket.url,
@@ -123,7 +123,7 @@ class BucketQueries:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    DELETE FROM bucket
+                    DELETE FROM Buckets
                     WHERE id = %s
                     """,
                     [bucket_id],
