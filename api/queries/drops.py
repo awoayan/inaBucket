@@ -107,6 +107,11 @@ class DropQueries:
             return_drop = self.get_drop(id)  
             print("returndrop:", return_drop)                
             return return_drop
+        
+    
+        
+
+
 
     def drop_record_to_dict(self, row, description):
         
