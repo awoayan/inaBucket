@@ -21,7 +21,7 @@ class DropIn(BaseModel):
     city: str
     address: str
     url: str
-    creator: int
+    creator_id: int
     bucket_id: int
 
 
@@ -33,7 +33,7 @@ class DropOut(BaseModel):
     city: str
     address: str
     url: str
-    creator: AccountOut
+    creator_id: AccountOut
 
 
 @router.post("/api/drops", response_model=DropOut)

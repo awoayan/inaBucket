@@ -25,6 +25,8 @@ class ABucketsDropsOut(BaseModel):
     drop_city: str
     drop_address: str
     drop_url: str
+    creator_id: int
+    username: str
 
 
 @router.post("/api/bucket_drops", response_model=BucketDropsOut)
