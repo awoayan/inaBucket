@@ -28,7 +28,7 @@ CREATE TABLE drops (
     city TEXT NOT NULL,
     address TEXT NOT NULL,
     url TEXT NOT NULL,
-    creator INTEGER NOT NULL REFERENCES accounts("id") ON DELETE CASCADE
+    creator_id INTEGER NOT NULL REFERENCES accounts("id") ON DELETE CASCADE
 
 );
 

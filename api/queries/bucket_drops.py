@@ -19,8 +19,8 @@ class BucketDropQueries:
                     RETURNING *; 
                     """,
                     [
+                        bucket_drop.bucket_id,
                         bucket_drop.drop_id,
-                        bucket_drop.bucket_id
 
                     ],
                 )
@@ -42,12 +42,14 @@ class BucketDropQueries:
                         d.id AS drop_id, d.name AS drop_name,
                         d.photo AS drop_photo, d.details AS drop_details,
                         d.city AS drop_city, d.address AS drop_address,
-                        d.url AS drop_url
+                        d.url AS drop_url,
+                        a.id AS creator_id, a.username
                     FROM buckets b
                     JOIN bucket_drops bd ON b.id = bd.bucket_id
                     JOIN drops d ON d.id = bd.drop_id
+                    JOIN accounts a ON a.id = d.creator_id
                     WHERE b.id = %s
-                    ORDER BY b.title, d.name;
+                    ORDER BY b.id, d.id;
                     """,
                     [bucket_id]
                 )
