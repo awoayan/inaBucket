@@ -38,30 +38,31 @@ class BucketDropQueries:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    SELECT b.id, b.title,
-                        b.cover_photo, b.details, b.url, b.account_id, 
-                        d.id, d.name, d.photo, d.details, d.city, 
-                        d.address, d.url, d.creator,
-                        bd.id, bd.bucket_id, bd.drop_id 
+                    SELECT b.id AS bucket_id, b.title AS bucket_title,
+                        d.id AS drop_id, d.name AS drop_name,
+                        d.photo AS drop_photo, d.details AS drop_details,
+                        d.city AS drop_city, d.address AS drop_address,
+                        d.url AS drop_url
                     FROM buckets b
-                    JOIN bucket_drops bd ON(b.id = bd.bucket_id)
-                    JOIN drops d ON(d.id = bd.drop_id)
-                    WHERE bd.bucket_id = %s
+                    JOIN bucket_drops bd ON b.id = bd.bucket_id
+                    JOIN drops d ON d.id = bd.drop_id
+                    WHERE b.id = %s
+                    ORDER BY b.title, d.name;
                     """,
-                    [bucket_id],
+                    [bucket_id]
                 )
                 # row = cur.fetchone()
                 # if row is None:
                 #     return None
                 # return self.bucket_drops_record_to_dict(row, cur.description)
-                record = None
-                row = cur.fetchone()
-                if row is not None: 
+                buckets_drops = []
+                for row in cur.fetchall(): 
                     record = {}
                     for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
-
-                return record
+                    buckets_drops.append(record)
+                
+                return buckets_drops
             
     # def bucket_drops_record_to_dict(self, row, description):
         

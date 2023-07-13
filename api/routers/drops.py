@@ -36,16 +36,12 @@ class DropOut(BaseModel):
     creator: AccountOut
 
 
-
-
-
 @router.post("/api/drops", response_model=DropOut)
 def create_drop(
-    drop: DropIn,  
+    drop: DropIn,
     queries: DropQueries = Depends(),
 ):
     return queries.create_drop(drop)
-
 
 
 @router.get("/api/drops/{drop_id}", response_model=DropOut)
@@ -60,6 +56,7 @@ def get_drop(
     else:
         return record
 
+
 @router.get("/api/drops", response_model=List[DropOut])
 def get_drops(
     response: Response,
@@ -70,3 +67,9 @@ def get_drops(
         response.status_code = 404
     else:
         return records
+
+
+@router.delete("/api/drops/{drop_id}", response_model=bool)
+def delete_drop(drop_id: int, queries: DropQueries = Depends()):
+    queries.delete_drop(drop_id)
+    return True

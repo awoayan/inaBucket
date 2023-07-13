@@ -4,9 +4,8 @@ from psycopg_pool import ConnectionPool
 
 pool = ConnectionPool(conninfo=os.environ["DATABASE_URL"])
 
+
 class DropQueries:
-
-
     def get_drops(self):
         with pool.connection() as conn:
             with conn.cursor() as cur:
@@ -38,7 +37,7 @@ class DropQueries:
                     drop = self.drop_record_to_dict(row, cur.description)
                     drops.append(drop)
                 return drops
-            
+
     def get_drop(self, drop_id):
         with pool.connection() as conn:
             with conn.cursor() as cur:
@@ -71,7 +70,7 @@ class DropQueries:
                     RETURNING id;
                     """,
                     [
-                        drop.name, 
+                        drop.name,
                         drop.photo,
                         drop.details,
                         drop.city,
@@ -82,7 +81,7 @@ class DropQueries:
                 )
                 row = cur.fetchone()
                 drop_id = row[0]
-                print("dropID:",  drop_id)
+                print("dropID:", drop_id)
                 cur.execute(
                     """ 
                     INSERT INTO bucket_drops(
@@ -92,29 +91,29 @@ class DropQueries:
                     VALUES (%s, %s)
                     RETURNING *;
                     """,
-                    [
-                        drop.bucket_id,
-                        drop_id
-                        
-                    ],
+                    [drop.bucket_id, drop_id],
                 )
-                row2 = cur.fetchone() 
-                id = row2[2]  
+                row2 = cur.fetchone()
+                id = row2[2]
                 print("row2:", row2)
-                
-        if id is not None: 
-            
-            return_drop = self.get_drop(id)  
-            print("returndrop:", return_drop)                
+
+        if id is not None:
+            return_drop = self.get_drop(id)
+            print("returndrop:", return_drop)
             return return_drop
-        
-    
-        
 
-
+    def delete_drop(self, drop_id):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    DELETE FROM drops
+                    WHERE id = %s
+                    """,
+                    [drop_id],
+                )
 
     def drop_record_to_dict(self, row, description):
-        
         drop = None
         if row is not None:
             drop = {}
@@ -126,7 +125,7 @@ class DropQueries:
                 "city",
                 "address",
                 "url",
-                "creator",       
+                "creator",
             ]
 
             for i, column in enumerate(description):
@@ -138,8 +137,8 @@ class DropQueries:
             creator_fields = [
                 "creator",
                 "full_name",
-                "email",  
-                "username",          
+                "email",
+                "username",
             ]
             for i, column in enumerate(description):
                 if column.name in creator_fields:

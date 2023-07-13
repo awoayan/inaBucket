@@ -84,6 +84,17 @@ class BucketQueries:
         if id is not None:
             return self.get_bucket(id)
 
+    def delete_bucket(self, bucket_id):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    """
+                    DELETE FROM buckets
+                    WHERE id = %s
+                    """,
+                    [bucket_id],
+                )
+
     def bucket_record_to_dict(self, row, description):
         
         bucket = None
