@@ -48,7 +48,7 @@ function SignUpModal() {
 									required
 									onChange={field}
 									value={e_username}
-									name="e_username"
+									name="email"
 									className="input"
 									type="email"
 									placeholder="you@example.com"
@@ -90,7 +90,7 @@ function SignUpModal() {
 									required
 									onChange={field}
 									value={explorer}
-									name="explorer"
+									name="username"
 									className="input"
 									type="text"
 									placeholder="Your Username"

@@ -6,6 +6,7 @@ import "./App.css";
 import SignUpModal from "./SignUpModal.js";
 
 function App() {
+	// const { data: tokenData } = useGetTokenQuery();
 	return (
 		<div>
 			<h1>Hello Pintrip</h1>

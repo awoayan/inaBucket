@@ -5,6 +5,7 @@ export const apiSlice = createApi({
 	reducerPath: "account",
 	baseQuery: fetchBaseQuery({
 		baseUrl: process.env.REACT_APP_API_HOST,
+
 		prepareHeaders: (headers, { getState }) => {
 			const selector = apiSlice.endpoints.getToken.select();
 			const { data: tokenData } = selector(getState());
