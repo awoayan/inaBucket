@@ -6,6 +6,7 @@ import { apiSlice } from "./api";
 export const store = configureStore({
 	reducer: {
 		[accountSlice.name]: accountSlice.reducer,
+		[apiSlice.reducerPath]: apiSlice.reducer,
 	},
 	middleware: (getDefaultMiddleware) => {
 		return getDefaultMiddleware().concat(apiSlice.middleware);

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useSignUpMutation } from "./app/api";
 import { preventDefault } from "./app/utils";
 import { showModal, updateField, SIGN_UP_MODAL } from "./app/accountSlice";
+import Notification from "./Notification";
 
 function SignUpModal() {
 	const dispatch = useDispatch();
@@ -10,7 +11,7 @@ function SignUpModal() {
 		(state) => state.account
 	);
 	const modalClass = `modal ${show === SIGN_UP_MODAL ? "is-active" : ""}`;
-	const [signUp, { isLoading: signUpLoading }] = useSignUpMutation();
+	const [signUp, { error, isLoading: signUpLoading }] = useSignUpMutation();
 	const field = useCallback(
 		(e) =>
 			dispatch(updateField({ field: e.target.name, value: e.target.value })),
@@ -25,9 +26,9 @@ function SignUpModal() {
 			<div className="modal-content">
 				<div className="box content">
 					<h3>Sign Up</h3>
-					{/* {error ? (
+					{error ? (
 						<Notification type="danger">{error.data.detail}</Notification>
-					) : null} */}
+					) : null}
 					<form
 						method="POST"
 						onSubmit={preventDefault(signUp, () => ({
