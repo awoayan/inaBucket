@@ -55,6 +55,7 @@ class AccountQueries:
     def create(self, account: AccountIn, hashed_password: str) -> AccountOutWithPassword:
         with pool.connection() as conn:
             with conn.cursor() as data:
+                print("accountIN Data:", account)
                 result = data.execute(
                     """
                     INSERT INTO accounts (email, hashed_password, full_name, username)

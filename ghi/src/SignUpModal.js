@@ -7,9 +7,12 @@ import Notification from "./Notification";
 
 function SignUpModal() {
 	const dispatch = useDispatch();
-	const { show, e_username, password, full_name, explorer } = useSelector(
+	const { show, password, e_username, full_name, explorer } = useSelector(
 		(state) => state.account
 	);
+	console.log("full_name", full_name);
+	console.log(e_username);
+	console.log(explorer);
 	const modalClass = `modal ${show === SIGN_UP_MODAL ? "is-active" : ""}`;
 	const [signUp, { error, isLoading: signUpLoading }] = useSignUpMutation();
 	const field = useCallback(
@@ -48,7 +51,7 @@ function SignUpModal() {
 									required
 									onChange={field}
 									value={e_username}
-									name="email"
+									name="e_username"
 									className="input"
 									type="email"
 									placeholder="you@example.com"
@@ -90,7 +93,7 @@ function SignUpModal() {
 									required
 									onChange={field}
 									value={explorer}
-									name="username"
+									name="explorer"
 									className="input"
 									type="text"
 									placeholder="Your Username"
