@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSignUpMutation } from "./app/api";
 import { preventDefault } from "./app/utils";
@@ -6,20 +6,54 @@ import { showModal, updateField, SIGN_UP_MODAL } from "./app/accountSlice";
 import Notification from "./Notification";
 
 function SignUpModal() {
-	const dispatch = useDispatch();
-	const { show, password, e_username, full_name, explorer } = useSelector(
-		(state) => state.account
-	);
-	console.log("full_name", full_name);
-	console.log(e_username);
-	console.log(explorer);
+	// const dispatch = useDispatch();
+	// const { show, password, e_username, full_name, explorer } = useSelector(
+	// 	(state) => state.account
+	// );
+
+	const [full_name, setFullName] = useState("");
+	const [e_username, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [explorer, setExplorer] = useState("");
+
+	const handleFullNameChange = (event) => {
+		const value = event.target.value;
+		setFullName(value);
+	};
+
+	const handleEmailChange = (event) => {
+		const value = event.target.value;
+		setEmail(value);
+	};
+
+	const handlePasswordChange = (event) => {
+		const value = event.target.value;
+		setPassword(value);
+	};
+
+	const handleExplorerChange = (event) => {
+		const value = event.target.value;
+		setExplorer(value);
+	};
+
+	const data = {};
+	data.full_name = full_name;
+	data.email = e_username;
+	data.password = password;
+	data.username = explorer;
+
 	const modalClass = `modal ${show === SIGN_UP_MODAL ? "is-active" : ""}`;
 	const [signUp, { error, isLoading: signUpLoading }] = useSignUpMutation();
-	const field = useCallback(
-		(e) =>
-			dispatch(updateField({ field: e.target.name, value: e.target.value })),
-		[dispatch]
-	);
+	// const field = useCallback(
+	// 	(e) =>
+	// 		dispatch(updateField({ field: e.target.name, value: e.target.value })),
+	// 	[dispatch]
+	// );
+
+	setFullName("");
+	setEmail("");
+	setPassword("");
+	setExplorer("");
 
 	return (
 		<div
@@ -34,12 +68,7 @@ function SignUpModal() {
 					) : null}
 					<form
 						method="POST"
-						onSubmit={preventDefault(signUp, () => ({
-							email: e_username,
-							password,
-							full_name,
-							username: explorer,
-						}))}>
+						onSubmit={preventDefault(signUp, () => data)}>
 						<div className="field">
 							<label
 								className="label"
@@ -49,7 +78,7 @@ function SignUpModal() {
 							<div className="control">
 								<input
 									required
-									onChange={field}
+									onChange={handleEmailChange}
 									value={e_username}
 									name="e_username"
 									className="input"
@@ -63,7 +92,7 @@ function SignUpModal() {
 							<div className="control">
 								<input
 									required
-									onChange={field}
+									onChange={handlePasswordChange}
 									value={password}
 									name="password"
 									className="input"
@@ -77,7 +106,7 @@ function SignUpModal() {
 							<div className="control">
 								<input
 									required
-									onChange={field}
+									onChange={handleFullNameChange}
 									value={full_name}
 									name="full_name"
 									className="input"
@@ -91,7 +120,7 @@ function SignUpModal() {
 							<div className="control">
 								<input
 									required
-									onChange={field}
+									onChange={handleExplorerChange}
 									value={explorer}
 									name="explorer"
 									className="input"
@@ -108,14 +137,14 @@ function SignUpModal() {
 									Submit
 								</button>
 							</div>
-							<div className="control">
+							{/* <div className="control">
 								<button
 									type="button"
 									onClick={() => dispatch(showModal(null))}
 									className="button">
 									Cancel
 								</button>
-							</div>
+							</div> */}
 						</div>
 					</form>
 				</div>
