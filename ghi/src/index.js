@@ -4,6 +4,8 @@ import "./index.css";
 import App from "./App";
 import { store } from "./app/store";
 import { Provider } from "react-redux";
+import HomePage from "./HomePage";
+import ProfilePage from "./ProfilePage";
 // import Nav from "./Nav";
 
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
@@ -14,6 +16,8 @@ root.render(
 		<Provider store={store}>
 			<BrowserRouter>
 				<Routes>
+          <Route path="/homepage" element={<HomePage />} />
+		  <Route path="/profile/" element={<ProfilePage />} />
 					<Route
 						path="/"
 						element={<App />}
