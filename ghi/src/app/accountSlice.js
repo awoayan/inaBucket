@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
 	show: null,
-	e_username: "",
+	username: "",
 	password: "",
 	full_name: "",
-	explorer: "",
+	e_username: "",
 };
 
 export const accountSlice = createSlice({

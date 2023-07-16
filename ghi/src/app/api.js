@@ -2,10 +2,9 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { clearForm } from "./accountSlice";
 
 export const apiSlice = createApi({
-	reducerPath: "account",
+	reducerPath: "books",
 	baseQuery: fetchBaseQuery({
 		baseUrl: process.env.REACT_APP_API_HOST,
-
 		prepareHeaders: (headers, { getState }) => {
 			const selector = apiSlice.endpoints.getToken.select();
 			const { data: tokenData } = selector(getState());
@@ -15,7 +14,7 @@ export const apiSlice = createApi({
 			return headers;
 		},
 	}),
-	tagTypes: ["Account", "Token"],
+	tagTypes: ["Account", "Books", "Token"],
 	endpoints: (builder) => ({
 		signUp: builder.mutation({
 			query: (data) => ({
@@ -82,8 +81,8 @@ export const apiSlice = createApi({
 });
 
 export const {
-	useGetTokenQuery,
 	useLogInMutation,
 	useLogOutMutation,
 	useSignUpMutation,
+	useGetTokenQuery,
 } = apiSlice;

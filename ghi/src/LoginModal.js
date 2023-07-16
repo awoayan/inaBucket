@@ -1,17 +1,15 @@
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useSignUpMutation } from "./app/api";
-import { preventDefault } from "./app/utils";
-import { showModal, updateField, SIGN_UP_MODAL } from "./app/accountSlice";
+import { useLogInMutation } from "./app/api";
+import { eventTargetSelector as target, preventDefault } from "./app/utils";
+import { showModal, updateField, LOG_IN_MODAL } from "./app/accountSlice";
 import Notification from "./Notification";
 
-function SignUpModal() {
+function LogInModal() {
 	const dispatch = useDispatch();
-	const { show, username, password, full_name, e_username } = useSelector(
-		(state) => state.account
-	);
-	const modalClass = `modal ${show === SIGN_UP_MODAL ? "is-active" : ""}`;
-	const [signUp, { error, isLoading: signUpLoading }] = useSignUpMutation();
+	const { show, username, password } = useSelector((state) => state.account);
+	const modalClass = `modal ${show === LOG_IN_MODAL ? "is-active" : ""}`;
+	const [logIn, { error, isLoading: logInLoading }] = useLogInMutation();
 	const field = useCallback(
 		(e) =>
 			dispatch(updateField({ field: e.target.name, value: e.target.value })),
@@ -21,22 +19,17 @@ function SignUpModal() {
 	return (
 		<div
 			className={modalClass}
-			key="signup-modal">
+			key="login-modal">
 			<div className="modal-background"></div>
 			<div className="modal-content">
 				<div className="box content">
-					<h3>Sign Up</h3>
+					<h3>Log In</h3>
 					{error ? (
 						<Notification type="danger">{error.data.detail}</Notification>
 					) : null}
 					<form
 						method="POST"
-						onSubmit={preventDefault(signUp, () => ({
-							email: username,
-							password,
-							full_name,
-							username: e_username,
-						}))}>
+						onSubmit={preventDefault(logIn, target)}>
 						<div className="field">
 							<label
 								className="label"
@@ -69,38 +62,10 @@ function SignUpModal() {
 								/>
 							</div>
 						</div>
-						<div className="field">
-							<label className="label">First and last names</label>
-							<div className="control">
-								<input
-									required
-									onChange={field}
-									value={full_name}
-									name="full_name"
-									className="input"
-									type="text"
-									placeholder="Your Name"
-								/>
-							</div>
-						</div>
-						<div className="field">
-							<label className="label">Username</label>
-							<div className="control">
-								<input
-									required
-									onChange={field}
-									value={e_username}
-									name="e_username"
-									className="input"
-									type="text"
-									placeholder="Your Username"
-								/>
-							</div>
-						</div>
 						<div className="field is-grouped">
 							<div className="control">
 								<button
-									disabled={signUpLoading}
+									disabled={logInLoading}
 									className="button is-primary">
 									Submit
 								</button>
@@ -121,4 +86,4 @@ function SignUpModal() {
 	);
 }
 
-export default SignUpModal;
+export default LogInModal;
