@@ -7,6 +7,7 @@ import logo from "./logo.svg";
 import LogInModal from "./LoginModal";
 import SignUpModal from "./SignUpModal";
 import { useEffect } from "react";
+import SearchPage from "./Searchbar";
 
 function LoginButtons(props) {
 	const dispatch = useDispatch();
@@ -71,7 +72,9 @@ function Nav() {
 							alt=""
 						/>
 					</NavLink>
-
+			<div>
+				<SearchPage/>
+			</div>
 					<button
 						className="navbar-burger"
 						aria-label="menu"
