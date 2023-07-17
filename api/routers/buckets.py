@@ -16,7 +16,6 @@ class BucketIn(BaseModel):
     title: str
     cover_photo: str
     details: str
-    url: str
     account_id: int
 
 
@@ -25,7 +24,6 @@ class BucketOut(BaseModel):
     title: str
     cover_photo: str
     details: str
-    url: str
     owner: AccountOut
 
 
