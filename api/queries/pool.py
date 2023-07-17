@@ -67,14 +67,13 @@ class BucketQueries:
                     """
                     INSERT INTO buckets( 
                         title, cover_photo, details, account_id )
-                    VALUES (%s, %s, %s, %s, %s)
+                    VALUES (%s, %s, %s, %s)
                     RETURNING id;
                     """,
                     [                   
                         bucket.title, 
                         bucket.cover_photo,
                         bucket.details,
-                        bucket.url,
                         bucket.account_id,
                     ],
                 )
