@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import HomePage from "./HomePage";
 import ProfilePage from "./ProfilePage";
 // import Nav from "./Nav";
+import Nav from "./Nav";
 
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 
@@ -15,6 +16,7 @@ root.render(
 	<React.StrictMode>
 		<Provider store={store}>
 			<BrowserRouter>
+			<Nav/>
 				<Routes>
 					<Route
 						path="/"

@@ -11,8 +11,7 @@ function App() {
 	return (
 		<div>
 			<h1>Hello Pintrip</h1>
-			<SignUpModal />
-			<LogInModal />
+			
 		</div>
 	);
 }
