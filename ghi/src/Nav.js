@@ -9,6 +9,7 @@ import SignUpModal from "./SignUpModal";
 import { useEffect } from "react";
 import SearchPage from "./Searchbar";
 
+
 function LoginButtons(props) {
 	const dispatch = useDispatch();
 	const classNames = `buttons ${props.show ? "" : "is-hidden"}`;
