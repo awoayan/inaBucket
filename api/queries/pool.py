@@ -16,7 +16,7 @@ class BucketQueries:
                         a.email, a.username,
                         b.id, b.title,
                         b.cover_photo, b.details, 
-                        b.url, b.account_id
+                        b.account_id
 
                     FROM accounts a 
                     JOIN buckets b ON(a.id = b.account_id)
@@ -24,8 +24,7 @@ class BucketQueries:
                     GROUP BY 
                         a.id, a.full_name, a.username, a.email,
                         b.id, b.title, b.cover_photo, 
-                        b.details,
-                        b.url, b.account_id
+                        b.details, b.account_id
 
                     ORDER BY b.title
                     """,
@@ -46,7 +45,7 @@ class BucketQueries:
                     SELECT a.id, a.full_name,
                         a.email, a.username,
                         b.id, b.title,
-                        b.cover_photo, b.details, b.url,
+                        b.cover_photo, b.details,
                         b.account_id
                     FROM accounts a
                     JOIN buckets b ON(a.id = b.account_id)
@@ -67,7 +66,7 @@ class BucketQueries:
                 cur.execute(
                     """
                     INSERT INTO buckets( 
-                        title, cover_photo, details, url, account_id )
+                        title, cover_photo, details, account_id )
                     VALUES (%s, %s, %s, %s, %s)
                     RETURNING id;
                     """,
@@ -105,7 +104,6 @@ class BucketQueries:
                 "title",
                 "cover_photo",
                 "details",
-                "url",
                 "account_id",              
             ]
 
