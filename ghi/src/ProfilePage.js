@@ -36,10 +36,7 @@ function ProfilePage() {
     } else {
         userBuckets = buckets.filter(
             (bucket) => bucket.owner.id === tokenData.account.id);
-       
-        
     }
-   console.log(userBuckets)
 
    return  (
         <div>
