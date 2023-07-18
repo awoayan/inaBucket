@@ -9,6 +9,9 @@ import SignUpModal from "./SignUpModal";
 import { useEffect } from "react";
 import SearchPage from "./Searchbar";
 
+import CreateBucketModal from "./CreateBucketModal";
+import { CREATE_BUCKET_MODAL } from "./app/bucketSlice";
+
 
 function LoginButtons(props) {
 	const dispatch = useDispatch();
@@ -50,6 +53,21 @@ function LogoutButton() {
 		</div>
 	);
 }
+
+// function CreateBucketButton(){
+// 	const dispatch = useDispatch();
+// 	return (
+// 	<div className="buttons">
+// 			<button
+// 				onClick={() => dispatch(showModal(CREATE_BUCKET_MODAL))}
+// 				className="button is-light">
+// 				Create Bucket
+// 			</button>
+// 		</div>
+// 	)
+// }
+
+
 function Nav() {
 	const { data: token, isLoading: tokenLoading } = useGetTokenQuery();
 	// const {
@@ -99,11 +117,15 @@ function Nav() {
 								<LoginButtons show={true} />
 							)}
 						</div>
+						
 					</div>
+					
 				</div>
 			</nav>
+			
 			<LogInModal />
 			<SignUpModal />
+			
 		</>
 	);
 }

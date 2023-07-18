@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import HomePage from "./HomePage";
 import ProfilePage from "./ProfilePage";
 import Nav from "./Nav";
+import CreateBucketForm from "./BucketForm";
 
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 
@@ -21,6 +22,8 @@ root.render(
 					<Route path="*" element={<Navigate to="/" />} />
 					<Route path="/home" element={<HomePage />} />
 					<Route path="/profile" element={<ProfilePage />} />	
+					<Route path="/create/bucket" element={<CreateBucketForm />} />
+
 				</Routes>
 			</BrowserRouter>
 		</Provider>

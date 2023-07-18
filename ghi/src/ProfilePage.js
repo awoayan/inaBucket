@@ -23,7 +23,7 @@ function ProfilePage() {
     }, [])
 
     const { data: tokenData} = useGetTokenQuery()
-    console.log("hello line 26")
+
     
     let userBuckets = null
     
