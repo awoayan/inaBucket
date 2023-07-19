@@ -38,13 +38,13 @@ CREATE TABLE bucket_drops (
     drop_id INTEGER NOT NULL REFERENCES drops("id") ON DELETE CASCADE
 );
 
--- INSERT INTO accounts VALUES
--- (1, 'John Smith', '1780000.jpeg', 'John@gmail.com', 'Jsmith', 'abc'),
--- (2, 'Dave Jones', '178030988.jpeg', 'Dave@gmail.com', 'Djones', 'abc'),
--- (3, 'Patrick Lacquer', '17800.jpeg', 'Patrick@gmail.com', 'Placquer', 'abc'),
--- (4, 'Abbie Schmabbie', '10000.jpeg', 'Abbie@gmail.com', 'Aschabbie', 'abc'),
--- (5, 'David Agarwal', '170000.jpeg', 'David@gmail.com', 'Dagarwal', 'abc')
--- ;
+INSERT INTO accounts VALUES
+(1, 'John Smith', '1780000.jpeg', 'John@gmail.com', 'Jsmith', 'abc'),
+(2, 'Dave Jones', '178030988.jpeg', 'Dave@gmail.com', 'Djones', 'abc'),
+(3, 'Patrick Lacquer', '17800.jpeg', 'Patrick@gmail.com', 'Placquer', 'abc'),
+(4, 'Abbie Schmabbie', '10000.jpeg', 'Abbie@gmail.com', 'Aschabbie', 'abc'),
+(5, 'David Agarwal', '170000.jpeg', 'David@gmail.com', 'Dagarwal', 'abc')
+;
 
 INSERT INTO buckets VALUES
 (1, 'Canada Time!', 'https://tinyurl.com/4bahsdf2', 'The Mona-Lisa is TOTALLY about travel', 1),
@@ -71,7 +71,7 @@ INSERT INTO bucket_drops VALUES
 ;
 
 
--- SELECT setval('accounts_id_seq', (SELECT MAX(id) + 1 FROM accounts));
+SELECT setval('accounts_id_seq', (SELECT MAX(id) + 1 FROM accounts));
 SELECT setval('buckets_id_seq', (SELECT MAX(id) + 1 FROM buckets));
 SELECT setval('drops_id_seq', (SELECT MAX(id) + 1 FROM drops));
 SELECT setval('bucket_drops_id_seq', (SELECT MAX(id) + 1 FROM bucket_drops));
