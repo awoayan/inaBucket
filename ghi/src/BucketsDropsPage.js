@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useGetTokenQuery } from './app/api';
+import { useParams } from 'react-router-dom';
 
-function BucketsDropsPage(bucketid) {
+function BucketsDropsPage() {
+const { bucketId } = useParams();
 const [bucketDrops, setBucketDrops] = useState([]);
 
 useEffect(() => {
-    const fetchBuckets = async () => {
-    const url = "http://localhost:8000/api/bucket_drops";
-    const response = await fetch(url);
+    const fetchBucketDrops = async () => {
+    const response = await fetch(`http://localhost:8000/api/bucket_drops/${bucketId}`)
 
     if (response.ok) {
         const data = await response.json();
@@ -18,49 +18,28 @@ useEffect(() => {
     }
     };
 
-    fetchBuckets();
-}, []);
-console.log("bucketdrops",bucketDrops)
-// let finaldrops = function(bucketDrops) {
-//     let userdrops = []
-//     for (const drop of bucketDrops){
-//         let drops = {};
-//         if (bucketDrops.bucket_id === bucketid){
-//             drops[drop.username],
-//             drops[drop.drop_id],
-//             drops[drop.drop_photo],
-//             drops[drop.drop_details],
-//             drops[drop.drop_city],
-//             drops[drop.drop_address],
-//             drops[drop.drop_url],
-//             drops[drop.drop_name],
-//             drops[drop.bucket_title]
-//         }
-//         userdrops.push(drops)
-//     }
-//     return userdrops
-// }
-// console.log(finaldrops)
+    fetchBucketDrops();
+}, [bucketId]);
 
-// return (
-// <div>
-//     <h2>These are bucketDrops on cards</h2>
-//     <div className="columns">
-//         {bucketDrops.map((bucketDrop) => (
-//             <div className="column" key={bucketDrop.id}>
-//                 <div className="card">
-//                     <div className="card-content">
-//                         <div className="media-content">
-//                             <p className="title is-4">{bucketDrop.buckets.title}
-//                             </p>
-//                         </div>
-//                     </div>
-//                 </div>
-//             </div>
-//         ))}
-//     </div>
-// </div>
-// );
+return (
+<div>
+    <h2>These are bucketDrops on cards</h2>
+    <div className="columns">
+        {bucketDrops.map((bucketDrop) => (
+            <div className="column" key={bucketDrop.id}>
+                <div className="card">
+                    <div className="card-content">
+                        <div className="media-content">
+                            <p className="title is-4">{bucketDrop.drop_name}</p>
+                            <img src={bucketDrop.drop_photo} alt={bucketDrop.drop_name} />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        ))}
+    </div>
+</div>
+);
 }
 
 export default BucketsDropsPage;

@@ -22,7 +22,7 @@ root.render(
           <Route path="*" element={<Navigate to="/" />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/bucketview" element={<BucketsDropsPage />} />
+          <Route path="/bucketdrops/:bucketId" element={<BucketsDropsPage />} />
         </Routes>
       </BrowserRouter>
     </Provider>

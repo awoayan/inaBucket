@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useGetTokenQuery } from './app/api';
 import Notification from './Notification';
-import BucketsDropsPage from './BucketsDropsPage';
 
 
 function ProfilePage() {
@@ -49,6 +49,7 @@ function ProfilePage() {
                             e.currentTarget.style.transform = 'scale(1)';
                         }}
                     >
+                        <Link to={`/bucketdrops/${bucket.id}`} className="card-link">
                         <div className="card" style={{ width: '300px', maxHeight: '500px', border: 0 }}>
                             <div className="card-image">
                                 <figure className="image is-1by1">
@@ -78,6 +79,7 @@ function ProfilePage() {
                                 </div>
                             </div>
                         </div>
+                        </Link>
                     </div>
                 ))}
             </div>
