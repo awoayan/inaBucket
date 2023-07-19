@@ -45,7 +45,6 @@ function ProfilePage() {
                         onMouseEnter={(e) => {
                             e.currentTarget.style.transform = 'scale(1.05)';
                         }}
-                        onClick={() => BucketsDropsPage(bucket.id)}
                         onMouseLeave={(e) => {
                             e.currentTarget.style.transform = 'scale(1)';
                         }}
