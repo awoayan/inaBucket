@@ -7,22 +7,24 @@ import { Provider } from "react-redux";
 import HomePage from "./HomePage";
 import ProfilePage from "./ProfilePage";
 import Nav from "./Nav";
+import BucketsDropsPage from "./BucketsDropsPage";
 
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-	<React.StrictMode>
-		<Provider store={store}>
-			<BrowserRouter>
-			<Nav/>
-				<Routes>
-					<Route path="/" element={<App />} />
-					<Route path="*" element={<Navigate to="/" />} />
-					<Route path="/home" element={<HomePage />} />
-					<Route path="/profile" element={<ProfilePage />} />	
-				</Routes>
-			</BrowserRouter>
-		</Provider>
-	</React.StrictMode>
+  <React.StrictMode>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Nav />
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="*" element={<Navigate to="/" />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/bucketview" element={<BucketsDropsPage />} />
+        </Routes>
+      </BrowserRouter>
+    </Provider>
+  </React.StrictMode>
 );
