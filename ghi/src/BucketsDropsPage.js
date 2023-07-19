@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 function BucketsDropsPage() {
 const { bucketId } = useParams();
@@ -26,8 +26,19 @@ return (
     <h2>These are bucketDrops on cards</h2>
     <div className="columns">
         {bucketDrops.map((bucketDrop) => (
-            <div className="column" key={bucketDrop.id}>
-                <div className="card">
+            <div
+                className="column is-one-fifth"
+                key={bucketDrop.id}
+                style={{ transition: 'transform 0.2s' }}
+                onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.05)';
+                }}
+                onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                }}
+            >
+                <Link to={`/drops/${bucketDrop.drop_id}`} className="card-link">
+                <div className="card" style={{ width: '300px', maxHeight: '500px', border: 0 }}>
                     <div className="card-content">
                         <div className="media-content">
                             <p className="title is-4">{bucketDrop.drop_name}</p>
@@ -35,6 +46,7 @@ return (
                         </div>
                     </div>
                 </div>
+                </Link>
             </div>
         ))}
     </div>

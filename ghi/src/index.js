@@ -8,6 +8,7 @@ import HomePage from "./HomePage";
 import ProfilePage from "./ProfilePage";
 import Nav from "./Nav";
 import BucketsDropsPage from "./BucketsDropsPage";
+import DropsPage from "./DropsPage";
 
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 
@@ -23,6 +24,7 @@ root.render(
           <Route path="/home" element={<HomePage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/bucketdrops/:bucketId" element={<BucketsDropsPage />} />
+          <Route path="/drops/:dropId" element={<DropsPage />} />
         </Routes>
       </BrowserRouter>
     </Provider>
