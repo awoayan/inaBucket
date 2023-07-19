@@ -14,7 +14,7 @@
 //     const modalClass = `modal ${show === CREATE_BUCKET_MODAL ? "is-active" : ""}`;
 //     const [createBucket, { error, isLoading: createBucketLoading}] = useAddBucketMutation();
 //     const field = useCallback(
-//         (e) => 
+//         (e) =>
 //         dispatch(updateField({ field: e.target.name, value: e.target.value})),
 //         [dispatch]
 //     )
@@ -27,7 +27,7 @@
 //     return(
 //         <>
 //         <div
-        
+
 //             className={modalClass}
 // 			key="signup-modal">
 // 			<div className="modal-background"></div>
@@ -108,13 +108,10 @@
 // 				</div>
 // 			</div>
 // 		</div>
-        
+
 //         </>
 //     )
 
-
-
-    
 // }
 
 // export default CreateBucketModal;

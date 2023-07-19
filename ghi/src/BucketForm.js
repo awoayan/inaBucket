@@ -67,7 +67,15 @@ function CreateBucketForm(){
     }
   return (
       <>
-      <h1>Create Bucket Form</h1>
+      <div class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+       <h1>
+        My bucket modal 
+       </h1>
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+    </div>
       
       
       </>

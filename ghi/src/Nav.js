@@ -1,4 +1,6 @@
 import { NavLink } from "react-router-dom";
+import { createPortal } from "react-dom";
+
 import { useGetTokenQuery, useLogOutMutation } from "./app/api";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -6,12 +8,11 @@ import { showModal, LOG_IN_MODAL, SIGN_UP_MODAL } from "./app/accountSlice";
 import logo from "./logo.svg";
 import LogInModal from "./LoginModal";
 import SignUpModal from "./SignUpModal";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import SearchPage from "./Searchbar";
-
-import CreateBucketModal from "./CreateBucketModal";
-import { CREATE_BUCKET_MODAL } from "./app/bucketSlice";
-
+import Modal from "./Modal";
+import ModalContent from "./ModalContent";
+import PortalExample from "./Modal";
 
 function LoginButtons(props) {
 	const dispatch = useDispatch();
@@ -54,25 +55,8 @@ function LogoutButton() {
 	);
 }
 
-// function CreateBucketButton(){
-// 	const dispatch = useDispatch();
-// 	return (
-// 	<div className="buttons">
-// 			<button
-// 				onClick={() => dispatch(showModal(CREATE_BUCKET_MODAL))}
-// 				className="button is-light">
-// 				Create Bucket
-// 			</button>
-// 		</div>
-// 	)
-// }
-
-
 function Nav() {
 	const { data: token, isLoading: tokenLoading } = useGetTokenQuery();
-	// const {
-	// 	// account: { roles = [] },
-	// } = token || { account: {} };
 
 	return (
 		<>
@@ -91,9 +75,9 @@ function Nav() {
 							alt=""
 						/>
 					</NavLink>
-			<div>
-				<SearchPage/>
-			</div>
+					<div>
+						<SearchPage />
+					</div>
 					<button
 						className="navbar-burger"
 						aria-label="menu"
@@ -117,15 +101,15 @@ function Nav() {
 								<LoginButtons show={true} />
 							)}
 						</div>
-						
+						<div className="clipping-container">
+							<PortalExample />
+						</div>
 					</div>
-					
 				</div>
 			</nav>
-			
+
 			<LogInModal />
 			<SignUpModal />
-			
 		</>
 	);
 }
