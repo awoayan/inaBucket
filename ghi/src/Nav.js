@@ -101,7 +101,7 @@ function Nav() {
 								<LoginButtons show={true} />
 							)}
 						</div>
-						<div className="clipping-container">
+						<div className="button is-primary">
 							<PortalExample />
 						</div>
 					</div>
