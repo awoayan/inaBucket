@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-
+import SaveDropForm from './SaveDropForm';
 function DropsPage() {
     const { dropId } = useParams();
     const [drop, setDrop] = useState(null);
-
     useEffect(() => {
         const fetchDrop = async () => {
             try {
@@ -20,14 +19,11 @@ function DropsPage() {
                 console.error(error);
             }
         };
-
         fetchDrop();
     }, [dropId]);
-
     if (!drop) {
-        return <div>Loading...</div>; 
+        return <div>Loading...</div>;
     }
-
     return (
         <div>
             <h2>Drop Details</h2>
@@ -40,9 +36,29 @@ function DropsPage() {
                         </div>
                     </div>
                 </div>
+                <SaveDropForm dropId={dropId} />
             </div>
         </div>
     );
 }
-
 export default DropsPage;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
