@@ -35,7 +35,7 @@ function ProfilePage() {
     }
     return (
         <div>
-            <h2>These are buckets on cards</h2>
+            <h2>'s Profile</h2>
             <div className="columns is-multiline">
                 {userBuckets.map((bucket) => (
                     <div
@@ -43,7 +43,7 @@ function ProfilePage() {
                         key={bucket.id}
                         style={{ transition: 'transform 0.2s' }}
                         onMouseEnter={(e) => {
-                            e.currentTarget.style.transform = 'scale(1.05)';
+                            e.currentTarget.style.transform = 'scale(1.1)';
                         }}
                         onMouseLeave={(e) => {
                             e.currentTarget.style.transform = 'scale(1)';

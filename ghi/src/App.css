@@ -12,3 +12,13 @@
   font-size: calc(10px + 2vmin);
   color: rgb(255, 255, 255);
 }
+
+body {
+  padding-top: 50px;
+  padding-left: 40px;
+  background-color: rgb(215, 240, 250);
+}
+
+footer {
+  background-color: rgb(215, 240, 250);
+}
