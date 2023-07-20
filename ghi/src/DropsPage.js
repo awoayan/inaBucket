@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import SaveDropForm from './SaveDropForm';
 
 function DropsPage() {
     const { dropId } = useParams();
@@ -40,6 +41,7 @@ function DropsPage() {
                         </div>
                     </div>
                 </div>
+                <SaveDropForm dropId={dropId}/>
             </div>
         </div>
     );
