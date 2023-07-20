@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import ModalContent from "./ModalContent.js";
+import CreateBucketModalContent from "./ModalContent.js";
 
-export default function PortalExample() {
+export default function CreateBucketModal() {
 	const [showModal, setShowModal] = useState(false);
 	return (
 		<>
@@ -11,7 +11,7 @@ export default function PortalExample() {
 			</button>
 			{showModal &&
 				createPortal(
-					<ModalContent onClose={() => setShowModal(false)} />,
+					<CreateBucketModalContent onClose={() => setShowModal(false)} />,
 					document.body
 				)}
 		</>

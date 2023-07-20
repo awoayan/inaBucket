@@ -51,7 +51,6 @@ function CreateBucketForm() {
 			method: "post",
 			body: JSON.stringify(data),
 			headers: { "Content-Type": "application/json" },
-			// credentials: "include",
 		};
 		console.log("fetch Config:", fetchConfig);
 		const response = await fetch(bucketUrl, fetchConfig);

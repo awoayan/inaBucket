@@ -10,8 +10,8 @@ import LogInModal from "./LoginModal";
 import SignUpModal from "./SignUpModal";
 import { useEffect, useState } from "react";
 import SearchPage from "./Searchbar";
-import Modal from "./Modal";
-import ModalContent from "./ModalContent";
+import CreateBucketModal from "./Modal";
+import CreateBucketModalContent from "./ModalContent";
 import PortalExample from "./Modal";
 
 function LoginButtons(props) {
@@ -102,7 +102,7 @@ function Nav() {
 							)}
 						</div>
 						<div className="button is-primary">
-							<PortalExample />
+							<CreateBucketModal />
 						</div>
 					</div>
 				</div>
