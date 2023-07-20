@@ -3,7 +3,7 @@ import { useGetTokenQuery, useLogOutMutation } from "./app/api";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { showModal, LOG_IN_MODAL, SIGN_UP_MODAL } from "./app/accountSlice";
-import logo from "./logo.svg";
+import homeLogo from "./homeLogo.svg";
 import LogInModal from "./LoginModal";
 import SignUpModal from "./SignUpModal";
 import { useEffect } from "react";
@@ -67,7 +67,7 @@ function Nav() {
 						className="navbar-item"
 						to="/">
 						<img
-							src={logo}
+							src={homeLogo}
 							height="86"
 							width="43"
 							alt=""

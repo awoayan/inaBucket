@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import SaveDropForm from './SaveDropForm';
+
 function DropsPage() {
     const { dropId } = useParams();
     const [drop, setDrop] = useState(null);
@@ -36,7 +37,7 @@ function DropsPage() {
                         </div>
                     </div>
                 </div>
-                <SaveDropForm dropId={dropId} />
+                <SaveDropForm dropId={dropId}/>
             </div>
         </div>
     );
