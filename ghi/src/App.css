@@ -10,10 +10,15 @@
 	align-items: center;
 	justify-content: center;
 	font-size: calc(10px + 2vmin);
-	color: white;
+	color: rgb(255, 255, 255);
 }
 
-.App {
-	text-align: center;
-	padding-top: 2rem;
+body {
+	padding-top: 50px;
+	padding-left: 40px;
+	background-color: rgb(215, 240, 250);
+}
+
+footer {
+	background-color: rgb(215, 240, 250);
 }

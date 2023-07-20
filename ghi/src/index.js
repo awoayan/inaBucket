@@ -7,7 +7,8 @@ import { Provider } from "react-redux";
 import HomePage from "./HomePage";
 import ProfilePage from "./ProfilePage";
 import Nav from "./Nav";
-import CreateBucketForm from "./BucketForm";
+import BucketsDropsPage from "./BucketsDropsPage";
+import DropsPage from "./DropsPage";
 
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 
@@ -16,14 +17,32 @@ root.render(
 	<React.StrictMode>
 		<Provider store={store}>
 			<BrowserRouter>
-			<Nav/>
+				<Nav />
 				<Routes>
-					<Route path="/" element={<App />} />
-					<Route path="*" element={<Navigate to="/" />} />
-					<Route path="/home" element={<HomePage />} />
-					<Route path="/profile" element={<ProfilePage />} />	
-					<Route path="/create/bucket" element={<CreateBucketForm />} />
-
+					<Route
+						path="/"
+						element={<App />}
+					/>
+					<Route
+						path="*"
+						element={<Navigate to="/" />}
+					/>
+					<Route
+						path="/home"
+						element={<HomePage />}
+					/>
+					<Route
+						path="/profile"
+						element={<ProfilePage />}
+					/>
+					<Route
+						path="/bucketdrops/:bucketId"
+						element={<BucketsDropsPage />}
+					/>
+					<Route
+						path="/drops/:dropId"
+						element={<DropsPage />}
+					/>
 				</Routes>
 			</BrowserRouter>
 		</Provider>
