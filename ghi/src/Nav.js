@@ -11,8 +11,7 @@ import SignUpModal from "./SignUpModal";
 import { useEffect, useState } from "react";
 import SearchPage from "./Searchbar";
 import CreateBucketModal from "./Modal";
-import CreateBucketModalContent from "./ModalContent";
-import PortalExample from "./Modal";
+import CreateDropModal from "./CreateDropModal";
 
 function LoginButtons(props) {
 	const dispatch = useDispatch();
@@ -103,6 +102,9 @@ function Nav() {
 						</div>
 						<div className="button is-primary">
 							<CreateBucketModal />
+						</div>
+						<div className="button is-primary">
+							<CreateDropModal />
 						</div>
 					</div>
 				</div>
