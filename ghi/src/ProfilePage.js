@@ -35,24 +35,24 @@ function ProfilePage() {
     }
     return (
         <div>
-            <h2>'s Profile</h2>
-            <div className="columns is-multiline">
+            <h2>These are profile owners buckets</h2>
+            <div className="columns is-multiline ">
                 {userBuckets.map((bucket) => (
                     <div
-                        className="column is-one-fifth"
+                        className="column is-one-fifth "
                         key={bucket.id}
                         style={{ transition: 'transform 0.2s' }}
                         onMouseEnter={(e) => {
-                            e.currentTarget.style.transform = 'scale(1.1)';
+                            e.currentTarget.style.transform = 'scale(1.05)';
                         }}
                         onMouseLeave={(e) => {
                             e.currentTarget.style.transform = 'scale(1)';
                         }}
                     >
                         <Link to={`/bucketdrops/${bucket.id}`} className="card-link">
-                        <div className="card" style={{ width: '300px', maxHeight: '500px', border: 0 }}>
-                            <div className="card-image">
-                                <figure className="image is-1by1">
+                        <div className="bucket-card" >
+                            <div className="bucket-card card-image">
+                                <figure>
                                     <img src={bucket.cover_photo} alt={bucket.title} />
                                 </figure>
                             </div>
@@ -68,14 +68,8 @@ function ProfilePage() {
                                         <p className="subtitle is-6">@{bucket.owner.username}</p>
                                     </div>
                                 </div>
-                                <div className="content" style={{ maxHeight: '80px', overflow: 'hidden' }}>
-                                    {bucket.details.length > 100 ? (
-                                        <>
-                                            {bucket.details.slice(0, 100)}...
-                                        </>
-                                    ) : (
-                                        bucket.details
-                                    )}
+                                <div className="content" style={{ maxHeight: '100px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                    {bucket.details.length > 100 ? `${bucket.details.slice(0, 100)}...` : bucket.details}
                                 </div>
                             </div>
                         </div>
@@ -83,6 +77,9 @@ function ProfilePage() {
                     </div>
                 ))}
             </div>
+            <footer>
+                FOOTER NOTER
+            </footer>
         </div>
     );
 }

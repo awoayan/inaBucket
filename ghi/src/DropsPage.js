@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import SaveDropForm from './SaveDropForm';
+import './DropPage.css' 
 
 function DropsPage() {
     const { dropId } = useParams();
@@ -31,13 +32,16 @@ function DropsPage() {
 
     return (
         <div>
-            <h2>Drop Details</h2>
-            <div className="card">
+            <div className="card" style={{ width: '550px', height: '750px' , backgroundColor: 'SeaShell ' }}>
                 <div className="card-content">
                     <div className="media">
                         <div className="media-content">
-                            <p className="title is-4">{drop.name}</p>
+                            <p className="title is-2">{drop.name}</p>
                             <img src={drop.photo} alt={drop.name} />
+                            <p>{drop.details}</p>
+                            <p>{drop.city}</p>
+                            <p>{drop.address}</p>
+                            <p>{drop.url}</p>
                         </div>
                     </div>
                 </div>

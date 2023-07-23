@@ -23,11 +23,11 @@ useEffect(() => {
 
 return (
 <div>
-    <h2>These are bucketDrops on cards</h2>
+    <h2>Here are the drops from {bucketId}</h2>
     <div className="columns">
         {bucketDrops.map((bucketDrop) => (
             <div
-                className="column is-one-fifth"
+                className="column is-one-one"
                 key={bucketDrop.id}
                 style={{ transition: 'transform 0.2s' }}
                 onMouseEnter={(e) => {
@@ -38,11 +38,12 @@ return (
                 }}
             >
                 <Link to={`/drops/${bucketDrop.drop_id}`} className="card-link">
-                <div className="card" style={{ width: '300px', maxHeight: '500px', border: 0 }}>
+                <div className="card" style={{ width: '300px', height: '500px', border: 0 }}>
                     <div className="card-content">
                         <div className="media-content">
                             <p className="title is-4">{bucketDrop.drop_name}</p>
                             <img src={bucketDrop.drop_photo} alt={bucketDrop.drop_name} />
+                            <p>{bucketDrop.details}</p>
                         </div>
                     </div>
                 </div>
