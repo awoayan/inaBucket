@@ -1,4 +1,4 @@
-import CreateBucketForm from "./BucketForm";
+import CreateBucketForm from "./CreateBucketForm";
 
 export default function CreateBucketModalContent({ onClose }) {
 	return (

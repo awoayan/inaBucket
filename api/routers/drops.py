@@ -1,5 +1,5 @@
-from typing import Literal, List
-from fastapi import APIRouter, Depends, Response
+from typing import List
+from fastapi import APIRouter, Depends, Response, HTTPException
 from pydantic import BaseModel
 
 
@@ -35,6 +35,14 @@ class DropOut(BaseModel):
     url: str
     creator_id: AccountOut
 
+class DropUpdate(BaseModel):
+    name: str
+    photo: str
+    details: str
+    city: str
+    address: str
+    url: str
+
 
 @router.post("/api/drops", response_model=DropOut)
 def create_drop(
@@ -67,7 +75,19 @@ def get_drops(
         response.status_code = 404
     else:
         return records
+    
+@router.put("/api/drops/{drop_id}", response_model=DropOut)
+def update_drop(
+    drop_id: int,
+    drop_update: DropUpdate,
+    queries: DropQueries = Depends(),
+):
+    existing_drop = queries.get_drop(drop_id)
+    if existing_drop is None:
+        raise HTTPException(status_code=404, detail="Drop not found")
 
+    updated_drop = queries.update_drop(drop_id, drop_update)
+    return updated_drop
 
 @router.delete("/api/drops/{drop_id}", response_model=bool)
 def delete_drop(drop_id: int, queries: DropQueries = Depends()):
