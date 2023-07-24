@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useGetTokenQuery } from "./app/api";
+import Dropdown from "./DropdownContent";
 import Notification from "./Notification";
 
 function ProfilePage() {
@@ -35,6 +36,9 @@ function ProfilePage() {
 	return (
 		<div>
 			<h2>'s Profile</h2>
+			<h3>
+				<Dropdown />
+			</h3>
 			<div className="columns is-multiline">
 				{userBuckets.map((bucket) => (
 					<div

@@ -6,7 +6,11 @@ export default function CreateDropModal() {
 	const [showModal, setShowModal] = useState(false);
 	return (
 		<>
-			<button onClick={() => setShowModal(true)}>Create a Drop</button>
+			<button
+				onClick={() => setShowModal(true)}
+				className="button is-primary">
+				Create a Drop
+			</button>
 			{showModal &&
 				createPortal(
 					<CreateDropModalContent onClose={() => setShowModal(false)} />,

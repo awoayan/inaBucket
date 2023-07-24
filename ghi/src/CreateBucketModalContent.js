@@ -1,6 +1,6 @@
 import CreateBucketForm from "./BucketForm";
 
-export default function CreateBucketModalContent({ onClose }) {
+export default function CreateDropModalContent({ onClose }) {
 	return (
 		<div class="modal2">
 			<div class="modal-background"></div>

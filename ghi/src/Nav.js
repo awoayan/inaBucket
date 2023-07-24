@@ -1,6 +1,4 @@
 import { NavLink } from "react-router-dom";
-import { createPortal } from "react-dom";
-
 import { useGetTokenQuery, useLogOutMutation } from "./app/api";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -10,8 +8,7 @@ import LogInModal from "./LoginModal";
 import SignUpModal from "./SignUpModal";
 import { useEffect, useState } from "react";
 import SearchPage from "./Searchbar";
-import CreateBucketModal from "./Modal";
-import CreateDropModal from "./CreateDropModal";
+import Dropdown from "./DropdownContent";
 
 function LoginButtons(props) {
 	const dispatch = useDispatch();
@@ -54,8 +51,39 @@ function LogoutButton() {
 	);
 }
 
+function DisplayAvatar() {
+	const { data: tokenData } = useGetTokenQuery();
+
+	if (tokenData) {
+		let avatar = tokenData.avatar;
+		console.log("avatar", avatar);
+
+		if (avatar === undefined) {
+			return (
+				<figure className="image is-64x64">
+					<img
+						className="is-rounded"
+						src="https://bulma.io/images/placeholders/128x128.png"
+					/>
+				</figure>
+			);
+		} else {
+			return (
+				<figure className="image is-64x64">
+					<img
+						className="is-rounded"
+						src={avatar}
+					/>
+				</figure>
+			);
+		}
+	}
+}
+
 function Nav() {
 	const { data: token, isLoading: tokenLoading } = useGetTokenQuery();
+
+	// let avatar =
 
 	return (
 		<>
@@ -77,6 +105,11 @@ function Nav() {
 					<div>
 						<SearchPage />
 					</div>
+
+					<div>
+						<DisplayAvatar />
+					</div>
+
 					<button
 						className="navbar-burger"
 						aria-label="menu"
@@ -99,12 +132,6 @@ function Nav() {
 							) : (
 								<LoginButtons show={true} />
 							)}
-						</div>
-						<div className="button is-primary">
-							<CreateBucketModal />
-						</div>
-						<div className="button is-primary">
-							<CreateDropModal />
 						</div>
 					</div>
 				</div>

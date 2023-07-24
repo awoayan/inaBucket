@@ -6,6 +6,7 @@ const initialState = {
 	password: "",
 	full_name: "",
 	e_username: "",
+	avatar: "",
 };
 
 export const accountSlice = createSlice({

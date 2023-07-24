@@ -6,7 +6,11 @@ export default function CreateBucketModal() {
 	const [showModal, setShowModal] = useState(false);
 	return (
 		<>
-			<button onClick={() => setShowModal(true)}>Create Bucket</button>
+			<button
+				onClick={() => setShowModal(true)}
+				className="button is-primary">
+				Create a Bucket
+			</button>
 			{showModal &&
 				createPortal(
 					<CreateBucketModalContent onClose={() => setShowModal(false)} />,

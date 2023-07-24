@@ -106,6 +106,14 @@ function CreateDropForm() {
 		if (response.ok) {
 			const newDrop = await response.json();
 		}
+
+		setName("");
+		setPhoto("");
+		setDetails("");
+		setCity("");
+		setAddress("");
+		setUrl("");
+		setBucket("");
 	};
 
 	return (
@@ -197,25 +205,28 @@ function CreateDropForm() {
 						</div>
 					</div>
 					<div className="field">
+						<label className="label">Select bucket2</label>
 						<div className="control">
-							<select
-								onChange={handleBucketChange}
-								required
-								name="bucket"
-								value={bucket}
-								id="bucket"
-								className="select">
-								<option value="">Choose a Bucket to Save to</option>
-								{userBuckets.map((bucket) => {
-									return (
-										<option
-											key={bucket.id}
-											value={bucket.id}>
-											{bucket.title}
-										</option>
-									);
-								})}
-							</select>
+							<div className="select">
+								<select
+									onChange={handleBucketChange}
+									required
+									name="bucket"
+									value={bucket}
+									id="bucket"
+									className="select">
+									<option>Bucket</option>
+									{userBuckets.map((bucket) => {
+										return (
+											<option
+												key={bucket.id}
+												value={bucket.id}>
+												{bucket.title}
+											</option>
+										);
+									})}
+								</select>
+							</div>
 						</div>
 					</div>
 
