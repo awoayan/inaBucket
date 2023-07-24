@@ -5,6 +5,8 @@ import Dropdown from "./DropdownContent";
 import Notification from "./Notification";
 import "./App.css"
 
+
+
 function ProfilePage() {
     const [buckets, setBuckets] = useState([]);
     useEffect(() => {

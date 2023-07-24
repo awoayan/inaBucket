@@ -1,4 +1,9 @@
 import React, { useState, useEffect } from "react";
+import Icon from '@mdi/react';
+import { mdiArrowRight } from '@mdi/js';
+import { Link } from 'react-router-dom';
+import './App.css'
+
 function HomePage() {
 	const [buckets, setBuckets] = useState([]);
 	const [drops, setDrops] = useState([]);
@@ -40,23 +45,20 @@ function HomePage() {
 		}
 		return newArray;
 	};
+	console.log("MIXED ITEMS", mixedItems)
+
 	return (
 		<div>
 			<h2>These are buckets and drops on cards</h2>
 			<div className="container">
 				<div className="columns is-multiline">
 					{mixedItems.map((item) => (
-						<div
-							className="column is-one-fifth"
-							key={item.id}>
-							{item.hasOwnProperty("bucket_id") ? (
+						<div className="column is-one-fifth" key={item.id}>
+							{("title" in item) ? (
 								<div className="card">
 									<div className="card-image">
 										<figure className="image is-4by3">
-											<img
-												src={item.cover_photo}
-												alt={item.title}
-											/>
+											<img src={item.cover_photo} alt={item.title} />
 										</figure>
 									</div>
 									<div className="card-content">
@@ -81,10 +83,7 @@ function HomePage() {
 								<div className="card">
 									<div className="card-image">
 										<figure className="image is-4by3">
-											<img
-												src={item.photo}
-												alt={item.name}
-											/>
+											<img src={item.photo} alt={item.name} />
 										</figure>
 									</div>
 									<div className="card-content">
@@ -105,4 +104,6 @@ function HomePage() {
 		</div>
 	);
 }
+
+
 export default HomePage;
