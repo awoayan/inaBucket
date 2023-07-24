@@ -26,10 +26,10 @@ class BucketOut(BaseModel):
     details: str
     owner: AccountOut
 
-class BucketUpdate(BaseModel):
-    title: str
-    cover_photo: str
-    details: str
+# class BucketUpdate(BaseModel):
+#     title: str
+#     cover_photo: str
+#     details: str
 
 
 @router.post("/api/buckets", response_model=BucketOut)
@@ -64,18 +64,18 @@ def get_buckets(
     else:
         return records
     
-@router.put("/api/buckets/{bucket_id}", response_model=BucketOut)
-def update_bucket(
-    bucket_id: int,
-    data: BucketUpdate,
-    queries: BucketQueries = Depends(),
-):
-    existing_bucket = queries.get_bucket(bucket_id)
-    if existing_bucket is None:
-        raise HTTPException(status_code=404, detail="Bucket not found")
+# @router.put("/api/buckets/{bucket_id}", response_model=BucketOut)
+# def update_bucket(
+#     bucket_id: int,
+#     data: BucketUpdate,
+#     queries: BucketQueries = Depends(),
+# ):
+#     existing_bucket = queries.get_bucket(bucket_id)
+#     if existing_bucket is None:
+#         raise HTTPException(status_code=404, detail="Bucket not found")
 
-    updated_bucket = queries.update_bucket(bucket_id, data)
-    return updated_bucket
+#     updated_bucket = queries.update_bucket(bucket_id, data)
+#     return updated_bucket
 
 
 @router.delete("/api/buckets/{bucket_id}", response_model=bool)

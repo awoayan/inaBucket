@@ -33,6 +33,10 @@ function ProfilePage() {
             (bucket) => bucket.owner.id === tokenData.account.id
         );
     }
+
+    // if (!userBuckets) {
+    //     return null
+    // }
     return (
         <div>
             <h2>These are profile owners buckets</h2>
@@ -64,9 +68,9 @@ function ProfilePage() {
                                             <p className="subtitle is-6">@{bucket.owner.username}</p>
                                         </div>
                                     </div>
-                                        <div className="content" style={{ color: 'white', maxHeight: '100px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                                            {bucket.details.length > 150 ? `${bucket.details.slice(0, 150)}...` : bucket.details}
-                                        </div>
+                                    <div className="content" style={{ color: 'white', maxHeight: '100px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                        {bucket.details.length > 150 ? `${bucket.details.slice(0, 150)}...` : bucket.details}
+                                    </div>
                                 </div>
                             </div>
                         </Link>
