@@ -3,12 +3,12 @@ import { useGetTokenQuery, useLogOutMutation } from "./app/api";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { showModal, LOG_IN_MODAL, SIGN_UP_MODAL } from "./app/accountSlice";
-import logo from "./logo.svg";
+import homeLogo from "./homeLogo.svg";
 import LogInModal from "./LoginModal";
 import SignUpModal from "./SignUpModal";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import SearchPage from "./Searchbar";
-
+import Dropdown from "./DropdownContent";
 
 function LoginButtons(props) {
 	const dispatch = useDispatch();
@@ -50,11 +50,40 @@ function LogoutButton() {
 		</div>
 	);
 }
+
+function DisplayAvatar() {
+	const { data: tokenData } = useGetTokenQuery();
+
+	if (tokenData) {
+		let avatar = tokenData.avatar;
+		console.log("avatar", avatar);
+
+		if (avatar === undefined) {
+			return (
+				<figure className="image is-64x64">
+					<img
+						className="is-rounded"
+						src="https://bulma.io/images/placeholders/128x128.png"
+					/>
+				</figure>
+			);
+		} else {
+			return (
+				<figure className="image is-64x64">
+					<img
+						className="is-rounded"
+						src={avatar}
+					/>
+				</figure>
+			);
+		}
+	}
+}
+
 function Nav() {
 	const { data: token, isLoading: tokenLoading } = useGetTokenQuery();
-	// const {
-	// 	// account: { roles = [] },
-	// } = token || { account: {} };
+
+	// let avatar =
 
 	return (
 		<>
@@ -67,15 +96,20 @@ function Nav() {
 						className="navbar-item"
 						to="/">
 						<img
-							src={logo}
+							src={homeLogo}
 							height="86"
 							width="43"
 							alt=""
 						/>
 					</NavLink>
-			<div>
-				<SearchPage/>
-			</div>
+					<div>
+						<SearchPage />
+					</div>
+
+					<div>
+						<DisplayAvatar />
+					</div>
+
 					<button
 						className="navbar-burger"
 						aria-label="menu"
@@ -102,6 +136,7 @@ function Nav() {
 					</div>
 				</div>
 			</nav>
+
 			<LogInModal />
 			<SignUpModal />
 		</>

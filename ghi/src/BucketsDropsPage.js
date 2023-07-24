@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 function BucketsDropsPage() {
 const { bucketId } = useParams();
@@ -23,20 +23,40 @@ useEffect(() => {
 
 return (
 <div>
-    <h2>These are bucketDrops on cards</h2>
-    <div className="columns">
+    <h2>Here are the drops from {bucketId}</h2>
+    <div className="columns is-multiline ">
         {bucketDrops.map((bucketDrop) => (
-            <div className="column" key={bucketDrop.id}>
-                <div className="card">
-                    <div className="card-content">
-                        <div className="media-content">
-                            <p className="title is-4">{bucketDrop.drop_name}</p>
-                            <img src={bucketDrop.drop_photo} alt={bucketDrop.drop_name} />
-                        </div>
-                    </div>
+            <div
+                className="column is-one-fifth "
+                key={bucketDrop.id}
+                style={{ transition: 'transform 0.2s' }}
+                onMouseEnter={(e) => {
+                    e.currentTarget.classList.add('card-scaled');
+                }}
+                onMouseLeave={(e) => {
+                    e.currentTarget.classList.remove('card-scaled');
+                }}
+            >
+                <Link to={`/drops/${bucketDrop.drop_id}`} className="card-link">
+                <div className="card">                                     
+                            <img className='card-image' src={bucketDrop.drop_photo} alt={bucketDrop.drop_name} />
+                            <div className='card-conent'>
+                                <div className='media'>
+                                    
+                                </div>
+                                <p className="title is-4">{bucketDrop.drop_name}</p>
+                                <p>{bucketDrop.drop_details}</p>
+                                <p>{bucketDrop.drop_city}</p>
+                                <p>{bucketDrop.drop_address}</p>
+                                <p>{bucketDrop.drop_url}</p>
+                            </div>
                 </div>
+                </Link>
             </div>
         ))}
+        <footer>
+            Footer Note
+        </footer>
     </div>
 </div>
 );

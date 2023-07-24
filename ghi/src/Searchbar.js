@@ -3,7 +3,7 @@ import React from "react";
 
 const SearchPage = () => {
 return (
-    <div className="column is-10">
+    <div className="column is-12">
     <div className="field has-addons">
         <div className="control">
         <button className="button is-purple">
