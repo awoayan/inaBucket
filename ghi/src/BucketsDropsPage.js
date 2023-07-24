@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import SaveDropForm from './SaveDropForm';
+import Icon from '@mdi/react';
+import { mdiArrowRight } from '@mdi/js';
+import './App.css'
+
 
 function BucketsDropsPage() {
     const { bucketId, dropId } = useParams();
@@ -45,11 +49,7 @@ function BucketsDropsPage() {
                             e.currentTarget.classList.remove('card-scaled');
                         }}
                     >
-                        <div> <button>
-                            <SaveDropForm dropId={dropId} />
-                        </button>
 
-                        </div>
                         <Link to={`/drops/${bucketDrop.drop_id}`} className="card-link">
                             <div className="card">
                                 <img className='card-image' src={bucketDrop.drop_photo} alt={bucketDrop.drop_name} />
@@ -58,10 +58,14 @@ function BucketsDropsPage() {
 
                                     </div>
                                     <p className="title is-4">{bucketDrop.drop_name}</p>
-                                    <p>{bucketDrop.drop_details}</p>
+                                    {/* <p>{bucketDrop.drop_details}</p>
                                     <p>{bucketDrop.drop_city}</p>
                                     <p>{bucketDrop.drop_address}</p>
-                                    <p>{bucketDrop.drop_url}</p>
+                                    <p>{bucketDrop.drop_url}</p> */}
+                                    <div className='move-left'>
+                                        <Icon path={mdiArrowRight} size={2} />
+                                    </div>
+
                                 </div>
 
                             </div>

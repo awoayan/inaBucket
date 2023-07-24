@@ -35,6 +35,15 @@ footer {
   text-align: center;
 }
 
+.nav-color {
+  background-color: rgb(3, 90, 166);
+
+}
+
+
+.button-orange {
+  background-color: rgb(242, 141, 82);
+}
 
 .card {
   height: 575px;
@@ -62,7 +71,10 @@ footer {
 
 
 
-
+.move-left {
+  display: flex;
+  justify-content: flex-end;
+}
 
 
 #slider {

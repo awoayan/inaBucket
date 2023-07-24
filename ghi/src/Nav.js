@@ -9,6 +9,7 @@ import SignUpModal from "./SignUpModal";
 import { useEffect, useState } from "react";
 import SearchPage from "./Searchbar";
 import { Link } from "react-router-dom";
+import './App.css'
 
 
 function LoginButtons(props) {
@@ -89,7 +90,7 @@ function Nav() {
 	return (
 		<>
 			<nav
-				className="navbar is-link is-fixed-top"
+				className="navbar is-fixed-top nav-color"
 				role="navigation"
 				aria-label="main navigation">
 				<div className="navbar-brand">
@@ -130,9 +131,9 @@ function Nav() {
 
 				<div
 					id="navbarBasicExample"
-					className="navbar-menu">
+					className="navbar-menu ">
 					<div className="navbar-end">
-						<div className="navbar-item">
+						<div className="navbar-item ">
 							{tokenLoading ? (
 								<LoginButtons show={false} />
 							) : token ? (
