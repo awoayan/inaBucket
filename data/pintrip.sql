@@ -37,4 +37,3 @@ CREATE TABLE bucket_drops (
     bucket_id INTEGER NOT NULL REFERENCES buckets("id") ON DELETE CASCADE,
     drop_id INTEGER NOT NULL REFERENCES drops("id") ON DELETE CASCADE
 );
-

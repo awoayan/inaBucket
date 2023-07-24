@@ -1,5 +1,6 @@
 import os
 from psycopg_pool import ConnectionPool
+from routers.drops import DropUpdate
 
 
 pool = ConnectionPool(conninfo=os.environ["DATABASE_URL"])
@@ -101,6 +102,37 @@ class DropQueries:
             return_drop = self.get_drop(id)
             print("returndrop:", return_drop)
             return return_drop
+
+    def update_drop(self, drop_id: int, drop: DropUpdate):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                params = [
+                    drop.name,
+                    drop.photo,
+                    drop.details,
+                    drop.city,
+                    drop.address,
+                    drop.url,
+                    drop_id,
+                ]
+                cur.execute(
+                    """
+                    UPDATE drops
+                    SET name = %s,
+                        photo = %s,
+                        details = %s,
+                        city = %s,
+                        address = %s,
+                        url = %s
+                    WHERE id = %s
+                    RETURNING *;
+                    """,
+                    params,
+                )
+
+                row = cur.fetchone()
+                if row is not None:
+                    return self.drop_record_to_dict(row, cur.description)
 
     def delete_drop(self, drop_id):
         with pool.connection() as conn:
