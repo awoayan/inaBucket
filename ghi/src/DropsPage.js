@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import SaveDropForm from './SaveDropForm';
-import './DropPage.css' 
+// import './DropPage.css' 
 
 function DropsPage() {
     const { dropId } = useParams();
@@ -32,7 +32,7 @@ function DropsPage() {
 
     return (
         <div>
-            <div className="card" style={{ width: '550px', height: '750px' , backgroundColor: 'SeaShell ' }}>
+            <div className="card">
                 <div className="card-content">
                     <div className="media">
                         <div className="media-content">

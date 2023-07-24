@@ -5,6 +5,7 @@ const HomePage = () => {
         <div>
             <h1>Welcome to Pintrip. Let's Explore</h1>
         </div>
+        
     );
 };
 
