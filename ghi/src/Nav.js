@@ -8,7 +8,8 @@ import LogInModal from "./LoginModal";
 import SignUpModal from "./SignUpModal";
 import { useEffect, useState } from "react";
 import SearchPage from "./Searchbar";
-import Dropdown from "./DropdownContent";
+import { Link } from "react-router-dom";
+
 
 function LoginButtons(props) {
 	const dispatch = useDispatch();
@@ -106,9 +107,7 @@ function Nav() {
 						<SearchPage />
 					</div>
 
-					<div>
-						<DisplayAvatar />
-					</div>
+
 
 					<button
 						className="navbar-burger"
@@ -120,6 +119,15 @@ function Nav() {
 						<span aria-hidden="true"></span>
 					</button>
 				</div>
+				<div>
+
+
+					<Link to={"/profile"}>
+						<DisplayAvatar />
+					</Link>
+
+				</div>
+
 				<div
 					id="navbarBasicExample"
 					className="navbar-menu">
@@ -135,6 +143,8 @@ function Nav() {
 						</div>
 					</div>
 				</div>
+
+
 			</nav>
 
 			<LogInModal />

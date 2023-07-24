@@ -19,16 +19,16 @@ root.render(
 			<BrowserRouter>
 				<Nav />
 				<Routes>
-					<Route
+					{/* <Route
 						path="/"
 						element={<App />}
-					/>
+					/> */}
 					<Route
 						path="*"
 						element={<Navigate to="/" />}
 					/>
 					<Route
-						path="/home"
+						path="/"
 						element={<HomePage />}
 					/>
 					<Route

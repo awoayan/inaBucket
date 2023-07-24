@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useGetTokenQuery } from "./app/api";
 import Dropdown from "./DropdownContent";
 import Notification from "./Notification";
+import "./App.css"
 
 function ProfilePage() {
     const [buckets, setBuckets] = useState([]);
@@ -39,6 +40,9 @@ function ProfilePage() {
     // }
     return (
         <div>
+            <h1 className="create-dropdown">
+                <Dropdown />
+            </h1>
             <h2>These are profile owners buckets</h2>
             <div className="columns is-multiline ">
                 {userBuckets.map((bucket) => (
