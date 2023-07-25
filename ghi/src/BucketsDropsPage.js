@@ -21,6 +21,7 @@ useEffect(() => {
     fetchBucketDrops();
 }, [bucketId]);
 
+
 return (
 <div>
     <h2>Here are the drops from {bucketId}</h2>
@@ -50,6 +51,10 @@ return (
                                 <p>{bucketDrop.drop_address}</p>
                                 <p>{bucketDrop.drop_url}</p>
                             </div>
+                            {/* {/* <td><button className="btn btn-primary" onClick={() => BucketDrop(bucketDrops.id)}>
+                            Delete */}
+                        {/* </button>
+                        </td> */} */
                 </div>
                 </Link>
             </div>
@@ -63,3 +68,4 @@ return (
 }
 
 export default BucketsDropsPage;
+
