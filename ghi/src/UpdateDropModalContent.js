@@ -2,22 +2,22 @@ import UpdateDropForm from "./UpdateDropForm";
 
 export default function UpdateDropModalContent({ onClose }) {
     return (
-        <div class="modal2">
-            <div class="modal-background"></div>
-            <div class="modal-card">
-                <header class="modal-card-head">
-                    <p class="modal-card-title">Update a Drop</p>
+        <div className="modal2">
+            <div className="modal-background"></div>
+            <div className="modal-card">
+                <header className="modal-card-head">
+                    <p className="modal-card-title">Update Your Drop</p>
                     <div></div>
                     <button
                         onClick={onClose}
-                        class="delete"
+                        className="delete"
                         aria-label="close"></button>
                 </header>
-                <section class="modal-card-body">
+                <section className="modal-card-body">
                     <UpdateDropForm />
                 </section>
 
-                <footer class="modal-card-foot">
+                <footer className="modal-card-foot">
                     {/* <button class="button is-success">Save changes</button> */}
                 </footer>
             </div>

@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Icon from '@mdi/react';
-import { mdiArrowRight } from '@mdi/js';
 import { Link } from 'react-router-dom';
 import './App.css'
 

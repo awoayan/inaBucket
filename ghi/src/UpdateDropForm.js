@@ -216,7 +216,7 @@ function UpdateDropForm({ dropData }) {
                         </div>
                     </div>
                     <div className="field">
-                        <label className="label">Select bucket2</label>
+                        <label className="label">Select Bucket</label>
                         <div className="control">
                             <div className="select">
                                 <select

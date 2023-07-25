@@ -11,18 +11,21 @@ function ProfilePage() {
     const [buckets, setBuckets] = useState([]);
     useEffect(() => {
         const fetchBuckets = async () => {
-            const url = 'http://localhost:8000/api/buckets';
-            const response = await fetch(url);
-            if (response.ok) {
-                const data = await response.json();
-                setBuckets(data);
-                console.log(data);
-            } else {
-                console.error(response);
+            try {
+                const response = await fetch("http://localhost:8000/api/buckets");
+                if (response.ok) {
+                    const data = await response.json();
+                    setBuckets(data);
+                } else {
+                    console.error(response);
+                }
+            } catch (error) {
+                console.error(error);
             }
         };
         fetchBuckets();
     }, []);
+
     const { data: tokenData } = useGetTokenQuery();
     let userBuckets = null;
     if (!tokenData) {
@@ -32,18 +35,16 @@ function ProfilePage() {
             </div>
         );
     } else {
+
         userBuckets = buckets.filter(
             (bucket) => bucket.owner.id === tokenData.account.id
         );
     }
-
-    // if (!userBuckets) {
-    //     return null
-    // }
+    
     return (
         <div>
             <h1 className="create-dropdown">
-                <Dropdown />
+                <Dropdown userBuckets={userBuckets}/>
             </h1>
             <h2>These are profile owners buckets</h2>
             <div className="columns is-multiline ">
@@ -83,10 +84,9 @@ function ProfilePage() {
                     </div>
                 ))}
             </div>
-            <footer>
-                FOOTER NOTER
-            </footer>
         </div>
     );
 }
+
+
 export default ProfilePage;

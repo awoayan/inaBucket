@@ -16,15 +16,16 @@ function CreateDropForm() {
 
 	useEffect(() => {
 		const fetchBuckets = async () => {
-			const url = "http://localhost:8000/api/buckets";
-			const response = await fetch(url);
-
-			if (response.ok) {
-				const data = await response.json();
-				setBuckets(data);
-				console.log(data);
-			} else {
-				console.error(response);
+			try {
+				const response = await fetch("http://localhost:8000/api/buckets")
+				if (response.ok) {
+					const data = await response.json();
+					setBuckets(data);
+				} else {
+					console.error(response) 
+				}
+			} catch (error) {
+				console.error(error);
 			}
 		};
 

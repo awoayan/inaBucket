@@ -12,20 +12,24 @@ function BucketsDropsPage() {
 
     useEffect(() => {
         const fetchBucketDrops = async () => {
-            const response = await fetch(`http://localhost:8000/api/bucket_drops/${bucketId}`)
-
-            if (response.ok) {
-                const data = await response.json();
-                setBucketDrops(data);
-                console.log(data);
-            } else {
-                console.error(response);
+            try {
+                const response = await fetch(`http://localhost:8000/api/bucket_drops/${bucketId}`)
+                if (response.ok) {
+                    const data = await response.json();
+                    setBucketDrops(data);
+                } else {
+                    console.error(response);
+                }
+            } catch (error) {
+                console.error(error);
             }
         };
-
         fetchBucketDrops();
     }, [bucketId]);
 
+    if (!bucketDrops) {
+        return null
+    }
     if (bucketDrops.length === 0) {
         return (
             <h1>Your Bucket is empty. Save a drop! </h1>
@@ -73,9 +77,6 @@ function BucketsDropsPage() {
                         </Link>
                     </div>
                 ))}
-                <footer>
-                    Footer Note
-                </footer>
             </div>
         </div>
     );

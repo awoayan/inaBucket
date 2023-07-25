@@ -3,7 +3,7 @@ import { useState } from "react";
 import CreateBucketModal from "./CreateBucketModal";
 import CreateDropModal from "./CreateDropModal";
 
-function Dropdown() {
+function Dropdown({ userBuckets }) {
 	const [isOpen, setIsOpen] = useState(false);
 
 	return (
@@ -11,7 +11,7 @@ function Dropdown() {
 			<div className="dropdown-trigger">
 				<button
 					onClick={() => setIsOpen(!isOpen)}
-					className="button"
+					className="button is-danger"
 					aria-haspopup="true"
 					aria-controls="dropdown-menu3">
 					<span>Create</span>
@@ -28,11 +28,13 @@ function Dropdown() {
 						id="dropdown-menu32"
 						role="menu2">
 						<div className="dropdown-content">
-							<li className="dropdown-item">
-								<div className="button is-primary">
-									<CreateDropModal />
-								</div>
-							</li>
+							{userBuckets.length > 0 && (
+								<li className="dropdown-item">
+									<div className="button is-primary">
+										<CreateDropModal />
+									</div>
+								</li>
+							)}
 							<li className="dropdown-item">
 								<div className="button is-primary">
 									<CreateBucketModal />
