@@ -55,17 +55,17 @@ function BucketsDropsPage() {
                                 <img className='card-image' src={bucketDrop.drop_photo} alt={bucketDrop.drop_name} />
                                 <div className='card-conent'>
                                     <div className='media'>
-
                                     </div>
-                                    <p className="title is-4">{bucketDrop.drop_name}</p>
-                                    {/* <p>{bucketDrop.drop_details}</p>
-                                    <p>{bucketDrop.drop_city}</p>
-                                    <p>{bucketDrop.drop_address}</p>
-                                    <p>{bucketDrop.drop_url}</p> */}
-                                    <div className='move-left'>
-                                        <Icon path={mdiArrowRight} size={2} />
+                                        <div className='card-details'>
+                                            <h2>{bucketDrop.drop_name}</h2>
+                                            {/* <p>{bucketDrop.drop_details}</p>
+                                            <p>{bucketDrop.drop_city}</p>
+                                            <p>{bucketDrop.drop_address}</p>
+                                            <p>{bucketDrop.drop_url}</p> */}
+                                            <div className='move-left'>
+                                            <Icon path={mdiArrowRight} size={2} />
+                                        </div>
                                     </div>
-
                                 </div>
 
                             </div>

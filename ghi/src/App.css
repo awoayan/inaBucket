@@ -47,12 +47,18 @@ body {
   display:block
 }
 
+.drop-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} 
+
+/* .card {display: flex; justify-content: center; align-items: center;} */
 
 .drop-card {
   background-color: rgb(2, 180, 127);
   border-radius: 25px;
   width: 650px;
-  justify-content: center;
 }
 .drop-image {
   border-radius: 25px 25px 0 0;

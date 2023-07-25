@@ -28,8 +28,9 @@ function DropsPage() {
     }
     return (
         <div>
-            <div className='column is-one'>
-            <div className="drop-card is-centered">
+            <div className='column'>
+            <div className='drop-card-container'>
+            <div className="drop-card">
                     <img className='card-image' src={drop.photo} alt={drop.name} />
                     <div className="card-details">
                         <h1>{drop.name}</h1>
@@ -39,12 +40,13 @@ function DropsPage() {
                         <p>{drop.url}</p>
                         <SaveDropForm dropId={dropId} />
                     </div>
+                    </div>
                 </div>
             </div>
             <footer>
                 Footer Note
             </footer>
-        </div>
+        </div >
     );
 }
 export default DropsPage;
