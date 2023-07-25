@@ -28,21 +28,22 @@ function DropsPage() {
     }
     return (
         <div>
-            <div className="card">
-                <div className="card-content">
-                    <div className="media">
-                        <div className="media-content">
-                            <p className="title is-2">{drop.name}</p>
-                            <img src={drop.photo} alt={drop.name} />
-                            <p>{drop.details}</p>
-                            <p>{drop.city}</p>
-                            <p>{drop.address}</p>
-                            <p>{drop.url}</p>
-                        </div>
+            <div className='column is-one'>
+            <div className="drop-card">
+                    <img className='card-image' src={drop.photo} alt={drop.name} />
+                    <div className="card-content">
+                        <p className="title is-2">{drop.name}</p>
+                        <p>{drop.details}</p>
+                        <p>{drop.city}</p>
+                        <p>{drop.address}</p>
+                        <p>{drop.url}</p>
+                        <SaveDropForm dropId={dropId} />
                     </div>
                 </div>
-                <SaveDropForm dropId={dropId}/>
             </div>
+            <footer>
+                Footer Note
+            </footer>
         </div>
     );
 }

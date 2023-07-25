@@ -7,7 +7,6 @@
   justify-content: flex-end;
 }
 
-
 .App-header {
 	background-color: #282c34;
 	min-height: 100vh;
@@ -22,28 +21,18 @@
 body {
   padding-top: 50px;
   padding-left: 40px;
+  /* padding-bottom: 25px; */
   background-color: rgb(215, 240, 250);
-  padding-bottom: 25px;
-}
-
-footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: rgb(34, 124, 160);
-  text-align: center;
 }
 
 .nav-color {
   background-color: rgb(3, 90, 166);
-
 }
-
 
 .button-orange {
   background-color: rgb(242, 141, 82);
 }
+
 
 .card {
   height: 575px;
@@ -54,6 +43,21 @@ footer {
 .card-image {
   border-radius: 25px 25px 0 0;
   height: 65%;
+  width: 100%;
+  display:block
+}
+
+
+.drop-card {
+  height: 100%;
+  width: 600px;
+  border: 0;
+  background-color: rgb(34, 124, 160);
+  border-radius: 25px;
+}
+.drop-image {
+  border-radius: 25px 25px 0 0;
+  height: 60%;
   width: 100%;
   display:block
 }
@@ -77,7 +81,24 @@ footer {
 }
 
 
-#slider {
+
+
+    footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(34, 124, 160);
+  text-align: center;
+}
+
+
+
+
+
+
+/* experimental */
+/* #slider {
     position: absolute;
     width: 100px;
     height: 100px;
@@ -95,4 +116,4 @@ footer {
     animation: slide-out 0.5s forwards;
     -webkit-animation: slide-out 0.5s forwards;
 }
-    
+ */
