@@ -24,34 +24,36 @@ function DropsPage() {
         };
         fetchDrop();
     }, [dropId]);
-    
+
     if (!drop) {
         return <div>Loading...</div>;
     }
-    
 
-    return (
-        <div>
-            <div className='column'>
-            <div className='drop-card-container'>
-            <div className="drop-card">
-                    <img className='card-image' src={drop.photo} alt={drop.name} />
-                    <div className="card-details">
-                        <h1>{drop.name}</h1>
-                        <p>{drop.details}</p>
-                        <p>{drop.city}</p>
-                        <p>{drop.address}</p>
-                        <p>{drop.url}</p>
-                        <SaveDropForm dropId={dropId} />
-                        <EditDropDropdown />
-                    </div>
+
+    return (   
+        <body>
+            <div>
+                <div className='column'>
+                    <div className='drop-card-container'>
+                        <div className="drop-card">
+                            <img className='card-image' src={drop.photo} alt={drop.name} />
+                            <div className="card-details">
+                                <h1>{drop.name}</h1>
+                                <p>{drop.details}</p>
+                                <p>{drop.city}</p>
+                                <p>{drop.address}</p>
+                                <p>{drop.url}</p>
+                                <SaveDropForm dropId={dropId} />
+                                <EditDropDropdown />
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <footer>
-                Footer Note
-            </footer>
-        </div >
+                <footer>
+                    Footer Note
+                </footer>
+            </div >
+        </body>    
     );
 }
 export default DropsPage;
