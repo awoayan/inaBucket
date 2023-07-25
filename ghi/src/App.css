@@ -3,10 +3,9 @@
 }
 
 .create-dropdown {
-  display: flex;
-  justify-content: flex-end;
+	display: flex;
+	justify-content: flex-end;
 }
-
 
 .App-header {
 	background-color: #282c34;
@@ -20,79 +19,88 @@
 }
 
 body {
-  padding-top: 50px;
-  padding-left: 40px;
-  background-color: rgb(215, 240, 250);
-  padding-bottom: 25px;
+	padding-top: 50px;
+	padding-left: 40px;
+	background-color: rgb(215, 240, 250);
+	padding-bottom: 25px;
 }
 
 footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: rgb(34, 124, 160);
-  text-align: center;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: rgb(34, 124, 160);
+	text-align: center;
 }
 
 .nav-color {
-  background-color: rgb(3, 90, 166);
-
+	background-color: rgb(3, 90, 166);
 }
 
-
 .button-orange {
-  background-color: rgb(242, 141, 82);
+	background-color: rgb(242, 141, 82);
+}
+
+.footer-orange {
+	background-color: rgb(242, 141, 82);
+	padding-top: 25px;
+	padding-left: 0px;
+	padding-bottom: 25px;
 }
 
 .card {
-  height: 575px;
-  border: 0;
-  background-color: rgb(34, 124, 160);
-  border-radius: 25px;
+	height: 575px;
+	border: 0;
+	background-color: rgb(34, 124, 160);
+	border-radius: 25px;
 }
 .card-image {
-  border-radius: 25px 25px 0 0;
-  height: 65%;
-  width: 100%;
-  display:block
+	border-radius: 25px 25px 0 0;
+	height: 65%;
+	width: 100%;
+	display: block;
 }
 
 .card-scaled {
-  transform: scale(1.05)
+	transform: scale(1.05);
 }
 
 .card-details {
-  color: 'white';
-  max-height: '100px';
-  overflow: 'hidden';
-  text-overflow: 'ellipsis';
+	color: "white";
+	max-height: "100px";
+	overflow: "hidden";
+	text-overflow: "ellipsis";
 }
-
-
 
 .move-left {
-  display: flex;
-  justify-content: flex-end;
+	display: flex;
+	justify-content: flex-end;
 }
 
+.save-button {
+	display: none;
+}
+
+.hover-drop:hover {
+	opacity: 0.5;
+}
 
 #slider {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    background: blue;
-    transform: translateX(-100%);
-    -webkit-transform: translateX(-100%);
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	background: blue;
+	transform: translateX(-100%);
+	-webkit-transform: translateX(-100%);
 }
 
 .slide-in {
-    animation: slide-in 0.5s forwards;
-    -webkit-animation: slide-in 0.5s forwards;
+	animation: slide-in 0.5s forwards;
+	-webkit-animation: slide-in 0.5s forwards;
 }
 
 .slide-out {
-    animation: slide-out 0.5s forwards;
-    -webkit-animation: slide-out 0.5s forwards;
+	animation: slide-out 0.5s forwards;
+	-webkit-animation: slide-out 0.5s forwards;
 }
-    

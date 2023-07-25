@@ -41,7 +41,11 @@ function DropsPage() {
                         </div>
                     </div>
                 </div>
-                <SaveDropForm dropId={dropId}/>
+                <div className="buttons">
+                    <button>
+                        <SaveDropForm dropId={dropId} />
+                    </button>
+                </div>
             </div>
         </div>
     );

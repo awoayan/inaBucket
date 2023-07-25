@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import SaveDropForm from './SaveDropForm';
 import Icon from '@mdi/react';
 import { mdiArrowRight } from '@mdi/js';
 import './App.css'
-
+import SaveDropForm from './SaveDropForm';
 
 function BucketsDropsPage() {
     const { bucketId, dropId } = useParams();
@@ -17,7 +16,6 @@ function BucketsDropsPage() {
             if (response.ok) {
                 const data = await response.json();
                 setBucketDrops(data);
-                console.log(data);
             } else {
                 console.error(response);
             }
@@ -25,6 +23,10 @@ function BucketsDropsPage() {
 
         fetchBucketDrops();
     }, [bucketId]);
+
+    if (!bucketDrops) {
+        return null
+    }
 
     if (bucketDrops.length === 0) {
         return (
@@ -35,7 +37,7 @@ function BucketsDropsPage() {
 
     return (
         <div>
-            <h2>Here are the drops from {bucketId}</h2>
+            <h2>{bucketDrops.title}</h2>
             <div className="columns is-multiline ">
                 {bucketDrops.map((bucketDrop) => (
                     <div
@@ -51,17 +53,13 @@ function BucketsDropsPage() {
                     >
 
                         <Link to={`/drops/${bucketDrop.drop_id}`} className="card-link">
-                            <div className="card">
+                            <div className="card hover-drop">
                                 <img className='card-image' src={bucketDrop.drop_photo} alt={bucketDrop.drop_name} />
                                 <div className='card-conent'>
                                     <div className='media'>
 
                                     </div>
                                     <p className="title is-4">{bucketDrop.drop_name}</p>
-                                    {/* <p>{bucketDrop.drop_details}</p>
-                                    <p>{bucketDrop.drop_city}</p>
-                                    <p>{bucketDrop.drop_address}</p>
-                                    <p>{bucketDrop.drop_url}</p> */}
                                     <div className='move-left'>
                                         <Icon path={mdiArrowRight} size={2} />
                                     </div>
@@ -73,10 +71,12 @@ function BucketsDropsPage() {
                         </Link>
                     </div>
                 ))}
-                <footer>
-                    Footer Note
-                </footer>
+
             </div>
+
+            <footer>
+                Footer Note
+            </footer>
         </div>
     );
 }
