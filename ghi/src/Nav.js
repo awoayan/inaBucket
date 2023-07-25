@@ -10,6 +10,8 @@ import { useEffect, useState } from "react";
 import SearchPage from "./Searchbar";
 import { Link } from "react-router-dom";
 import './App.css'
+import Icon from '@mdi/react';
+import { mdiAccountCircle } from '@mdi/js';
 
 
 function LoginButtons(props) {
@@ -63,10 +65,8 @@ function DisplayAvatar() {
 		if (avatar === undefined) {
 			return (
 				<figure className="image is-64x64">
-					<img
-						className="is-rounded"
-						src="https://bulma.io/images/placeholders/128x128.png"
-					/>
+					<Icon path={mdiAccountCircle} size={3} />
+
 				</figure>
 			);
 		} else {

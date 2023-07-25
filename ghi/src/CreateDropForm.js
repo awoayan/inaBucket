@@ -135,7 +135,7 @@ function CreateDropForm() {
 						</div>
 					</div>
 					<div className="field">
-						<label className="label">Location Photo</label>
+						<label className="label">Photo</label>
 						<div className="control">
 							<input
 								required
@@ -191,7 +191,7 @@ function CreateDropForm() {
 						</div>
 					</div>
 					<div className="field">
-						<label className="label">Url</label>
+						<label className="label">Website</label>
 						<div className="control">
 							<input
 								required
@@ -205,7 +205,7 @@ function CreateDropForm() {
 						</div>
 					</div>
 					<div className="field">
-						<label className="label">Select bucket2</label>
+						<label className="label">Select bucket</label>
 						<div className="control">
 							<div className="select">
 								<select
@@ -215,7 +215,7 @@ function CreateDropForm() {
 									value={bucket}
 									id="bucket"
 									className="select">
-									<option>Bucket</option>
+									<option>Select</option>
 									{userBuckets.map((bucket) => {
 										return (
 											<option
