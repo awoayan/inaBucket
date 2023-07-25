@@ -29,10 +29,10 @@ function DropsPage() {
     return (
         <div>
             <div className='column is-one'>
-            <div className="drop-card">
+            <div className="drop-card is-centered">
                     <img className='card-image' src={drop.photo} alt={drop.name} />
-                    <div className="card-content">
-                        <p className="title is-2">{drop.name}</p>
+                    <div className="card-details">
+                        <h1>{drop.name}</h1>
                         <p>{drop.details}</p>
                         <p>{drop.city}</p>
                         <p>{drop.address}</p>

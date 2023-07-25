@@ -15,13 +15,14 @@
 	align-items: center;
 	justify-content: center;
 	font-size: calc(10px + 2vmin);
-	color: rgb(255, 255, 255);
+	color: rgb(215, 240, 250);
 }
 
 body {
   padding-top: 50px;
   padding-left: 40px;
-  /* padding-bottom: 25px; */
+  padding-bottom: 25px;
+  min-height: 850px;
   background-color: rgb(215, 240, 250);
 }
 
@@ -29,14 +30,13 @@ body {
   background-color: rgb(3, 90, 166);
 }
 
-.button-orange {
+/* .button-orange {
   background-color: rgb(242, 141, 82);
-}
+} */
 
 
 .card {
   height: 575px;
-  border: 0;
   background-color: rgb(34, 124, 160);
   border-radius: 25px;
 }
@@ -49,11 +49,10 @@ body {
 
 
 .drop-card {
-  height: 100%;
-  width: 600px;
-  border: 0;
-  background-color: rgb(34, 124, 160);
+  background-color: rgb(2, 180, 127);
   border-radius: 25px;
+  width: 650px;
+  justify-content: center;
 }
 .drop-image {
   border-radius: 25px 25px 0 0;
@@ -62,39 +61,72 @@ body {
   display:block
 }
 
+.home-bucket-card {
+  height: 450px;
+  border: 0;
+  background-color: rgb(34, 124, 160);
+  border-radius: 25px;
+}
+.home-drop-card {
+  height: 400px;
+  border: 0;
+  background-color: rgb(2, 180, 127);
+  border-radius: 25px;
+}
+.home-bucket-image,
+.home-drop-image {
+  border-radius: 25px 25px 0 0;
+  height: 250px;
+  width: 100%;
+  display: block;
+}
+
+
+
+
+
+
 .card-scaled {
   transform: scale(1.05)
 }
-
 .card-details {
-  color: 'white';
+  color:   white;
   max-height: '100px';
   overflow: 'hidden';
   text-overflow: 'ellipsis';
+  text-align: center;
 }
-
-
 
 .move-left {
   display: flex;
   justify-content: flex-end;
 }
 
-
-
-
-    footer {
+footer {
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
   background-color: rgb(34, 124, 160);
   text-align: center;
+  
 }
 
+.card-link {
+  text-decoration: none;
+}
 
-
-
+/* .masonry-container {
+  display:flex;
+  flex-wrap: wrap;
+} */
+.masonry-column {
+  flex: 1;
+  margin-right: 0px;
+}
+.masonry-column:last-child {
+  margin-right: 0;
+}
 
 
 /* experimental */
