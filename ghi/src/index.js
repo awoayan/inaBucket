@@ -18,9 +18,9 @@ root.render(
 				<Nav />
 				<Routes>
 					{/* <Route
-                        path="/"
-                        element={<App />}
-                    /> */}
+						path="/"
+						element={<App />}
+					/> */}
 					<Route
 						path="*"
 						element={<Navigate to="/" />}

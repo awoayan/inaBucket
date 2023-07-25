@@ -103,9 +103,9 @@ class BucketQueries:
                         params,
                     )
 
-                    row = cur.fetchone()
-                    if row is not None:
-                        return self.bucket_record_to_dict(row, cur.description)
+    #                 row = cur.fetchone()
+    #                 if row is not None:
+    #                     return self.bucket_record_to_dict(row, cur.description)
 
     def delete_bucket(self, bucket_id):
         with pool.connection() as conn:

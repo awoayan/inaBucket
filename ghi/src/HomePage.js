@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
+import Icon from '@mdi/react';
+import { mdiArrowRight } from '@mdi/js';
 import { Link } from 'react-router-dom';
 import './App.css'
+
 function HomePage() {
 	const [buckets, setBuckets] = useState([]);
 	const [drops, setDrops] = useState([]);
@@ -42,6 +45,8 @@ function HomePage() {
 		}
 		return newArray;
 	};
+	console.log("MIXED ITEMS", mixedItems)
+
 	console.log("MIXED ITEMS", mixedItems)
 	return (
 		<div>
@@ -109,4 +114,6 @@ function HomePage() {
 		</div >
 	);
 }
+
+
 export default HomePage;

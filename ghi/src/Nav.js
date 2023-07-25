@@ -8,7 +8,11 @@ import LogInModal from "./LoginModal";
 import SignUpModal from "./SignUpModal";
 import { useEffect, useState } from "react";
 import SearchPage from "./Searchbar";
-import Dropdown from "./DropdownContent";
+import { Link } from "react-router-dom";
+import './App.css'
+import Icon from '@mdi/react';
+import { mdiAccountCircle } from '@mdi/js';
+
 
 function LoginButtons(props) {
 	const dispatch = useDispatch();
@@ -61,10 +65,8 @@ function DisplayAvatar() {
 		if (avatar === undefined) {
 			return (
 				<figure className="image is-64x64">
-					<img
-						className="is-rounded"
-						src="https://bulma.io/images/placeholders/128x128.png"
-					/>
+					<Icon path={mdiAccountCircle} size={3} />
+
 				</figure>
 			);
 		} else {
@@ -88,7 +90,7 @@ function Nav() {
 	return (
 		<>
 			<nav
-				className="navbar is-link is-fixed-top"
+				className="navbar is-fixed-top nav-color"
 				role="navigation"
 				aria-label="main navigation">
 				<div className="navbar-brand">
@@ -106,9 +108,7 @@ function Nav() {
 						<SearchPage />
 					</div>
 
-					<div>
-						<DisplayAvatar />
-					</div>
+
 
 					<button
 						className="navbar-burger"
@@ -120,11 +120,20 @@ function Nav() {
 						<span aria-hidden="true"></span>
 					</button>
 				</div>
+				<div>
+
+
+					<Link to={"/profile"}>
+						<DisplayAvatar />
+					</Link>
+
+				</div>
+
 				<div
 					id="navbarBasicExample"
-					className="navbar-menu">
+					className="navbar-menu ">
 					<div className="navbar-end">
-						<div className="navbar-item">
+						<div className="navbar-item ">
 							{tokenLoading ? (
 								<LoginButtons show={false} />
 							) : token ? (
@@ -135,6 +144,8 @@ function Nav() {
 						</div>
 					</div>
 				</div>
+
+
 			</nav>
 
 			<LogInModal />
