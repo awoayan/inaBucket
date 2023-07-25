@@ -136,7 +136,6 @@ class DropQueries:
                     record = {}
                     for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
-                print("I'M A REAL BOY")
                 return record
 
     def delete_drop(self, drop_id):
