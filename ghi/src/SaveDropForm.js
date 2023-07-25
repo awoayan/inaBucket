@@ -100,7 +100,6 @@ function SaveDropForm({dropId}) {
                     }),
                 });
                 if (response.ok) {
-                    // The drop was added to the bucket successfully
                     alert('Drop saved to bucket!');
                 } else {
                     console.error(response);

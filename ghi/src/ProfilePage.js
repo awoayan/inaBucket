@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useGetTokenQuery } from "./app/api";
 import Dropdown from "./DropdownContent";
 import Notification from "./Notification";
+import "./App.css"
 
 function ProfilePage() {
     const [buckets, setBuckets] = useState([]);
@@ -33,8 +34,14 @@ function ProfilePage() {
             (bucket) => bucket.owner.id === tokenData.account.id
         );
     }
+    // if (!userBuckets) {
+    //     return null
+    // }
     return (
         <div>
+            <h1 className="create-dropdown">
+                <Dropdown />
+            </h1>
             <h2>These are profile owners buckets</h2>
             <div className="columns is-multiline ">
                 {userBuckets.map((bucket) => (
@@ -59,14 +66,14 @@ function ProfilePage() {
                                                 <img src={bucket.owner.profile_picture} alt={bucket.owner.username} />
                                             </figure>
                                         </div>
-                                        <div className="media-content">
-                                            <p className="title is-4">{bucket.title}</p>
-                                            <p className="subtitle is-6">@{bucket.owner.username}</p>
+                                        <div className="card-details">
+                                            <h2>{bucket.title}</h2>
+                                            <p>@{bucket.owner.username}</p>
+                                            <div style={{ maxHeight: '100px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                                {bucket.details.length > 150 ? `${bucket.details.slice(0, 150)}...` : bucket.details}
+                                            </div>
                                         </div>
                                     </div>
-                                        <div className="content" style={{ color: 'white', maxHeight: '100px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                                            {bucket.details.length > 150 ? `${bucket.details.slice(0, 150)}...` : bucket.details}
-                                        </div>
                                 </div>
                             </div>
                         </Link>
