@@ -35,9 +35,8 @@
 }
 .card-image {
   border-radius: 25px 25px 0 0;
-  height: 65%;
+  height: 575px;
   width: 100%;
-  display:block
 }
 
 .drop-card-container {
@@ -75,9 +74,8 @@
 .home-bucket-image,
 .home-drop-image {
   border-radius: 25px 25px 0 0;
-  height: 250px;
+  height: 300px;
   width: 100%;
-  display: block;
 }
 
 body {

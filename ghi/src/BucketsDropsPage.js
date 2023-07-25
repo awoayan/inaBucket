@@ -43,7 +43,7 @@ function BucketsDropsPage() {
             <div className="columns is-multiline ">
                 {bucketDrops.map((bucketDrop) => (
                     <div
-                        className="column is-one-fifth "
+                        className="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
                         key={bucketDrop.id}
                         style={{ transition: 'transform 0.2s' }}
                         onMouseEnter={(e) => {
@@ -62,22 +62,19 @@ function BucketsDropsPage() {
                                     </div>
                                         <div className='card-details'>
                                             <h2>{bucketDrop.drop_name}</h2>
-                                            {/* <p>{bucketDrop.drop_details}</p>
-                                            <p>{bucketDrop.drop_city}</p>
-                                            <p>{bucketDrop.drop_address}</p>
-                                            <p>{bucketDrop.drop_url}</p> */}
                                             <div className='move-left'>
                                             <Icon path={mdiArrowRight} size={2} />
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-
                         </Link>
                     </div>
                 ))}
             </div>
+            <footer>
+                Bcket
+            </footer>
         </div>
     );
 }

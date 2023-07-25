@@ -50,7 +50,7 @@ function DropsPage() {
                     </div>
                 </div>
                 <footer>
-                    Footer Note
+                    Bcket
                 </footer>
             </div >
         </body>    

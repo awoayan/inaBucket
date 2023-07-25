@@ -54,7 +54,7 @@ function HomePage() {
 					<div className="columns is-multiline">
 						{mixedItems.map((item) => (
 							<div
-								className="column is-one-fifth masonry-column"
+								className="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
 								key={buckets.id}
 								style={{ transition: 'transform 0.2s' }}
 								onMouseEnter={(e) => {
@@ -110,7 +110,7 @@ function HomePage() {
 							</div>
 						))}
 						<footer>
-							Footer Note
+							Bcket
 						</footer>
 					</div>
 				</div>

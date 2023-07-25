@@ -50,7 +50,7 @@ function ProfilePage() {
             <div className="columns is-multiline ">
                 {userBuckets.map((bucket) => (
                     <div
-                        className="column is-one-fifth "
+                        className="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen "
                         key={bucket.id}
                         style={{ transition: 'transform 0.2s' }}
                         onMouseEnter={(e) => {
@@ -86,7 +86,7 @@ function ProfilePage() {
                 ))}
             </div>
             <footer>
-                FOOTER NOTER
+                Bcket
             </footer>
         </div>
     );
