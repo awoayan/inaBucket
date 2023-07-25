@@ -78,12 +78,16 @@ function ProfilePage() {
                                             </div>
                                         </div>
                                     </div>
+                                    
                                 </div>
                             </div>
                         </Link>
                     </div>
                 ))}
             </div>
+            <footer>
+                FOOTER NOTER
+            </footer>
         </div>
     );
 }
