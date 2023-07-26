@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { useGetTokenQuery } from "./app/api";
-import Notification from "./Notification";
+import React, { useState } from "react";
+import { useGetTokenQuery } from "../app/api";
+import Notification from "../login_signup/Notification";
 
-function UpdateBucketForm() {
+
+function CreateBucketForm() {
 	const [title, setTitle] = useState("");
 	const [coverPhoto, setCoverPhoto] = useState("");
 	const [details, setDetails] = useState("");
+
+
 
 	const handleTitleChange = (event) => {
 		const value = event.target.value;
@@ -35,8 +38,9 @@ function UpdateBucketForm() {
 		accountId = tokenData.account.id;
 	}
 
-    // Need to add the Get Functionality
-
+	function refreshPage() {
+		window.location.reload(false);
+	}
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -51,7 +55,7 @@ function UpdateBucketForm() {
 
 		const bucketUrl = "http://localhost:8000/api/buckets";
 		const fetchConfig = {
-			method: "put",
+			method: "post",
 			body: JSON.stringify(data),
 			headers: { "Content-Type": "application/json" },
 		};
@@ -59,10 +63,11 @@ function UpdateBucketForm() {
 		const response = await fetch(bucketUrl, fetchConfig);
 		if (response.ok) {
 			const newBucket = await response.json();
+			refreshPage()
 
-			updateTitle("");
-			updateDetails("");
-			updateCoverPhoto("");
+			setTitle("");
+			setDetails("");
+			setCoverPhoto("");
 		}
 	};
 	return (
@@ -123,4 +128,4 @@ function UpdateBucketForm() {
 	);
 }
 
-export default UpdateBucketForm;
+export default CreateBucketForm;

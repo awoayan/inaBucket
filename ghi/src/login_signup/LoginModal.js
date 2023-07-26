@@ -1,8 +1,8 @@
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLogInMutation } from "./app/api";
-import { eventTargetSelector as target, preventDefault } from "./app/utils";
-import { showModal, updateField, LOG_IN_MODAL } from "./app/accountSlice";
+import { useLogInMutation } from "../app/api";
+import { eventTargetSelector as target, preventDefault } from "../app/utils";
+import { showModal, updateField, LOG_IN_MODAL } from "../app/accountSlice";
 import Notification from "./Notification";
 
 function LogInModal() {

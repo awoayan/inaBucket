@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useGetTokenQuery } from "./app/api";
-import Notification from "./Notification";
+import { useGetTokenQuery } from "../app/api";
+import Notification from "../login_signup/Notification";
 
 function UpdateDropForm({ dropData }) {
     const [name, setName] = useState("");
@@ -113,7 +113,6 @@ function UpdateDropForm({ dropData }) {
             headers: { "Content-Type": "application/json" },
         };
 
-        console.log("fetch Config:", fetchConfig);
         const response = await fetch(updateDropUrl, fetchConfig);
         if (response.ok) {
         }

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useGetTokenQuery } from "./app/api";
-import Dropdown from "./DropdownContent";
-import Notification from "./Notification";
+import Dropdown from "./dropdown/DropdownContent";
+import Notification from "./login_signup/Notification";
 import "./App.css"
 
 

@@ -4,9 +4,9 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { showModal, LOG_IN_MODAL, SIGN_UP_MODAL } from "./app/accountSlice";
 import homeLogo from "./homeLogo.svg";
-import LogInModal from "./LoginModal";
-import SignUpModal from "./SignUpModal";
-import { useEffect, useState } from "react";
+import LogInModal from "./login_signup/LoginModal";
+import SignUpModal from "./login_signup/SignUpModal";
+import { useEffect } from "react";
 import SearchPage from "./Searchbar";
 import { Link } from "react-router-dom";
 import './App.css'
@@ -85,8 +85,6 @@ function DisplayAvatar() {
 function Nav() {
 	const { data: token, isLoading: tokenLoading } = useGetTokenQuery();
 
-	// let avatar =
-
 	return (
 		<>
 			<nav
@@ -121,14 +119,10 @@ function Nav() {
 					</button>
 				</div>
 				<div>
-
-
 					<Link to={"/profile"}>
 						<DisplayAvatar />
 					</Link>
-
 				</div>
-
 				<div
 					id="navbarBasicExample"
 					className="navbar-menu ">

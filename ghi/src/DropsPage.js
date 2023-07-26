@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import SaveDropForm from './SaveDropForm';
-import DeleteDrops from './deleteDrops';
-import EditDropDropdown from './EditDropDropdown';
+import SaveDropForm from './dropdown/SaveDropForm';
+import DeleteDrops from './dropdown/DeleteDrop';
+import EditDropDropdown from './dropdown/EditDropDropdown';
 
 
 function DropsPage() {
@@ -14,7 +14,6 @@ function DropsPage() {
                 const response = await fetch(`http://localhost:8000/api/drops/${dropId}`);
                 if (response.ok) {
                     const data = await response.json();
-                    console.log(data);
                     setDrop(data);
                 } else {
                     console.error(response);

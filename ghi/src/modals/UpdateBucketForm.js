@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useGetTokenQuery } from "./app/api";
-import Notification from "./Notification";
+import React, { useState } from "react";
+import { useGetTokenQuery } from "../app/api";
+import Notification from "../Notification";
 
-
-function CreateBucketForm() {
+function UpdateBucketForm() {
 	const [title, setTitle] = useState("");
 	const [coverPhoto, setCoverPhoto] = useState("");
 	const [details, setDetails] = useState("");
-
-
 
 	const handleTitleChange = (event) => {
 		const value = event.target.value;
@@ -38,9 +35,8 @@ function CreateBucketForm() {
 		accountId = tokenData.account.id;
 	}
 
-	function refreshPage() {
-		window.location.reload(false);
-	}
+	// Need to add the Get Functionality
+
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -51,23 +47,20 @@ function CreateBucketForm() {
 		data.details = details;
 		data.account_id = accountId;
 
-		console.log("data being submitted:", data);
 
 		const bucketUrl = "http://localhost:8000/api/buckets";
 		const fetchConfig = {
-			method: "post",
+			method: "put",
 			body: JSON.stringify(data),
 			headers: { "Content-Type": "application/json" },
 		};
-		console.log("fetch Config:", fetchConfig);
 		const response = await fetch(bucketUrl, fetchConfig);
 		if (response.ok) {
 			const newBucket = await response.json();
-			refreshPage()
 
-			setTitle("");
-			setDetails("");
-			setCoverPhoto("");
+			updateTitle("");
+			updateDetails("");
+			updateCoverPhoto("");
 		}
 	};
 	return (
@@ -116,7 +109,6 @@ function CreateBucketForm() {
 							/>
 						</div>
 					</div>
-
 					<div className="field is-grouped">
 						<div className="control">
 							<button className="button is-primary">Submit</button>
@@ -128,4 +120,4 @@ function CreateBucketForm() {
 	);
 }
 
-export default CreateBucketForm;
+export default UpdateBucketForm;

@@ -3,10 +3,9 @@ import { useParams, Link } from 'react-router-dom';
 import Icon from '@mdi/react';
 import { mdiArrowRight } from '@mdi/js';
 import './App.css'
-import SaveDropForm from './SaveDropForm';
 
 function BucketsDropsPage() {
-    const { bucketId, dropId } = useParams();
+    const { bucketId } = useParams();
     const [bucketDrops, setBucketDrops] = useState([]);
 
     useEffect(() => {
@@ -34,7 +33,6 @@ function BucketsDropsPage() {
             <h1>Your Bucket is empty. Save a drop! </h1>
         )
     }
-
 
     return (
         <div>

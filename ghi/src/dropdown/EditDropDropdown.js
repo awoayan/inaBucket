@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import UpdateDropModal from "./UpdateDropModal"
+import UpdateDropModal from "../modals/UpdateDropModal"
 import DeleteDrop from "./DeleteDrop"
 import { useParams } from 'react-router-dom';
 
