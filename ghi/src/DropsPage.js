@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import SaveDropForm from './SaveDropForm';
 import DeleteDrops from './deleteDrops';
+import EditDropDropdown from './EditDropDropdown';
 
 
 function DropsPage() {
@@ -31,30 +32,30 @@ function DropsPage() {
 
 
     return (
-        <body>
-            <div>
-                <div className='column'>
-                    <div className='drop-card-container'>
-                        <div className="drop-card">
-                            <img className='card-image' src={drop.photo} alt={drop.name} />
-                            <div className="card-details">
-                                <h1>{drop.name}</h1>
-                                <p>{drop.details}</p>
-                                <p>{drop.city}</p>
-                                <p>{drop.address}</p>
-                                <p>{drop.url}</p>
-                                <SaveDropForm dropId={dropId} />
-                                <EditDropDropdown dropId={dropId} />
-                            </div>
+
+        <div>
+            <div className='column'>
+                <div className='drop-card-container'>
+                    <div className="drop-card">
+                        <img className='card-image' src={drop.photo} alt={drop.name} />
+                        <div className="card-details">
+                            <h1>{drop.name}</h1>
+                            <p>{drop.details}</p>
+                            <p>{drop.city}</p>
+                            <p>{drop.address}</p>
+                            <p>{drop.url}</p>
+                            <SaveDropForm dropId={dropId} />
+                            <EditDropDropdown dropId={dropId} />
                         </div>
                     </div>
                 </div>
-                <div>
-                    <DeleteDrops dropId={dropId} />
-                </div>
-                <SaveDropForm dropId={dropId} />
             </div>
+            <div>
+                <DeleteDrops dropId={dropId} />
+            </div>
+            <SaveDropForm dropId={dropId} />
         </div>
+
 
     );
 }
