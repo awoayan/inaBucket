@@ -4,7 +4,7 @@ import './App.css'
 
 function HomePage() {
 	const [buckets, setBuckets] = useState([]);
-	const [drops, setDrops] = useState([]);
+	const [setDrops] = useState([]);
 	const [mixedItems, setMixedItems] = useState([]);
 	useEffect(() => {
 		const fetchBucketsAndDrops = async () => {

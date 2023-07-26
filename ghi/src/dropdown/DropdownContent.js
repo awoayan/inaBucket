@@ -26,7 +26,7 @@ function Dropdown({ userBuckets }) {
 					<div
 						className="dropdown-menu2"
 						id="dropdown-menu32"
-						role="menu2">
+						role="menu">
 						<div className="dropdown-content">
 							{userBuckets.length > 0 && (
 								<li className="dropdown-item">

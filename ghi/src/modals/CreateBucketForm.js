@@ -62,7 +62,6 @@ function CreateBucketForm() {
 		console.log("fetch Config:", fetchConfig);
 		const response = await fetch(bucketUrl, fetchConfig);
 		if (response.ok) {
-			const newBucket = await response.json();
 			refreshPage()
 
 			setTitle("");

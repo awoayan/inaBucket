@@ -108,7 +108,6 @@ function CreateDropForm() {
 		};
 		const response = await fetch(bucketUrl, fetchConfig);
 		if (response.ok) {
-			const newDrop = await response.json();
 			navigate(`/bucketdrops/${bucket}`);
 		}
 

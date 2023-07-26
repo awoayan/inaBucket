@@ -99,7 +99,7 @@ function Nav() {
 							src={homeLogo}
 							height="86"
 							width="43"
-							alt=""
+							alt="Home Logo"
 						/>
 					</NavLink>
 					<div>
