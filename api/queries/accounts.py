@@ -59,7 +59,12 @@ class AccountQueries:
                 print("accountIN Data:", account)
                 result = data.execute(
                     """
-                    INSERT INTO accounts (email, hashed_password, full_name, username)
+                    INSERT INTO accounts (
+                        email,
+                        hashed_password,
+                        full_name,
+                        username
+                    )
                     VALUES (%s, %s, %s, %s)
                     RETURNING id;
                     """,
