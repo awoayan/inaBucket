@@ -18,13 +18,14 @@ lint-test-job:
 api-unit-tests-job:
   image: python:3-bullseye
   stage: test
-  variables:
-    DATABASE_URL: "postgresql://pintrip:pintrip@data/pintrip"
+
   needs:
     - lint-test-job
   script:
     - cd api
     - pip install -r requirements.txt
+    - export DATABASE_URL="postgresql://pintrip:pintrip@data/pintrip"
+    - export SIGNING_KEY="Hobbit"
     - python -m pytest
 
 # # Build API Image:
