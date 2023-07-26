@@ -43,7 +43,7 @@ function HomePage() {
 		}
 		return newArray;
 	};
-	console.log("MIXED ITEMS", mixedItems)
+
 
 	console.log("MIXED ITEMS", mixedItems)
 	return (
@@ -115,7 +115,7 @@ function HomePage() {
 					</div>
 				</div>
 			</div >
-			
+
 		</div>
 	);
 }
