@@ -44,7 +44,7 @@ function DropsPage() {
                                 <p>{drop.address}</p>
                                 <p>{drop.url}</p>
                                 <SaveDropForm dropId={dropId} />
-                                <EditDropDropdown />
+                                <EditDropDropdown dropId={dropId} />
                             </div>
                         </div>
                     </div>

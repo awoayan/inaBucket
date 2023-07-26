@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useGetTokenQuery } from "./app/api";
 import Notification from "./Notification";
 
+
 function CreateBucketForm() {
 	const [title, setTitle] = useState("");
 	const [coverPhoto, setCoverPhoto] = useState("");
 	const [details, setDetails] = useState("");
+
+
 
 	const handleTitleChange = (event) => {
 		const value = event.target.value;
@@ -35,6 +38,10 @@ function CreateBucketForm() {
 		accountId = tokenData.account.id;
 	}
 
+	function refreshPage() {
+		window.location.reload(false);
+	}
+
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
@@ -56,6 +63,7 @@ function CreateBucketForm() {
 		const response = await fetch(bucketUrl, fetchConfig);
 		if (response.ok) {
 			const newBucket = await response.json();
+			refreshPage()
 
 			setTitle("");
 			setDetails("");
