@@ -43,10 +43,10 @@ class DropQueries:
                 cur.execute(
                     """
                     SELECT a.id, a.full_name,
-                        a.email, a.username, d.id, d.name, 
+                        a.email, a.username, d.id, d.name,
                         d.photo, d.details, d.city,
                         d.address, d.url, d.creator_id
-                    FROM accounts a 
+                    FROM accounts a
                     JOIN drops d ON(a.id = d.creator_id)
                     WHERE d.id = %s
                     """,
@@ -63,7 +63,7 @@ class DropQueries:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    INSERT INTO drops( 
+                    INSERT INTO drops(
                         name, photo, details, city, address, url, creator_id)
                     VALUES (%s, %s, %s, %s, %s, %s, %s)
                     RETURNING id;
@@ -123,7 +123,8 @@ class DropQueries:
                         address = %s,
                         url = %s
                     WHERE id = %s
-                    RETURNING name, photo, details, city, address, url, creator_id
+                    RETURNING name, photo, details, city, address, url,
+                    creator_id
                     """,
                     params,
                 )
