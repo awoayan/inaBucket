@@ -62,9 +62,7 @@ class FakeCreateDropQueries:
             },
     }
             
-        
     
-        # result.update(drop)
         return result
     
 
@@ -139,8 +137,7 @@ def test_get_all_drops():
 def test_create_drop():
     app.dependency_overrides[DropQueries] = FakeCreateDropQueries
 
-
-    
+ 
     drop = {
         "name": "hiii",
         "photo": "string",

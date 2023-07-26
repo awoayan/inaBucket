@@ -75,6 +75,7 @@ def get_drops(
         response.status_code = 404
     else:
         return records
+
     
 @router.put("/api/drops/{drop_id}", response_model=UpdateDropOut)
 def update_drop(
@@ -88,6 +89,7 @@ def update_drop(
         response.status_code = 404
     else:
         return record
+        
 
 @router.delete("/api/drops/{drop_id}", response_model=bool)
 def delete_drop(drop_id: int, queries: DropQueries = Depends()):
