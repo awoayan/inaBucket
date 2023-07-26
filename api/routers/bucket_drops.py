@@ -1,19 +1,20 @@
-from typing import Literal, List
+from typing import List
 from fastapi import APIRouter, Depends, Response
 from pydantic import BaseModel
 from queries.bucket_drops import BucketDropQueries
 
 router = APIRouter()
 
+
 class BucketDropsIn(BaseModel):
     bucket_id: int
     drop_id: int
 
 
-
 class BucketDropsOut(BaseModel):
     bucket_id: int
     drop_id: int
+
 
 class ABucketsDropsOut(BaseModel):
     bucket_id: int
@@ -33,12 +34,13 @@ class ABucketsDropsOut(BaseModel):
 def save_drop(
     bucket_drop: BucketDropsIn,
     queries: BucketDropQueries = Depends(),
-
 ):
     return queries.save_drop(bucket_drop)
 
 
-@router.get("/api/bucket_drops/{bucket_id}", response_model=List[ABucketsDropsOut])
+@router.get(
+    "/api/bucket_drops/{bucket_id}", response_model=List[ABucketsDropsOut]
+)
 def get_buckets_drops(
     bucket_id: int,
     response: Response,
@@ -49,5 +51,3 @@ def get_buckets_drops(
         response.status_code = 404
     else:
         return record
-    
-

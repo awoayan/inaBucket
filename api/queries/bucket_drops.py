@@ -5,28 +5,25 @@ from psycopg_pool import ConnectionPool
 pool = ConnectionPool(conninfo=os.environ["DATABASE_URL"])
 
 
-
-class BucketDropQueries: 
-
+class BucketDropQueries:
     def save_drop(self, bucket_drop):
         # bucket_drop_id = None
         with pool.connection() as conn:
-            with conn.cursor() as cur: 
+            with conn.cursor() as cur:
                 cur.execute(
                     """
                     INSERT INTO bucket_drops(bucket_id, drop_id)
                     VALUES (%s, %s)
-                    RETURNING *; 
+                    RETURNING *;
                     """,
                     [
                         bucket_drop.bucket_id,
                         bucket_drop.drop_id,
-
                     ],
                 )
                 record = None
                 row = cur.fetchone()
-                if row is not None: 
+                if row is not None:
                     record = {}
                     for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
@@ -51,50 +48,14 @@ class BucketDropQueries:
                     WHERE b.id = %s
                     ORDER BY b.id, d.id;
                     """,
-                    [bucket_id]
+                    [bucket_id],
                 )
-                # row = cur.fetchone()
-                # if row is None:
-                #     return None
-                # return self.bucket_drops_record_to_dict(row, cur.description)
+
                 buckets_drops = []
-                for row in cur.fetchall(): 
+                for row in cur.fetchall():
                     record = {}
                     for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
                     buckets_drops.append(record)
-                
+
                 return buckets_drops
-            
-    # def bucket_drops_record_to_dict(self, row, description):
-        
-    #     bucket = None
-    #     if row is not None:
-    #         bucket = {}
-    #         bucket_fields = [
-    #             "cover_photo",
-    #             "details",
-    #             "url",
-    #             "account_id",              
-    #         ]
-
-    #         for i, column in enumerate(description):
-    #             if column.name in bucket_fields:
-    #                 bucket[column.name] = row[i]
-    #         # bucket["id"] = bucket["bucket_id"]
-
-    #         drop = {}
-    #         drop_fields = [
-    #             "name",
-    #             "photo",
-    #             "city",
-    #             "address",
-    #             "creator",            
-    #         ]
-    #         for i, column in enumerate(description):
-    #             if column.name in drop_fields:
-    #                 drop[column.name] = row[i]
-    #         # drop["id"] = drop["account_id"]
-
-    #         bucket["drop"] = drop
-    #     return bucket

@@ -4,9 +4,8 @@ from psycopg_pool import ConnectionPool
 
 pool = ConnectionPool(conninfo=os.environ["DATABASE_URL"])
 
+
 class BucketQueries:
-
-
     def get_buckets(self):
         with pool.connection() as conn:
             with conn.cursor() as cur:
@@ -15,15 +14,14 @@ class BucketQueries:
                     SELECT a.id, a.full_name,
                         a.email, a.username,
                         b.id, b.title,
-                        b.cover_photo, b.details, 
+                        b.cover_photo, b.details,
                         b.account_id
 
-                    FROM accounts a 
+                    FROM accounts a
                     JOIN buckets b ON(a.id = b.account_id)
-                
-                    GROUP BY 
+                    GROUP BY
                         a.id, a.full_name, a.username, a.email,
-                        b.id, b.title, b.cover_photo, 
+                        b.id, b.title, b.cover_photo,
                         b.details, b.account_id
 
                     ORDER BY b.title
@@ -36,7 +34,7 @@ class BucketQueries:
                     bucket = self.bucket_record_to_dict(row, cur.description)
                     buckets.append(bucket)
                 return buckets
-            
+
     def get_bucket(self, bucket_id):
         with pool.connection() as conn:
             with conn.cursor() as cur:
@@ -65,13 +63,13 @@ class BucketQueries:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    INSERT INTO buckets( 
+                    INSERT INTO buckets(
                         title, cover_photo, details, account_id )
                     VALUES (%s, %s, %s, %s)
                     RETURNING id;
                     """,
-                    [                   
-                        bucket.title, 
+                    [
+                        bucket.title,
                         bucket.cover_photo,
                         bucket.details,
                         bucket.account_id,
@@ -83,16 +81,16 @@ class BucketQueries:
             return self.get_bucket(id)
 
     def update_bucket(self, bucket_id, bucket):
-            with pool.connection() as conn:
-                with conn.cursor() as cur:
-                    params = [
-                        bucket.title,
-                        bucket.cover_photo,
-                        bucket.details,
-                        bucket_id,
-                    ]
-                    cur.execute(
-                        """
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                params = [
+                    bucket.title,
+                    bucket.cover_photo,
+                    bucket.details,
+                    bucket_id,
+                ]
+                cur.execute(
+                    """
                         UPDATE buckets
                         SET title = %s,
                             cover_photo = %s,
@@ -100,12 +98,8 @@ class BucketQueries:
                         WHERE id = %s
                         RETURNING *;
                         """,
-                        params,
-                    )
-
-    #                 row = cur.fetchone()
-    #                 if row is not None:
-    #                     return self.bucket_record_to_dict(row, cur.description)
+                    params,
+                )
 
     def delete_bucket(self, bucket_id):
         with pool.connection() as conn:
@@ -119,7 +113,6 @@ class BucketQueries:
                 )
 
     def bucket_record_to_dict(self, row, description):
-        
         bucket = None
         if row is not None:
             bucket = {}
@@ -128,20 +121,19 @@ class BucketQueries:
                 "title",
                 "cover_photo",
                 "details",
-                "account_id",              
+                "account_id",
             ]
 
             for i, column in enumerate(description):
                 if column.name in bucket_fields:
                     bucket[column.name] = row[i]
-            # bucket["id"] = bucket["bucket_id"]
 
             owner = {}
             owner_fields = [
                 "account_id",
                 "full_name",
                 "email",
-                "username",            
+                "username",
             ]
             for i, column in enumerate(description):
                 if column.name in owner_fields:
@@ -150,4 +142,3 @@ class BucketQueries:
 
             bucket["owner"] = owner
         return bucket
-

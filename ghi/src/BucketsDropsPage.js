@@ -50,7 +50,6 @@ function BucketsDropsPage() {
                             e.currentTarget.classList.remove('card-scaled');
                         }}
                     >
-
                         <Link to={`/drops/${bucketDrop.drop_id}`} className="card-link">
                             <div className="card hover-drop">
                                 <img className='card-image' src={bucketDrop.drop_photo} alt={bucketDrop.drop_name} />
@@ -68,14 +67,11 @@ function BucketsDropsPage() {
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-
                         </Link>
                     </div>
                 ))}
             </div>
-
             <footer>
                 Footer Note
             </footer>

@@ -2,7 +2,6 @@ import os
 from psycopg_pool import ConnectionPool
 
 
-
 pool = ConnectionPool(conninfo=os.environ["DATABASE_URL"])
 
 
@@ -14,15 +13,14 @@ class DropQueries:
                     """
                     SELECT a.id, a.full_name,
                         a.email, a.username,
-                        d.id, d.name, 
+                        d.id, d.name,
                         d.photo, d.details, d.city,
                         d.address, d.url, d.creator_id
-                    
                     FROM accounts a
 
                     JOIN drops d ON(a.id = d.creator_id)
 
-                    GROUP BY 
+                    GROUP BY
                         a.id, a.full_name, a.username, a.email,
                         d.id, d.name,
                         d.photo, d.details, d.city,
@@ -84,7 +82,7 @@ class DropQueries:
                 drop_id = row[0]
                 print("dropID:", drop_id)
                 cur.execute(
-                    """ 
+                    """
                     INSERT INTO bucket_drops(
                         bucket_id,
                         drop_id
@@ -113,7 +111,7 @@ class DropQueries:
                     drop.city,
                     drop.address,
                     drop.url,
-                    drop_id,  
+                    drop_id,
                 ]
                 cur.execute(
                     """
@@ -129,7 +127,7 @@ class DropQueries:
                     """,
                     params,
                 )
-                
+
                 record = None
                 row = cur.fetchone()
                 if row is not None:
@@ -167,7 +165,6 @@ class DropQueries:
             for i, column in enumerate(description):
                 if column.name in drop_fields:
                     drop[column.name] = row[i]
-            # drop["id"] = drop["bucket_id"]
 
             creator_id = {}
             creator_fields = [
