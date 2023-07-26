@@ -29,7 +29,7 @@ function HomePage() {
 			}
 		};
 		fetchBucketsAndDrops();
-	}, []);
+	}, [mixAndShuffleItems]);
 	const mixAndShuffleItems = (buckets, drops) => {
 		const mixedItems = [...buckets, ...drops];
 		const shuffledItems = shuffleArray(mixedItems);

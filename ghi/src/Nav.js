@@ -75,6 +75,7 @@ function DisplayAvatar() {
 					<img
 						className="is-rounded"
 						src={avatar}
+						alt="avatar, ya'll"
 					/>
 				</figure>
 			);
