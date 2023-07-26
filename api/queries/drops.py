@@ -1,6 +1,6 @@
 import os
 from psycopg_pool import ConnectionPool
-# from routers.drops import DropUpdate
+
 
 
 pool = ConnectionPool(conninfo=os.environ["DATABASE_URL"])
@@ -103,36 +103,40 @@ class DropQueries:
             print("returndrop:", return_drop)
             return return_drop
 
-    # def update_drop(self, drop_id: int, drop: DropUpdate):
-    #     with pool.connection() as conn:
-    #         with conn.cursor() as cur:
-    #             params = [
-    #                 drop.name,
-    #                 drop.photo,
-    #                 drop.details,
-    #                 drop.city,
-    #                 drop.address,
-    #                 drop.url,
-    #                 drop_id,
-    #             ]
-    #             cur.execute(
-    #                 """
-    #                 UPDATE drops
-    #                 SET name = %s,
-    #                     photo = %s,
-    #                     details = %s,
-    #                     city = %s,
-    #                     address = %s,
-    #                     url = %s
-    #                 WHERE id = %s
-    #                 RETURNING *;
-    #                 """,
-    #                 params,
-    #             )
-
-    #             row = cur.fetchone()
-    #             if row is not None:
-    #                 return self.drop_record_to_dict(row, cur.description)
+    def update_drop(self, drop_id, drop):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                params = [
+                    drop.name,
+                    drop.photo,
+                    drop.details,
+                    drop.city,
+                    drop.address,
+                    drop.url,
+                    drop_id,  
+                ]
+                cur.execute(
+                    """
+                    UPDATE drops
+                    SET name = %s,
+                        photo = %s,
+                        details = %s,
+                        city = %s,
+                        address = %s,
+                        url = %s
+                    WHERE id = %s
+                    RETURNING name, photo, details, city, address, url, creator_id
+                    """,
+                    params,
+                )
+                
+                record = None
+                row = cur.fetchone()
+                if row is not None:
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+                return record
 
     def delete_drop(self, drop_id):
         with pool.connection() as conn:
@@ -168,8 +172,8 @@ class DropQueries:
             creator_id = {}
             creator_fields = [
                 "creator_id",
-                "full_name",
                 "email",
+                "full_name",
                 "username",
             ]
             for i, column in enumerate(description):

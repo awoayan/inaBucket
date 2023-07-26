@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useGetTokenQuery } from "./app/api";
 import Notification from "./Notification";
 
-function UpdateDropForm() {
+function UpdateDropForm({ dropData }) {
     const [name, setName] = useState("");
     const [photo, setPhoto] = useState("");
     const [details, setDetails] = useState("");
@@ -22,7 +22,6 @@ function UpdateDropForm() {
             if (response.ok) {
                 const data = await response.json();
                 setBuckets(data);
-                console.log(data);
             } else {
                 console.error(response);
             }
@@ -31,11 +30,23 @@ function UpdateDropForm() {
         fetchBuckets();
     }, []);
 
+    useEffect(() => {
+        if (dropData) {
+            setName(dropData.name);
+            setPhoto(dropData.photo);
+            setDetails(dropData.details);
+            setCity(dropData.city);
+            setAddress(dropData.address);
+            setUrl(dropData.url);
+            setBucket(dropData.bucket_id);
+        }
+    }, [dropData]);
+
     let creator_id = null;
 
     if (!tokenData) {
         return (
-            <div classNameNameName="container">
+            <div className="container">
                 <Notification type="info"> Please Login</Notification>
             </div>
         );
@@ -45,9 +56,7 @@ function UpdateDropForm() {
 
     let userBuckets = buckets.filter(
         (bucket) => bucket.owner.id === tokenData.account.id
-    );
-
-    // Need to add the get functionality
+    )
 
     const handleNameChange = (event) => {
         const value = event.target.value;
@@ -97,22 +106,30 @@ function UpdateDropForm() {
         data.creator_id = creator_id;
         data.bucket_id = bucket;
 
-        const bucketUrl = "http://localhost:8000/api/drops";
+        const updateDropUrl = `http://localhost:8000/api/drops/${dropData.id}`;
         const fetchConfig = {
-            method: "post",
+            method: "put",
             body: JSON.stringify(data),
             headers: { "Content-Type": "application/json" },
         };
+
         console.log("fetch Config:", fetchConfig);
-        const response = await fetch(bucketUrl, fetchConfig);
+        const response = await fetch(updateDropUrl, fetchConfig);
         if (response.ok) {
-            const newDrop = await response.json();
         }
+
+        setName("");
+        setPhoto("");
+        setDetails("");
+        setCity("");
+        setAddress("");
+        setUrl("");
+        setBucket("");
     };
 
     return (
         <>
-            <div className="create-bucket">
+            <div className="create-drop">
                 <form onSubmit={handleSubmit}>
                     <div className="field">
                         <label className="label">Drop Name</label>
@@ -199,25 +216,28 @@ function UpdateDropForm() {
                         </div>
                     </div>
                     <div className="field">
+                        <label className="label">Select Bucket</label>
                         <div className="control">
-                            <select
-                                onChange={handleBucketChange}
-                                required
-                                name="bucket"
-                                value={bucket}
-                                id="bucket"
-                                className="select">
-                                <option value="">Choose a Bucket to Save to</option>
-                                {userBuckets.map((bucket) => {
-                                    return (
-                                        <option
-                                            key={bucket.id}
-                                            value={bucket.id}>
-                                            {bucket.title}
-                                        </option>
-                                    );
-                                })}
-                            </select>
+                            <div className="select">
+                                <select
+                                    onChange={handleBucketChange}
+                                    required
+                                    name="bucket"
+                                    value={bucket}
+                                    id="bucket"
+                                    className="select">
+                                    <option>Bucket</option>
+                                    {userBuckets.map((bucket) => {
+                                        return (
+                                            <option
+                                                key={bucket.id}
+                                                value={bucket.id}>
+                                                {bucket.title}
+                                            </option>
+                                        );
+                                    })}
+                                </select>
+                            </div>
                         </div>
                     </div>
 

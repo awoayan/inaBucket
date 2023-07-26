@@ -11,18 +11,21 @@ function ProfilePage() {
     const [buckets, setBuckets] = useState([]);
     useEffect(() => {
         const fetchBuckets = async () => {
-            const url = 'http://localhost:8000/api/buckets';
-            const response = await fetch(url);
-            if (response.ok) {
-                const data = await response.json();
-                setBuckets(data);
-                console.log(data);
-            } else {
-                console.error(response);
+            try {
+                const response = await fetch("http://localhost:8000/api/buckets");
+                if (response.ok) {
+                    const data = await response.json();
+                    setBuckets(data);
+                } else {
+                    console.error(response);
+                }
+            } catch (error) {
+                console.error(error);
             }
         };
         fetchBuckets();
     }, []);
+
     const { data: tokenData } = useGetTokenQuery();
     let userBuckets = null;
     if (!tokenData) {
@@ -32,63 +35,63 @@ function ProfilePage() {
             </div>
         );
     } else {
+
         userBuckets = buckets.filter(
             (bucket) => bucket.owner.id === tokenData.account.id
         );
     }
 
-    // if (!userBuckets) {
-    //     return null
-    // }
     return (
         <div>
-            <body>
-                <h1 className="create-dropdown">
-                    <Dropdown />
-                </h1>
-                <h2>These are profile owners buckets</h2>
-                <div className="columns is-multiline ">
-                    {userBuckets.map((bucket) => (
-                        <div
-                            className="column is-one-fifth "
-                            key={bucket.id}
-                            style={{ transition: 'transform 0.2s' }}
-                            onMouseEnter={(e) => {
-                                e.currentTarget.classList.add('card-scaled');
-                            }}
-                            onMouseLeave={(e) => {
-                                e.currentTarget.classList.remove('card-scaled');
-                            }}
-                        >
-                            <Link to={`/bucketdrops/${bucket.id}`} className="card-link">
-                                <div className="card">
-                                    <img className="card-image" src={bucket.cover_photo} alt={bucket.title} />
-                                    <div className="card-content">
-                                        <div className="media">
-                                            <div className="media-left">
-                                                <figure className="image is-48x48">
-                                                    <img src={bucket.owner.profile_picture} alt={bucket.owner.username} />
-                                                </figure>
-                                            </div>
-                                            <div className="media-content">
-                                                <p className="title is-4">{bucket.title}</p>
-                                                <p className="subtitle is-6">@{bucket.owner.username}</p>
-                                            </div>
+            <h1 className="create-dropdown">
+                <Dropdown userBuckets={userBuckets} />
+            </h1>
+            <h2>These are profile owners buckets</h2>
+            <div className="columns is-multiline ">
+                {userBuckets.map((bucket) => (
+                    <div
+                        className="column is-one-fifth "
+                        key={bucket.id}
+                        style={{ transition: 'transform 0.2s' }}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.classList.add('card-scaled');
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.classList.remove('card-scaled');
+                        }}
+                    >
+                        <Link to={`/bucketdrops/${bucket.id}`} className="card-link">
+                            <div className="card">
+                                <img className="card-image" src={bucket.cover_photo} alt={bucket.title} />
+                                <div className="card-content">
+                                    <div className="media">
+                                        <div className="media-left">
+                                            <figure className="image is-48x48">
+                                                <img src={bucket.owner.profile_picture} alt={bucket.owner.username} />
+                                            </figure>
                                         </div>
-                                        <div className="content" style={{ color: 'white', maxHeight: '100px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                                            {bucket.details.length > 150 ? `${bucket.details.slice(0, 150)}...` : bucket.details}
+                                        <div className="card-details">
+                                            <h2>{bucket.title}</h2>
+                                            <p>@{bucket.owner.username}</p>
+                                            <div style={{ maxHeight: '100px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                                {bucket.details.length > 150 ? `${bucket.details.slice(0, 150)}...` : bucket.details}
+                                            </div>
                                         </div>
                                     </div>
+
                                 </div>
-                            </Link>
-                        </div>
-                    ))}
-                </div>
-            </body>
+                            </div>
+                        </Link>
+                    </div>
+                ))}
+            </div>
             <footer>
                 FOOTER NOTER
             </footer>
         </div>
     );
 }
+
+
 export default ProfilePage;
+

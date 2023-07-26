@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import SaveDropForm from './SaveDropForm';
-// import './DropPage.css' 
+import EditDropDropdown from './EditDropDropdown';
+
 
 function DropsPage() {
     const { dropId } = useParams();
@@ -23,51 +24,36 @@ function DropsPage() {
         };
         fetchDrop();
     }, [dropId]);
+
     if (!drop) {
         return <div>Loading...</div>;
     }
+
+
     return (
-        <div>
-            <div className="card">
-                <div className="card-content">
-                    <div className="media">
-                        <div className="media-content">
-                            <p className="title is-2">{drop.name}</p>
-                            <img src={drop.photo} alt={drop.name} />
-                            <p>{drop.details}</p>
-                            <p>{drop.city}</p>
-                            <p>{drop.address}</p>
-                            <p>{drop.url}</p>
+        <body>
+            <div>
+                <div className='column'>
+                    <div className='drop-card-container'>
+                        <div className="drop-card">
+                            <img className='card-image' src={drop.photo} alt={drop.name} />
+                            <div className="card-details">
+                                <h1>{drop.name}</h1>
+                                <p>{drop.details}</p>
+                                <p>{drop.city}</p>
+                                <p>{drop.address}</p>
+                                <p>{drop.url}</p>
+                                <SaveDropForm dropId={dropId} />
+                                <EditDropDropdown />
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div className="buttons">
-                    <button>
-                        <SaveDropForm dropId={dropId} />
-                    </button>
-                </div>
-            </div>
-        </div>
+                <footer>
+                    Footer Note
+                </footer>
+            </div >
+        </body>
     );
 }
 export default DropsPage;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Icon from '@mdi/react';
-import { mdiArrowRight } from '@mdi/js';
 import { Link } from 'react-router-dom';
 import './App.css'
 
@@ -47,24 +45,33 @@ function HomePage() {
 	};
 
 
+	console.log("MIXED ITEMS", mixedItems)
 	return (
 		<div>
-			<h2>These are buckets and drops on cards</h2>
-			<body>
-
-				<div className="container">
+			<h2 style={{ textAlign: 'center' }} >Welcome to the homepage! Let's explore!</h2>
+			<div className="container">
+				<div className="masonry-container">
 					<div className="columns is-multiline">
 						{mixedItems.map((item) => (
-							<div className="column is-one-fifth" key={item.id}>
+							<div
+								className="column is-one-fifth masonry-column"
+								key={buckets.id}
+								style={{ transition: 'transform 0.2s' }}
+								onMouseEnter={(e) => {
+									e.currentTarget.classList.add('card-scaled');
+								}}
+								onMouseLeave={(e) => {
+									e.currentTarget.classList.remove('card-scaled');
+								}} key2={item.id}>
 								{("title" in item) ? (
 									<Link to={`/bucketdrops/${item.id}`} className="card-link">
-										<div className="card">
-											<div className="card-image">
-												<figure className="image is-4by3">
-													<img src={item.cover_photo} alt={item.title} />
+										<div className="home-bucket-card">
+											<div>
+												<figure>
+													<img className='home-bucket-image' src={item.cover_photo} alt={item.title} />
 												</figure>
 											</div>
-											<div className="card-content">
+											<div>
 												<div className="media">
 													<div className="media-left">
 														<figure className="image is-48x48">
@@ -74,30 +81,27 @@ function HomePage() {
 															/>
 														</figure>
 													</div>
-													<div className="media-content">
-														<p className="title is-4">{item.title}</p>
-														<p className="subtitle is-6">@{item.owner.username}</p>
+													<div className="card-details">
+														<h4>{item.title}</h4>
+														<p>@{item.owner.username}</p>
 													</div>
 												</div>
-												<div className="content">{item.details}</div>
+												<div className="card-details">{item.details}</div>
 											</div>
 										</div>
 									</Link>
 								) : (
 									<Link to={`/drops/${item.id}`} className="card-link">
-										<div className="card">
-											<div className="card-image">
-												<figure className="image is-4by3">
-													<img src={item.photo} alt={item.name} />
+										<div className="home-drop-card">
+											<div>
+												<figure>
+													<img className='home-drop-image' src={item.photo} alt={item.name} />
 												</figure>
 											</div>
-											<div className="card-content">
-												<div className="content">
-													<p>City: {item.city}</p>
-													<p>Address: {item.address}</p>
-													<p>
-														URL: <a href={item.url}>{item.url}</a>
-													</p>
+											<div className="card-details">
+												<div>
+													<h3>{item.name}</h3>
+													<h5>{item.city}</h5>
 												</div>
 											</div>
 										</div>
@@ -105,14 +109,14 @@ function HomePage() {
 								)}
 							</div>
 						))}
+						<footer>
+							Footer Note
+						</footer>
 					</div>
 				</div>
-			</body>
+			</div >
 
-			<footer className="footer-orange">
-				pintrip
-			</footer>
-		</div >
+		</div>
 	);
 }
 

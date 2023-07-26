@@ -11,23 +11,24 @@ function BucketsDropsPage() {
 
     useEffect(() => {
         const fetchBucketDrops = async () => {
-            const response = await fetch(`http://localhost:8000/api/bucket_drops/${bucketId}`)
-
-            if (response.ok) {
-                const data = await response.json();
-                setBucketDrops(data);
-            } else {
-                console.error(response);
+            try {
+                const response = await fetch(`http://localhost:8000/api/bucket_drops/${bucketId}`)
+                if (response.ok) {
+                    const data = await response.json();
+                    setBucketDrops(data);
+                } else {
+                    console.error(response);
+                }
+            } catch (error) {
+                console.error(error);
             }
         };
-
         fetchBucketDrops();
     }, [bucketId]);
 
     if (!bucketDrops) {
         return null
     }
-
     if (bucketDrops.length === 0) {
         return (
             <h1>Your Bucket is empty. Save a drop! </h1>
@@ -57,13 +58,17 @@ function BucketsDropsPage() {
                                 <img className='card-image' src={bucketDrop.drop_photo} alt={bucketDrop.drop_name} />
                                 <div className='card-conent'>
                                     <div className='media'>
-
                                     </div>
-                                    <p className="title is-4">{bucketDrop.drop_name}</p>
-                                    <div className='move-left'>
-                                        <Icon path={mdiArrowRight} size={2} />
+                                    <div className='card-details'>
+                                        <h2>{bucketDrop.drop_name}</h2>
+                                        {/* <p>{bucketDrop.drop_details}</p>
+                                            <p>{bucketDrop.drop_city}</p>
+                                            <p>{bucketDrop.drop_address}</p>
+                                            <p>{bucketDrop.drop_url}</p> */}
+                                        <div className='move-left'>
+                                            <Icon path={mdiArrowRight} size={2} />
+                                        </div>
                                     </div>
-
                                 </div>
 
                             </div>
@@ -71,7 +76,6 @@ function BucketsDropsPage() {
                         </Link>
                     </div>
                 ))}
-
             </div>
 
             <footer>

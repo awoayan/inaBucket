@@ -1,6 +1,6 @@
 import os
 from psycopg_pool import ConnectionPool
-# from routers.buckets import BucketUpdate
+
 
 pool = ConnectionPool(conninfo=os.environ["DATABASE_URL"])
 
@@ -82,26 +82,26 @@ class BucketQueries:
         if id is not None:
             return self.get_bucket(id)
 
-    # def update_bucket(self, bucket_id: int, bucket: BucketUpdate):
-    #         with pool.connection() as conn:
-    #             with conn.cursor() as cur:
-    #                 params = [
-    #                     bucket.title,
-    #                     bucket.cover_photo,
-    #                     bucket.details,
-    #                     bucket_id,
-    #                 ]
-    #                 cur.execute(
-    #                     """
-    #                     UPDATE buckets
-    #                     SET title = %s,
-    #                         cover_photo = %s,
-    #                         details = %s
-    #                     WHERE id = %s
-    #                     RETURNING *;
-    #                     """,
-    #                     params,
-    #                 )
+    def update_bucket(self, bucket_id, bucket):
+            with pool.connection() as conn:
+                with conn.cursor() as cur:
+                    params = [
+                        bucket.title,
+                        bucket.cover_photo,
+                        bucket.details,
+                        bucket_id,
+                    ]
+                    cur.execute(
+                        """
+                        UPDATE buckets
+                        SET title = %s,
+                            cover_photo = %s,
+                            details = %s
+                        WHERE id = %s
+                        RETURNING *;
+                        """,
+                        params,
+                    )
 
     #                 row = cur.fetchone()
     #                 if row is not None:

@@ -6,7 +6,7 @@ export default function UpdateDropModal() {
     const [showModal, setShowModal] = useState(false);
     return (
         <>
-            <button onClick={() => setShowModal(true)}>Update a Drop</button>
+            <button className='button is-primary' onClick={() => setShowModal(true)}>Update</button>
             {showModal &&
                 createPortal(
                     <UpdateDropModalContent onClose={() => setShowModal(false)} />,
