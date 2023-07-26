@@ -90,7 +90,11 @@ body {
 	padding-left: 40px;
 	padding-bottom: 25px;
 	min-height: 850px;
-	background-color: rgb(215, 240, 250);
+	background-image: linear-gradient(
+		to right,
+		rgb(101, 175, 191),
+		rgb(215, 240, 250)
+	);
 }
 
 code {
@@ -135,4 +139,7 @@ footer {
 
 .masonry-column:last-child {
 	margin-right: 0;
+}
+.grad {
+	background-image: linear-gradient(to right, rgb(215, 240, 250), yellow);
 }
