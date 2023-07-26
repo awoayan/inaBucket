@@ -69,24 +69,24 @@ class FakeCreateDropQueries:
     
 
 
-class DeleteDropQueries:
-    def delete_drop(self, drop_id):
-        result = {
-            "id": 11,
-            "name": "hii test",
-            "photo": "string",
-            "details": "string",
-            "city": "string",
-            "address": "string",
-            "url": "string",
-            "creator_id": {
-                "id": "1",
-                "email": "amanda@gmail.com",
-                "full_name": "amanda",
-                "username": "amanda"
-                }
-            },
-        return result 
+# class DeleteDropQueries:
+#     def delete_drop(self, drop_id):
+#         result = {
+#             "id": 11,
+#             "name": "hii test",
+#             "photo": "string",
+#             "details": "string",
+#             "city": "string",
+#             "address": "string",
+#             "url": "string",
+#             "creator_id": {
+#                 "id": "1",
+#                 "email": "amanda@gmail.com",
+#                 "full_name": "amanda",
+#                 "username": "amanda"
+#                 }
+#             },
+#         return result 
         
 
 
@@ -186,5 +186,5 @@ def test_create_drop():
 
 #     app.dependency_overrides = {}
 
-#     assert response.status_code == 200
-#     assert response == True
+#     # assert response.status_code == 200
+#     assert response == 200
