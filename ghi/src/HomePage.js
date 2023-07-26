@@ -98,7 +98,7 @@ function HomePage() {
 													<img className='home-drop-image' src={item.photo} alt={item.name} />
 												</figure>
 											</div>
-											<div className="card-details">
+											<div className="card-details" >
 												<div>
 													<h3>{item.name}</h3>
 													<h5>{item.city}</h5>

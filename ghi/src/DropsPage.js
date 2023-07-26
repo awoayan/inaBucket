@@ -33,6 +33,7 @@ function DropsPage() {
     return (   
         <body>
             <div>
+                <EditDropDropdown />
                 <div className='column'>
                     <div className='drop-card-container'>
                         <div className="drop-card">
