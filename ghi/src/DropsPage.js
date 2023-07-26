@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import SaveDropForm from './SaveDropForm';
-import EditDropDropdown from './EditDropDropdown';
+import DeleteDrops from './deleteDrops';
 
 
 function DropsPage() {
@@ -49,11 +49,13 @@ function DropsPage() {
                         </div>
                     </div>
                 </div>
-                <footer>
-                    Footer Note
-                </footer>
-            </div >
-        </body>
+                <div>
+                    <DeleteDrops dropId={dropId} />
+                </div>
+                <SaveDropForm dropId={dropId} />
+            </div>
+        </div>
+
     );
 }
 export default DropsPage;
