@@ -9,17 +9,15 @@ import BucketsDropsPage from "./BucketsDropsPage";
 import DropsPage from "./DropsPage";
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 
+const domain = /https?:\/\/[^/]+/
+const basename = process.env.PUBLIC_URL.replace(domain, "");
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<React.StrictMode>
 		<Provider store={store}>
-			<BrowserRouter>
+			<BrowserRouter basename={basename}>
 				<Nav />
 				<Routes>
-					{/* <Route
-						path="/"
-						element={<App />}
-					/> */}
 					<Route
 						path="*"
 						element={<Navigate to="/" />}

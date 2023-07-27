@@ -11,6 +11,12 @@ app.include_router(buckets.router)
 app.include_router(drops.router)
 app.include_router(bucket_drops.router)
 
+
+origins = [
+    "http://localhost:3000",
+    os.environ.get("CORS_HOST", None),
+]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[

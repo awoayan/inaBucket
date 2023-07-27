@@ -11,7 +11,7 @@ function BucketsDropsPage() {
     useEffect(() => {
         const fetchBucketDrops = async () => {
             try {
-                const response = await fetch(`http://localhost:8000/api/bucket_drops/${bucketId}`)
+                const response = await fetch(`https://localhost:8000/api/bucket_drops/${bucketId}`)
                 if (response.ok) {
                     const data = await response.json();
                     setBucketDrops(data);
