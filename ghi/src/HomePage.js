@@ -46,7 +46,7 @@ function HomePage() {
 					<div className="columns is-multiline">
 						{mixedItems.map((item, index) => (
 							<div
-								className="column is-one-fifth masonry-column"
+								className="column column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
 								key={index}
 								style={{ transition: 'transform 0.2s' }}
 								onMouseEnter={(e) => {
