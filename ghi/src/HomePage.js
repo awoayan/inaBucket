@@ -8,8 +8,8 @@ function HomePage() {
 	useEffect(() => {
 		const fetchBucketsAndDrops = async () => {
 			try {
-				const bucketUrl = "http://localhost:8000/api/buckets";
-				const dropUrl = "http://localhost:8000/api/drops";
+				const bucketUrl = "https://localhost:8000/api/buckets";
+				const dropUrl = "https://localhost:8000/api/drops";
 				const bucketResponse = await fetch(bucketUrl);
 				const dropResponse = await fetch(dropUrl);
 				

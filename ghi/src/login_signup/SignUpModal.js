@@ -28,7 +28,7 @@ function SignUpModal() {
 				<div className="box content">
 					<h3>Sign Up</h3>
 					{error ? (
-						<Notification type="danger">{errorMessage}</Notification>
+						<Notification type="danger">{("Something went wrong", errorMessage)}</Notification>
 					) : null}
 					<form
 						method="POST"

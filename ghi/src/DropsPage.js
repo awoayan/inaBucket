@@ -11,7 +11,7 @@ function DropsPage() {
     useEffect(() => {
         const fetchDrop = async () => {
             try {
-                const response = await fetch(`http://localhost:8000/api/drops/${dropId}`);
+                const response = await fetch(`https://localhost:8000/api/drops/${dropId}`);
                 if (response.ok) {
                     const data = await response.json();
                     setDrop(data);

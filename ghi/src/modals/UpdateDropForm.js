@@ -16,7 +16,7 @@ function UpdateDropForm({ dropData }) {
 
     useEffect(() => {
         const fetchBuckets = async () => {
-            const url = "http://localhost:8000/api/buckets";
+            const url = "https://localhost:8000/api/buckets";
             const response = await fetch(url);
 
             if (response.ok) {
