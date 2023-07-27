@@ -12,11 +12,6 @@ app.include_router(drops.router)
 app.include_router(bucket_drops.router)
 
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
-
-
 origins = [
     "http://localhost:3000",
     os.environ.get("CORS_HOST", None),
