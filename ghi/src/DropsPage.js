@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import SaveDropForm from './SaveDropForm';
-import EditDropDropdown from './EditDropDropdown';
+import SaveDropForm from './dropdown/SaveDropForm';
+import DeleteDrops from './dropdown/DeleteDrop';
+import EditDropDropdown from './dropdown/EditDropDropdown';
 
 
 function DropsPage() {
@@ -13,7 +14,6 @@ function DropsPage() {
                 const response = await fetch(`http://localhost:8000/api/drops/${dropId}`);
                 if (response.ok) {
                     const data = await response.json();
-                    console.log(data);
                     setDrop(data);
                 } else {
                     console.error(response);
@@ -30,30 +30,35 @@ function DropsPage() {
     }
 
 
-    return (   
-        <body>
-            <div>
-                <div className='column'>
-                    <div className='drop-card-container'>
-                        <div className="drop-card">
-                            <img className='card-image' src={drop.photo} alt={drop.name} />
-                            <div className="card-details">
-                                <h1>{drop.name}</h1>
-                                <p>{drop.details}</p>
-                                <p>{drop.city}</p>
-                                <p>{drop.address}</p>
-                                <p>{drop.url}</p>
-                                <SaveDropForm dropId={dropId} />
-                                <EditDropDropdown />
-                            </div>
+    return (
+        <div>
+            <div className='column'>
+                <div className='drop-card-container'>
+                    <div className="drop-card">
+                        <img className='card-image' src={drop.photo} alt={drop.name} />
+                        <div className="card-details">
+                            <h1>{drop.name}</h1>
+                            <p>{drop.details}</p>
+                            <p>{drop.city}</p>
+                            <p>{drop.address}</p>
+                            <p>{drop.url}</p>
+                            <SaveDropForm dropId={dropId} />
+                            <EditDropDropdown dropId={dropId} />
                         </div>
                     </div>
                 </div>
-                <footer>
-                    Bcket
-                </footer>
             </div >
-        </body>    
+        <div>
+            <DeleteDrops dropId={dropId} />
+        </div>
+            <SaveDropForm dropId={dropId} />
+        <div >
+            <footer>
+                Bcket
+            </footer>
+        </div > 
+
+
     );
 }
 export default DropsPage;

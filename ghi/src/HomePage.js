@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 import './App.css'
 
 function HomePage() {
-	const [buckets, setBuckets] = useState([]);
-	const [drops, setDrops] = useState([]);
 	const [mixedItems, setMixedItems] = useState([]);
+	
 	useEffect(() => {
 		const fetchBucketsAndDrops = async () => {
 			try {
@@ -13,12 +12,11 @@ function HomePage() {
 				const dropUrl = "http://localhost:8000/api/drops";
 				const bucketResponse = await fetch(bucketUrl);
 				const dropResponse = await fetch(dropUrl);
+				
 				if (bucketResponse.ok && dropResponse.ok) {
 					const bucketData = await bucketResponse.json();
 					const dropData = await dropResponse.json();
-					setBuckets(bucketData);
-					setDrops(dropData);
-					const mixedItems = mixAndShuffleItems(bucketData, dropData);
+					const mixedItems = shuffleArray([...bucketData, ...dropData]);
 					setMixedItems(mixedItems);
 				} else {
 					console.error(bucketResponse);
@@ -30,11 +28,7 @@ function HomePage() {
 		};
 		fetchBucketsAndDrops();
 	}, []);
-	const mixAndShuffleItems = (buckets, drops) => {
-		const mixedItems = [...buckets, ...drops];
-		const shuffledItems = shuffleArray(mixedItems);
-		return shuffledItems;
-	};
+
 	const shuffleArray = (array) => {
 		const newArray = [...array];
 		for (let i = newArray.length - 1; i > 0; i--) {
@@ -43,19 +37,17 @@ function HomePage() {
 		}
 		return newArray;
 	};
-	console.log("MIXED ITEMS", mixedItems)
 
-	console.log("MIXED ITEMS", mixedItems)
 	return (
 		<div>
 			<h2 style={{ textAlign: 'center' }} >Welcome to the homepage! Let's explore!</h2>
 			<div className="container">
 				<div className="masonry-container">
 					<div className="columns is-multiline">
-						{mixedItems.map((item) => (
+						{mixedItems.map((item, index) => (
 							<div
-								className="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
-								key={buckets.id}
+								className="column is-one-fifth masonry-column"
+								key={index}
 								style={{ transition: 'transform 0.2s' }}
 								onMouseEnter={(e) => {
 									e.currentTarget.classList.add('card-scaled');
@@ -98,7 +90,7 @@ function HomePage() {
 													<img className='home-drop-image' src={item.photo} alt={item.name} />
 												</figure>
 											</div>
-											<div className="card-details">
+											<div className="card-details" >
 												<div>
 													<h3>{item.name}</h3>
 													<h5>{item.city}</h5>
@@ -115,7 +107,6 @@ function HomePage() {
 					</div>
 				</div>
 			</div >
-			
 		</div>
 	);
 }

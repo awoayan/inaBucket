@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import UpdateDropModal from "./UpdateDropModal"
+import UpdateDropModal from "../modals/UpdateDropModal"
 import DeleteDrop from "./DeleteDrop"
+import { useParams } from 'react-router-dom';
 
 function EditDropDropdown({ onEdit, onDelete }) {
     const [isOpen, setIsOpen] = useState(false);
+    const { dropId } = useParams();
 
 
 
@@ -20,13 +22,13 @@ function EditDropDropdown({ onEdit, onDelete }) {
     return (
         <div className="dropdown">
             <button
-                onClick={() => setIsOpen(!isOpen)} 
+                onClick={() => setIsOpen(!isOpen)}
                 className="button is-danger"
                 aria-haspopup="true"
                 aria-controls="dropdown-menu3">
                 <span>Edit</span>
-                <span classname="icon is-small"> 
-                    <i 
+                <span classname="icon is-small">
+                    <i
                         className="fas fa-angle-down"
                         area-hidden="true"
                     />
@@ -44,8 +46,8 @@ function EditDropDropdown({ onEdit, onDelete }) {
                     </div>
                 </div>
             )}
-            {isOpen && <UpdateDropModal />}
-            {isOpen && <DeleteDrop />}
+            {isOpen && <UpdateDropModal dropId={dropId} />}
+            {isOpen && <DeleteDrop dropId={dropId} />}
         </div>
     );
 }

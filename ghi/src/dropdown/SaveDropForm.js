@@ -1,5 +1,5 @@
-import { useGetTokenQuery } from "./app/api";
-import Notification from "./Notification";
+import { useGetTokenQuery } from "../app/api";
+import Notification from "../login_signup/Notification";
 import React, { useState, useEffect } from "react";
 
 function SaveDropForm({ dropId }) {

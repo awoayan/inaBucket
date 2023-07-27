@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useGetTokenQuery } from "./app/api";
-import Notification from "./Notification";
+import { useGetTokenQuery } from "../app/api";
+import Notification from "../login_signup/Notification";
+import { useNavigate } from 'react-router-dom'
+
 
 function CreateDropForm() {
 	const [name, setName] = useState("");
@@ -12,6 +14,8 @@ function CreateDropForm() {
 	const [buckets, setBuckets] = useState([]);
 	const [bucket, setBucket] = useState("");
 
+	const navigate = useNavigate();
+
 	const { data: tokenData } = useGetTokenQuery();
 
 	useEffect(() => {
@@ -22,7 +26,7 @@ function CreateDropForm() {
 					const data = await response.json();
 					setBuckets(data);
 				} else {
-					console.error(response) 
+					console.error(response)
 				}
 			} catch (error) {
 				console.error(error);
@@ -102,10 +106,9 @@ function CreateDropForm() {
 			body: JSON.stringify(data),
 			headers: { "Content-Type": "application/json" },
 		};
-		console.log("fetch Config:", fetchConfig);
 		const response = await fetch(bucketUrl, fetchConfig);
 		if (response.ok) {
-			const newDrop = await response.json();
+			navigate(`/bucketdrops/${bucket}`);
 		}
 
 		setName("");

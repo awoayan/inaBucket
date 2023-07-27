@@ -26,6 +26,7 @@ class BucketOut(BaseModel):
     details: str
     owner: AccountOut
 
+
 class UpdateBucketOut(BaseModel):
     title: str
     cover_photo: str
@@ -63,7 +64,8 @@ def get_buckets(
         response.status_code = 404
     else:
         return records
-    
+
+
 @router.put("/api/buckets/{bucket_id}", response_model=UpdateBucketOut)
 def update_drop(
     bucket_id: int,

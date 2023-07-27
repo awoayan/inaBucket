@@ -1,11 +1,7 @@
-import { useEffect, useState } from "react";
-import ErrorNotification from "./ErrorNotification";
 import "./App.css";
-import { useGetTokenQuery } from "./app/api.js";
-import Dropdown from "./DropdownContent";
+import Dropdown from "./dropdown/DropdownContent";
 
 function App() {
-	const { data: tokenData } = useGetTokenQuery();
 	return (
 		<div>
 			<h1>Hello Pintrip</h1>

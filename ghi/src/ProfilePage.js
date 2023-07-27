@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useGetTokenQuery } from "./app/api";
-import Dropdown from "./DropdownContent";
-import Notification from "./Notification";
+import Dropdown from "./dropdown/DropdownContent";
+import Notification from "./login_signup/Notification";
 import "./App.css"
 
 
@@ -40,11 +40,11 @@ function ProfilePage() {
             (bucket) => bucket.owner.id === tokenData.account.id
         );
     }
-    
+
     return (
         <div>
             <h1 className="create-dropdown">
-                <Dropdown userBuckets={userBuckets}/>
+                <Dropdown userBuckets={userBuckets} />
             </h1>
             <h2>These are profile owners buckets</h2>
             <div className="columns is-multiline ">
@@ -78,7 +78,7 @@ function ProfilePage() {
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </Link>
@@ -94,3 +94,4 @@ function ProfilePage() {
 
 
 export default ProfilePage;
+
