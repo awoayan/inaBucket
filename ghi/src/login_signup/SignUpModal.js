@@ -12,6 +12,7 @@ function SignUpModal() {
 	);
 	const modalClass = `modal ${show === SIGN_UP_MODAL ? "is-active" : ""}`;
 	const [signUp, { error, isLoading: signUpLoading }] = useSignUpMutation();
+	const errorMessage = error && error.data && error.data.detail;
 	const field = useCallback(
 		(e) =>
 			dispatch(updateField({ field: e.target.name, value: e.target.value })),
@@ -27,7 +28,7 @@ function SignUpModal() {
 				<div className="box content">
 					<h3>Sign Up</h3>
 					{error ? (
-						<Notification type="danger">{error.data.detail}</Notification>
+						<Notification type="danger">{errorMessage}</Notification>
 					) : null}
 					<form
 						method="POST"
