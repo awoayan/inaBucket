@@ -48,7 +48,7 @@ function UpdateBucketForm() {
 		data.account_id = accountId;
 
 
-		const bucketUrl = "https://localhost:8000/api/buckets";
+		const bucketUrl = "http://localhost:8000/api/buckets";
 		const fetchConfig = {
 			method: "put",
 			body: JSON.stringify(data),

@@ -8,8 +8,8 @@ function HomePage() {
 	useEffect(() => {
 		const fetchBucketsAndDrops = async () => {
 			try {
-				const bucketUrl = "https://localhost:8000/api/buckets";
-				const dropUrl = "https://localhost:8000/api/drops";
+				const bucketUrl = "http://localhost:8000/api/buckets";
+				const dropUrl = "http://localhost:8000/api/drops";
 				const bucketResponse = await fetch(bucketUrl);
 				const dropResponse = await fetch(dropUrl);
 				
@@ -46,7 +46,7 @@ function HomePage() {
 					<div className="columns is-multiline">
 						{mixedItems.map((item, index) => (
 							<div
-								className="column is-one-fifth masonry-column"
+								className="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
 								key={index}
 								style={{ transition: 'transform 0.2s' }}
 								onMouseEnter={(e) => {
@@ -65,14 +65,6 @@ function HomePage() {
 											</div>
 											<div>
 												<div className="media">
-													<div className="media-left">
-														<figure className="image is-48x48">
-															<img
-																src={item.owner.profile_picture}
-																alt={item.owner.username}
-															/>
-														</figure>
-													</div>
 													<div className="card-details">
 														<h4>{item.title}</h4>
 														<p>@{item.owner.username}</p>

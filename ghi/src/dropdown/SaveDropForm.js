@@ -37,7 +37,7 @@ function SaveDropForm({ dropId }) {
     const handleSaveToBucket = async () => {
         if (selectedBucket) {
             try {
-                const response = await fetch("https://localhost:8000/api/bucket_drops", {
+                const response = await fetch("http://localhost:8000/api/bucket_drops", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
