@@ -4,7 +4,7 @@ services:
 stages:
   - test
   - build
-  # - deploy
+  - deploy
 
 # Run flake8 to check for code quality
 lint-test-job:
@@ -48,6 +48,7 @@ build-front-end-job:
   stage: build
   image: node:lts-bullseye
   needs:
+    - api-unit-tests-job
     - lint-test-job
   variables:
     # If either of these variables is defined in the GitLab
@@ -60,7 +61,6 @@ build-front-end-job:
     - cd ghi
     - npm install
     - npm run build
-    - cp build/index.html build/404.html
   artifacts:
     paths:
       - ghi/build/
