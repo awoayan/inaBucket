@@ -1,141 +1,58 @@
 # Module3 Project Gamma
 
-## Getting started
+A. PinTrip is a web application that combines the best aspects of Pinterest and a traditional travel guide. With PinTrip, you can create virtual "buckets" to curate travel ideas, and each "drop" in your bucket represents a travel destination, activity, or recommendation. The main focus of PinTrip is to provide users with a platform where they can organize and explore travel-related content contributed by other users.
 
-You have a project repository, now what? The next section
-lists all of the deliverables that are due at the end of the
-week. Below is some guidance for getting started on the
-tasks for this week.
 
-## Install Extensions
+How it works -
 
-- Prettier: <https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode>
-- Black Formatter: <https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter>
+Buckets 
+Create your own personalized buckets to categorize and store your travel inspirations. Each bucket represents a specific theme or travel plan, you need to add a bucket title, a cover photo, and details.
 
-## Deliverables
+Drops
+Add drops to your buckets to represent individual travel ideas or recommendations. A drop can include destination details, location photo, drop name, city, address, URL, and a select bucket option.
 
-- [ ] Wire-frame diagrams
-- [ ] API documentation
-- [ ] Project is deployed to Caprover (BE, DB) & GitLab-pages (FE)
-- [ ] GitLab issue board is setup and in use (or project management tool of choice)
-- [ ] Journals
+Homepage
+The homepage displays all drops ever created by PinTrip users, offering a wide variety of travel ideas and inspiration.
 
-## Project layout
+Bucket Pages
+Access a page dedicated to your buckets, where you can see all the buckets you have created for easy organization.
 
-The layout of the project is just like all of the projects
-you did with `docker-compose` in module #2. You will create
-a directory in the root of the repository for each service
-that you add to your project just like those previous
-projects were setup.
+Drop Pages
+Explore all the drops ever created and find new inspirations from other users.
 
-### Directories
+Save and Delete
+Easily save drops from the homepage to your personal buckets or remove drops from your buckets when you no longer need them. Also if you created a drop and it matches your user ID you can delete that.
 
-Several directories have been added to your project. The
-directories `docs` and `journals` are places for you and
-your team-mates to, respectively, put any documentation
-about your project that you create and to put your
-project-journal entries. See the _README.md_ file in each
-directory for more info.
+Update Drops
+Modify and update the drops you have created to keep your travel ideas up-to-date.
 
-The other directories, `ghi` and `api`, are services, that
-you can start building off of.
 
-Inside of `ghi` is a minimal React app that has an "under
-construction" page. It is setup similarly to all of the
-other React projects that you have worked on.
+What we used -
 
-Inside of `api` is a minimal FastAPI application.
-"Where are all the files?" you might ask? Well, the
-`main.py` file is the whole thing, and go take look inside
-of it... There's not even much in there..., hmm? That is
-FastAPI, we'll learn more about it in the coming days. Can
-you figure out what this little web-application does even
-though you haven't learned about FastAPI yet?
+FastAPI 
+a web framework for building APIs with Python. 
 
-Also in `api` is a directory for your migrations.
-If you choose to use PostgreSQL, then you'll want to use
-migrations to control your database. Unlike Django, where
-migrations were automatically created for you, you'll write
-yours by hand using DDL. Don't worry about not knowing what
-DDL means; we have you covered. There's a sample migration
-in there that creates two tables so you can see what they
-look like.
+Bulma
+A CSS framework for creating visually appealing and responsive web pages.
 
-The Dockerfile and Dockerfile.dev run your migrations
-for you automatically.
+PostgreSQL
+Primary Database, utilizes PsycoPG as a database adapter
 
-### Other files
 
-The following project files have been created as a minimal
-starting point. Please follow the guidance for each one for
-a most successful project.
+How to Use PinTrip -
+Creating an account will give you full access to our app such as creating buckets and drops, but if you dont want create an account you can only see all drops on the homepage.
 
-- `docker-compose.yaml`: there isn't much in here, just a
-  **really** simple UI and FastAPI service. Add services
-  (like a database) to this file as you did with previous
-  projects in module #2.
-- `.gitlab-ci.yml`: This is your "ci/cd" file where you will
-  configure automated unit tests, code quality checks, and
-  the building and deployment of your production system.
-  Currently, all it does is deploy an "under construction"
-  page to your production UI on GitLab and a sample backend
-  to CapRover. We will learn much more about this file.
-- `.gitignore`: This is a file that prevents unwanted files
-  from getting added to your repository, files like
-  `pyc` files, `__pycache__`, etc. We've set it up so that
-  it has a good default configuration for Python projects.
-- `.env.sample`: This file is a template to copy when
-  creating environment variables for your team. Create a
-  copy called `.env` and put your own passwords in here
-  without fear of it being committed to git (see `.env`
-  listed in `.gitignore`). You can also put team related
-  environment variables in here, things like api and signing
-  keys that shouldn't be committed; these should be
-  duplicated in your deployed environments.
+Create Buckets
+On the homepage, click the "Create Bucket" button and give your bucket a title, cover photo and details. Your bucket will be added to the Bucket Pages.
 
-## How to complete the initial deploy
+Add Drops
+Explore the homepage to find drops created by other users or click "Create Drop" and add the drop name, location photo, details, city, address, and url. Click on a drop to view more details and click the "Add to Bucket" button to save it to one of your buckets.
 
-There will be further guidance on completing the initial
-deployment, but it just consists of these steps:
+Manage Buckets
+Visit the Bucket Pages to see all your created buckets. Click on a bucket to view its contents, manage drops, and update the bucket details.
 
-### Setup GitLab repo/project
+Update Drops
+On your bucket page, click on a drop to view its details. If you want to update any information or add new content, use the "Edit" button.
 
-- make sure this project is in a group. If it isn't, stop
-  now and move it to a GitLab group
-- remove the fork relationship: In GitLab go to:
-
-  Settings -> General -> Advanced -> Remove fork relationship
-
-- add these GitLab CI/CD variables:
-  - PUBLIC_URL : this is your gitlab pages URL
-  - REACT_APP_API_HOST: enter "blank" for now
-
-#### Your GitLab pages URL
-
-You can't find this in GitLab until after you've done a deploy
-but you can figure it out yourself from your GitLab project URL.
-
-If this is your project URL
-
-https://gitlab.com/GROUP_NAME/PROJECT_NAME
-
-then your GitLab pages URL will be
-
-https://GROUP_NAME.gitlab.io/PROJECT_NAME
-
-### Initialize CapRover
-
-1. Attain IP address and domain from an instructor
-1. Follow the steps in the CD Cookbook in Learn.
-
-### Update GitLab CI/CD variables
-
-Copy the service URL for your CapRover service and then paste
-that into the value for the REACT_APP_API_HOST CI/CD variable
-in GitLab.
-
-### Deploy it
-
-Merge a change into main to kick off the initial deploy. Once the build pipeline
-finishes you should be able to see an "under construction" page on your GitLab
-pages site.
+Delete Drops
+In your bucket page, click the "Delete" button next to a drop to remove it from your bucket.

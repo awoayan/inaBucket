@@ -18,7 +18,6 @@ export default function CreateDropModalContent({ onClose }) {
 				</section>
 
 				<footer class="modal-card-foot">
-					{/* <button class="button is-success">Save changes</button> */}
 				</footer>
 			</div>
 		</div>

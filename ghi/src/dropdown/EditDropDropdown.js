@@ -27,7 +27,7 @@ function EditDropDropdown({ onEdit, onDelete }) {
                 aria-haspopup="true"
                 aria-controls="dropdown-menu3">
                 <span>Edit</span>
-                <span classname="icon is-small">
+                <span className="icon is-small">
                     <i
                         className="fas fa-angle-down"
                         area-hidden="true"

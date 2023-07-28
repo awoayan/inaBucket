@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import './App.css'
-import Dropdown from "./dropdown/DropdownContent";
-
 
 function HomePage() {
 	const [mixedItems, setMixedItems] = useState([]);

@@ -1,15 +1,16 @@
 import { useGetTokenQuery } from "../app/api";
-import Notification from "../login_signup/Notification";
 import React, { useState, useEffect } from "react";
 import '../App.css'
 
 function SaveDropForm({ dropId }) {
     const [selectedBucket, setSelectedBucket] = useState(null);
     const [buckets, setBuckets] = useState([]);
+
+
     useEffect(() => {
         const fetchBuckets = async () => {
             try {
-                const response = await fetch("https://localhost:8000/api/buckets");
+                const response = await fetch('http://localhost:8000/api/buckets');
                 if (response.ok) {
                     const data = await response.json();
                     setBuckets(data);
@@ -33,6 +34,7 @@ function SaveDropForm({ dropId }) {
             (bucket) => bucket.owner.id === tokenData.account.id
         );
     }
+
     const handleSaveToBucket = async () => {
         if (selectedBucket) {
             try {
