@@ -9,6 +9,8 @@ import "./App.css"
 
 function ProfilePage() {
     const [buckets, setBuckets] = useState([]);
+    const [bucketUsername, setBucketUsername] = useState("");
+
     useEffect(() => {
         const fetchBuckets = async () => {
             try {
@@ -16,6 +18,9 @@ function ProfilePage() {
                 if (response.ok) {
                     const data = await response.json();
                     setBuckets(data);
+                    if (data.length > 0) {
+                        setBucketUsername(data[0].owner.username)
+                    }
                 } else {
                     console.error(response);
                 }
@@ -46,7 +51,7 @@ function ProfilePage() {
             <h1 className="create-dropdown">
                 <Dropdown userBuckets={userBuckets} />
             </h1>
-            <h2>These are profile owners buckets</h2>
+            <h2 style={{ textAlign: 'center' }} id="render-modal-here" className="title is-1">@{bucketUsername}</h2>
             <div className="columns is-multiline ">
                 {userBuckets.map((bucket) => (
                     <div
@@ -65,11 +70,6 @@ function ProfilePage() {
                                 <img className="card-image" src={bucket.cover_photo} alt={bucket.title} />
                                 <div className="card-content">
                                     <div className="media">
-                                        <div className="media-left">
-                                            <figure className="image is-48x48">
-                                                <img src={bucket.owner.profile_picture} alt={bucket.owner.username} />
-                                            </figure>
-                                        </div>
                                         <div className="card-details">
                                             <h2>{bucket.title}</h2>
                                             <p>@{bucket.owner.username}</p>
@@ -89,6 +89,7 @@ function ProfilePage() {
                 Bcket
             </footer>
         </div>
+
     );
 }
 

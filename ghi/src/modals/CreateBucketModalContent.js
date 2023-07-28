@@ -1,7 +1,7 @@
 import React from "react";
 import CreateBucketForm from "./CreateBucketForm";
 
-export default function CreateDropModalContent({ onClose }) {
+export default function CreateBucketModalContent({ onClose }) {
 	return (
 		<div className="modal2">
 			<div className="modal-background"></div>

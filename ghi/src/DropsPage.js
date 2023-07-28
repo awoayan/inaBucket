@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import { useGetTokenQuery, useLogOutMutation } from "./app/api";
 import { useParams } from 'react-router-dom';
 import SaveDropForm from './dropdown/SaveDropForm';
+
 import DeleteDrops from './dropdown/DeleteDrop';
 import EditDropDropdown from './dropdown/EditDropDropdown';
+import './App.css'
 
 
 function DropsPage() {
+    const { data: token } = useGetTokenQuery();
     const { dropId } = useParams();
     const [drop, setDrop] = useState(null);
+    const [showSave, setShowSave] = useState(false)
+
+    function toggle() {
+        setShowSave((showSave) => !showSave);
+    }
+
     useEffect(() => {
         const fetchDrop = async () => {
             try {
@@ -35,15 +45,39 @@ function DropsPage() {
             <div className='column'>
                 <div className='drop-card-container'>
                     <div className="drop-card">
-                        <img className='card-image' src={drop.photo} alt={drop.name} />
-                        <div className="card-details">
-                            <h1>{drop.name}</h1>
-                            <p>{drop.details}</p>
-                            <p>{drop.city}</p>
-                            <p>{drop.address}</p>
-                            <p>{drop.url}</p>
-                            <SaveDropForm dropId={dropId} />
-                            <EditDropDropdown dropId={dropId} />
+                        <div>
+                            <img className='card-image' src={drop.photo} alt={drop.name} />
+                            <div className="middle">
+                                <div>
+                                    {showSave && <SaveDropForm dropId={dropId} />}
+                                    <button className="save-button2" onClick={toggle}>
+                                        save
+                                    </button>
+                                </div>
+                            </div>
+                            <div className="card-details">
+                                <h1>{drop.name}</h1>
+                                <p>{drop.details}</p>
+                                <p>{drop.city}</p>
+                                <p>{drop.address}</p>
+                                <p>{drop.url}</p>
+                                {/*  */}
+                            </div>
+
+
+                            <div className="edit-buttons">
+                                {!token || token.account.id === drop.creator_id.id ? (
+
+                                    <DeleteDrops dropId={dropId} />,
+
+                                    <EditDropDropdown dropId={dropId} />
+                                ) : (
+                                    <p></p>
+
+                                )}
+                            </div>
+
+
                         </div>
                     </div>
                 </div>

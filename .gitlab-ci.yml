@@ -25,7 +25,7 @@ api-unit-tests-job:
     - cd api
     - pip install -r requirements.txt
     - export DATABASE_URL="postgresql://pintrip:pintrip@data/pintrip"
-    - export SIGNING_KEY="Hobbit"
+    - export SIGNING_KEY="AssZ9R07PJRcp6fDjE4hwZtHj5Itwbdo3QY5HkchuuU="
     - python -m pytest
 
 # # Build API Image:

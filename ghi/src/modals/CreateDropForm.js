@@ -100,7 +100,7 @@ function CreateDropForm() {
 		data.creator_id = creator_id;
 		data.bucket_id = bucket;
 
-		const bucketUrl = "https://localhost:8000/api/drops";
+		const bucketUrl = "http://localhost:8000/api/drops";
 		const fetchConfig = {
 			method: "post",
 			body: JSON.stringify(data),

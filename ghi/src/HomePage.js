@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import './App.css'
+import Dropdown from "./dropdown/DropdownContent";
+
 
 function HomePage() {
 	const [mixedItems, setMixedItems] = useState([]);
-	
+
 	useEffect(() => {
 		const fetchBucketsAndDrops = async () => {
 			try {
@@ -12,7 +14,7 @@ function HomePage() {
 				const dropUrl = "http://localhost:8000/api/drops";
 				const bucketResponse = await fetch(bucketUrl);
 				const dropResponse = await fetch(dropUrl);
-				
+
 				if (bucketResponse.ok && dropResponse.ok) {
 					const bucketData = await bucketResponse.json();
 					const dropData = await dropResponse.json();
@@ -41,12 +43,13 @@ function HomePage() {
 	return (
 		<div>
 			<h2 style={{ textAlign: 'center' }} >Welcome to the homepage! Let's explore!</h2>
+
 			<div className="container">
 				<div className="masonry-container">
 					<div className="columns is-multiline">
 						{mixedItems.map((item, index) => (
 							<div
-								className="column column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
+								className="column is-one-fifth masonry-column"
 								key={index}
 								style={{ transition: 'transform 0.2s' }}
 								onMouseEnter={(e) => {
@@ -65,14 +68,6 @@ function HomePage() {
 											</div>
 											<div>
 												<div className="media">
-													<div className="media-left">
-														<figure className="image is-48x48">
-															<img
-																src={item.owner.profile_picture}
-																alt={item.owner.username}
-															/>
-														</figure>
-													</div>
 													<div className="card-details">
 														<h4>{item.title}</h4>
 														<p>@{item.owner.username}</p>

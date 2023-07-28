@@ -53,7 +53,7 @@ function CreateBucketForm() {
 
 		console.log("data being submitted:", data);
 
-		const bucketUrl = "https://localhost:8000/api/buckets";
+		const bucketUrl = "http://localhost:8000/api/buckets";
 		const fetchConfig = {
 			method: "post",
 			body: JSON.stringify(data),

@@ -3,12 +3,28 @@ import { useParams, Link } from 'react-router-dom';
 import Icon from '@mdi/react';
 import { mdiArrowRight } from '@mdi/js';
 import './App.css'
+import CreateDropModal from './modals/CreateDropModal';
 
 function BucketsDropsPage() {
     const { bucketId } = useParams();
     const [bucketDrops, setBucketDrops] = useState([]);
+    const [bucketName, setBucketName] = useState('');
 
     useEffect(() => {
+        const fetchBucketInfo = async () => {
+            try {
+                const response = await fetch(`http://localhost:8000/api/buckets/${bucketId}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    setBucketName(data.title);
+                } else {
+                    console.error(response);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
         const fetchBucketDrops = async () => {
             try {
                 const response = await fetch(`http://localhost:8000/api/bucket_drops/${bucketId}`)
@@ -22,22 +38,28 @@ function BucketsDropsPage() {
                 console.error(error);
             }
         };
+
+        fetchBucketInfo();
         fetchBucketDrops();
     }, [bucketId]);
 
     if (!bucketDrops) {
-        return null
+        return null;
     }
-    if (bucketDrops.length === 0) {
-        return (
-            <h1>Your Bucket is empty. Save a drop! </h1>
-        )
-    }
-
+    
     return (
         <div>
-            <h2>{bucketDrops.title}</h2>
-            <div className="columns is-multiline ">
+            <div>
+                <h2 style={{ textAlign: 'center' }} className="title is-1">{bucketName}</h2>
+            </div>
+            <div className="columns is-multiline">
+                <div className="column is-12">
+                    <div className="create-dropdown">
+                        <div className="button is-primary">
+                            <CreateDropModal />
+                        </div>
+                    </div>
+                </div>
                 {bucketDrops.map((bucketDrop) => (
                     <div
                         className="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
@@ -53,7 +75,7 @@ function BucketsDropsPage() {
                         <Link to={`/drops/${bucketDrop.drop_id}`} className="card-link">
                             <div className="card hover-drop">
                                 <img className='card-image' src={bucketDrop.drop_photo} alt={bucketDrop.drop_name} />
-                                <div className='card-conent'>
+                                <div className='card-content'>
                                     <div className='media'>
                                     </div>
                                         <div className='card-details'>

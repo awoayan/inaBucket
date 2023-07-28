@@ -7,6 +7,7 @@ function Dropdown({ userBuckets }) {
 	const [isOpen, setIsOpen] = useState(false);
 
 	return (
+
 		<div className="navbar-item dropdown">
 			<div className="dropdown-trigger">
 				<button
@@ -45,6 +46,7 @@ function Dropdown({ userBuckets }) {
 				)}
 			</div>
 		</div>
+
 	);
 }
 
