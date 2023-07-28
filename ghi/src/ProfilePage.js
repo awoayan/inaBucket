@@ -43,49 +43,49 @@ function ProfilePage() {
     }
 
     return (
-        <div>
-            <h1 className="create-dropdown">
-                <Dropdown userBuckets={userBuckets} />
-            </h1>
-            <h2 style={{ textAlign: 'center' }} id="render-modal-here" className="title is-1">@{tokenData.account.username}</h2>
-            <div className="columns is-multiline ">
-                {userBuckets.map((bucket) => (
-                    <div
-                        className="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen "
-                        key={bucket.id}
-                        style={{ transition: 'transform 0.2s' }}
-                        onMouseEnter={(e) => {
-                            e.currentTarget.classList.add('card-scaled');
-                        }}
-                        onMouseLeave={(e) => {
-                            e.currentTarget.classList.remove('card-scaled');
-                        }}
-                    >
-                        <Link to={`/bucketdrops/${bucket.id}`} className="card-link">
-                            <div className="card">
-                                <img className="card-image" src={bucket.cover_photo} alt={bucket.title} />
-                                <div className="card-content">
-                                    <div className="media">
-                                        <div className="card-details">
-                                            <h2>{bucket.title}</h2>
-                                            <p>@{bucket.owner.username}</p>
-                                            <div style={{ maxHeight: '100px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                                                {bucket.details.length > 150 ? `${bucket.details.slice(0, 150)}...` : bucket.details}
+        <body>
+            <div>
+                <h1 className="create-dropdown">
+                    <Dropdown userBuckets={userBuckets} />
+                </h1>
+                <h2 style={{ textAlign: 'center', color: 'white' }} id="render-modal-here" className="title is-1">@{tokenData.account.username}</h2>
+                <div className="container">
+                    <div className="columns is-multiline ">
+                        {userBuckets.map((bucket) => (
+                            <div
+                                className="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen "
+                                key={bucket.id}
+                                style={{ transition: 'transform 0.2s' }}
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.classList.add('card-scaled');
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.classList.remove('card-scaled');
+                                }}
+                            >
+                                <Link to={`/bucketdrops/${bucket.id}`} className="card-link">
+                                    <div className="home-bucket-card">
+                                        <img className="home-bucket-image" src={bucket.cover_photo} alt={bucket.title} />
+                                        <div className="card-content">
+                                            <div className="card-details">
+                                                <h4>{bucket.title}</h4>
+                                                <p>@{bucket.owner.username}</p>
+                                                <div style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                                    {bucket.details.length > 50 ? `${bucket.details.slice(0, 50)}...` : bucket.details}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-
-                                </div>
+                                </Link>
                             </div>
-                        </Link>
+                        ))}
+                        <footer>
+                            Bcket
+                        </footer>
                     </div>
-                ))}
+                </div>
             </div>
-            <footer>
-                Bcket
-            </footer>
-        </div>
-
+        </body>
     );
 }
 

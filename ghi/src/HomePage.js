@@ -42,7 +42,7 @@ function HomePage() {
 
 	return (
 		<div>
-			<h2 style={{ textAlign: 'center', color: 'white'}} >Welcome to the homepage! Let's explore!</h2>
+			<h2 style={{ textAlign: 'center', color: 'white'}} className="title-is-1">Welcome to the homepage! Let's explore!</h2>
 			<div className="container">
 				<div className="columns is-multiline">
 					{mixedItems.map((item, index) => (

@@ -143,11 +143,9 @@ body {
 		sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-
 	padding-top: 50px;
 	padding-left: 40px;
-	padding-bottom: 25px;
-	min-height: 850px;
+	padding-bottom: 40px;
 	background-image: linear-gradient(
 		to right,
 		rgb(101, 175, 191),

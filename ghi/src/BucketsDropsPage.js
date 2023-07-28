@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import Icon from '@mdi/react';
 import { mdiArrowRight } from '@mdi/js';
 import './App.css'
-
+import CreateDropModal from './modals/CreateDropModal';
 
 function BucketsDropsPage() {
     const { bucketId } = useParams();
@@ -48,50 +48,55 @@ function BucketsDropsPage() {
     }
 
     return (
-        <div>
+        <body>
             <div>
-                <h2 style={{ textAlign: 'center' }} className="title is-1">{bucketName}</h2>
-            </div>
-            <div className="columns is-multiline">
-                <div className="column is-12">
-                    {/* <div className="create-dropdown" id="render-modal-here">
-                        <div className="button is-primary">
-                            <Dropdown />
-                        </div>
-                    </div> */}
+                <div>
+                    <h2 style={{ textAlign: 'center', color: 'white' }} className="title is-1">{bucketName}</h2>
                 </div>
-                {bucketDrops.map((bucketDrop) => (
-                    <div
-                        className="column is-full-pc is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
-                        key={bucketDrop.id}
-                        style={{ transition: 'transform 0.2s' }}
-                        onMouseEnter={(e) => {
-                            e.currentTarget.classList.add('card-scaled');
-                        }}
-                        onMouseLeave={(e) => {
-                            e.currentTarget.classList.remove('card-scaled');
-                        }}
-                    >
-                        <Link to={`/drops/${bucketDrop.drop_id}`} className="card-link">
-                            <div className="drop-card hover-drop">
-                                <img className='card-image' src={bucketDrop.drop_photo} alt={bucketDrop.drop_name} />
-                                <div className='card-content'>
-                                        <div className='card-details'>
-                                            <h2>{bucketDrop.drop_name}</h2>
-                                            <div className='move-left'>
-                                            <Icon path={mdiArrowRight} size={2} />
-                                        </div>
-                                    </div>
+                <div className="container">
+                    <div className="columns is-multiline">
+                        <div className="column is-12">
+                            <div className="create-dropdown">
+                                <div className="button is-primary">
+                                    <CreateDropModal />
                                 </div>
                             </div>
-                        </Link>
+                        </div>
+                        {bucketDrops.map((bucketDrop) => (
+
+                            <div
+                                className="column is-full-pc is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
+                                key={bucketDrop.id}
+                                style={{ transition: 'transform 0.2s' }}
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.classList.add('card-scaled');
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.classList.remove('card-scaled');
+                                }}
+                            >
+                                <Link to={`/drops/${bucketDrop.drop_id}`} className="card-link">
+                                    <div className="home-drop-card hover-drop">
+                                        <img className='home-drop-image' src={bucketDrop.drop_photo} alt={bucketDrop.drop_name} />
+                                        <div>
+                                            <div className='card-details'>
+                                                <h2>{bucketDrop.drop_name}</h2>
+                                                <div className='move-left'>
+                                                    <Icon path={mdiArrowRight} size={2} />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Link>
+                            </div>
+                        ))}
+                        <footer>
+                            Bcket
+                        </footer>
                     </div>
-                ))}
+                </div>
             </div>
-            <footer>
-                Bcket
-            </footer>
-        </div>
+        </body>
     );
 }
 
