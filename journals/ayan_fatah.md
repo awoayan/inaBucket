@@ -1,0 +1,4 @@
+i honestly forgot to journal but i make notes on my notion on what to do daily so ill be refrencing that 
+
+We all worked together during the duration of this project. At first we were taking turns screensharing and walking through the code and finding solutions as a team so we can make sure we all knew what was happening within our app and how it worked collectively. As the due date approached we started working on our tasks as either pairs and individually. Regardless of the amount of work we all had individually we all make time to help answer question and share our screens to show errors and also to show updates on how we got something to work! 
+
