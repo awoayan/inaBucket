@@ -62,7 +62,7 @@ function BucketsDropsPage() {
                 </div>
                 {bucketDrops.map((bucketDrop) => (
                     <div
-                        className="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
+                        className="column is-full-pc is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
                         key={bucketDrop.id}
                         style={{ transition: 'transform 0.2s' }}
                         onMouseEnter={(e) => {
@@ -73,11 +73,9 @@ function BucketsDropsPage() {
                         }}
                     >
                         <Link to={`/drops/${bucketDrop.drop_id}`} className="card-link">
-                            <div className="card hover-drop">
+                            <div className="drop-card hover-drop">
                                 <img className='card-image' src={bucketDrop.drop_photo} alt={bucketDrop.drop_name} />
                                 <div className='card-content'>
-                                    <div className='media'>
-                                    </div>
                                         <div className='card-details'>
                                             <h2>{bucketDrop.drop_name}</h2>
                                             <div className='move-left'>

@@ -86,11 +86,9 @@ function DropsPage() {
                 <DeleteDrops dropId={dropId} />
             </div>
             <SaveDropForm dropId={dropId} />
-            <div >
                 <footer>
                     Bcket
                 </footer>
-            </div >
         </div>
             );
 }

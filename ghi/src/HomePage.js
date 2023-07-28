@@ -42,67 +42,56 @@ function HomePage() {
 
 	return (
 		<div>
-			<h2 style={{ textAlign: 'center' }} >Welcome to the homepage! Let's explore!</h2>
-
+			<h2 style={{ textAlign: 'center', color: 'white'}} >Welcome to the homepage! Let's explore!</h2>
 			<div className="container">
-				<div className="masonry-container">
-					<div className="columns is-multiline">
-						{mixedItems.map((item, index) => (
-							<div
-								className="column is-one-fifth masonry-column"
-								key={index}
-								style={{ transition: 'transform 0.2s' }}
-								onMouseEnter={(e) => {
-									e.currentTarget.classList.add('card-scaled');
-								}}
-								onMouseLeave={(e) => {
-									e.currentTarget.classList.remove('card-scaled');
-								}} key2={item.id}>
-								{("title" in item) ? (
-									<Link to={`/bucketdrops/${item.id}`} className="card-link">
-										<div className="home-bucket-card">
-											<div>
-												<figure>
-													<img className='home-bucket-image' src={item.cover_photo} alt={item.title} />
-												</figure>
-											</div>
-											<div>
-												<div className="media">
-													<div className="card-details">
-														<h4>{item.title}</h4>
-														<p>@{item.owner.username}</p>
-													</div>
-												</div>
-												<div className="card-details">{item.details}</div>
-											</div>
+				<div className="columns is-multiline">
+					{mixedItems.map((item, index) => (
+						<div
+							className="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
+							key={index}
+							style={{ transition: 'transform 0.2s' }}
+							onMouseEnter={(e) => {
+								e.currentTarget.classList.add('card-scaled');
+							}}
+							onMouseLeave={(e) => {
+								e.currentTarget.classList.remove('card-scaled');
+							}} key2={item.id}>
+							{("title" in item) ? (
+								<Link to={`/bucketdrops/${item.id}`} className="card-link">
+									<div className="home-bucket-card">
+										<img className='home-bucket-image' src={item.cover_photo} alt={item.title} />
+										<div className="card-details">
+											<h3>
+												{item.title.length > 25 ? `${item.title.slice(0, 25)}...` : item.title}</h3>
+											<p>@{item.owner.username}</p>
+											<p>
+												{item.details.length > 50 ? `${item.details.slice(0, 35)}...` : item.details}</p>
 										</div>
-									</Link>
-								) : (
-									<Link to={`/drops/${item.id}`} className="card-link">
-										<div className="home-drop-card">
-											<div>
-												<figure>
-													<img className='home-drop-image' src={item.photo} alt={item.name} />
-												</figure>
-											</div>
-											<div className="card-details" >
-												<div>
-													<h3>{item.name}</h3>
-													<h5>{item.city}</h5>
-												</div>
-											</div>
+									</div>
+								</Link>
+							) : (
+								<Link to={`/drops/${item.id}`} className="card-link">
+									<div className="home-drop-card">
+										<div>
+											<figure>
+												<img className='home-drop-image' src={item.photo} alt={item.name} />
+											</figure>
 										</div>
-									</Link>
-								)}
-							</div>
-						))}
-						<footer>
-							Bcket
-						</footer>
-					</div>
+										<div className="card-details" >
+											<h3>{item.name}</h3>
+											<h5>{item.city}</h5>
+										</div>
+									</div>
+								</Link>
+							)}
+						</div>
+					))}
+					<footer>
+						Bcket
+					</footer>
 				</div>
-			</div >
-		</div>
+			</div>
+		</div >
 	);
 }
 
