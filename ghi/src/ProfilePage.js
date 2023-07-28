@@ -12,7 +12,7 @@ function ProfilePage() {
     useEffect(() => {
         const fetchBuckets = async () => {
             try {
-                const response = await fetch("https://localhost:8000/api/buckets");
+                const response = await fetch("http://localhost:8000/api/buckets");
                 if (response.ok) {
                     const data = await response.json();
                     setBuckets(data);

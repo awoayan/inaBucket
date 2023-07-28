@@ -11,7 +11,7 @@ function DropsPage() {
     useEffect(() => {
         const fetchDrop = async () => {
             try {
-                const response = await fetch(`https://localhost:8000/api/drops/${dropId}`);
+                const response = await fetch(`http://localhost:8000/api/drops/${dropId}`);
                 if (response.ok) {
                     const data = await response.json();
                     setDrop(data);
@@ -48,17 +48,16 @@ function DropsPage() {
                     </div>
                 </div>
             </div >
-        <div>
-            <DeleteDrops dropId={dropId} />
-        </div>
+            <div>
+                <DeleteDrops dropId={dropId} />
+            </div>
             <SaveDropForm dropId={dropId} />
-        <div >
-            <footer>
-                Bcket
-            </footer>
-        </div > 
-
-
-    );
+            <div >
+                <footer>
+                    Bcket
+                </footer>
+            </div >
+        </div>
+            );
 }
-export default DropsPage;
+            export default DropsPage;
