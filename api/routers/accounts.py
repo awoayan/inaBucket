@@ -16,7 +16,6 @@ from queries.accounts import (
     AccountIn,
     AccountQueries,
     DuplicateAccountError,
-
 )
 
 
@@ -36,17 +35,10 @@ class HttpError(BaseModel):
 router = APIRouter()
 
 
-# @router.get("/api/protected", response_model=bool)
-# async def get_protected(
-#     account_data: dict = Depends(authenticator.get_current_account_data),
-# ):
-#     return True
-
-
 @router.get("/token", response_model=AccountToken | None)
 async def get_token(
     request: Request,
-    account: AccountOut = Depends(authenticator.try_get_current_account_data)
+    account: AccountOut = Depends(authenticator.try_get_current_account_data),
 ) -> AccountToken | None:
     if account and authenticator.cookie_name in request.cookies:
         return {

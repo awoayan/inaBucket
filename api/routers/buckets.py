@@ -2,7 +2,6 @@ from typing import Literal, Optional
 from fastapi import APIRouter, Depends, Response
 from pydantic import BaseModel
 
-
 from queries.pool import BucketQueries
 from queries.accounts import AccountOut
 
@@ -15,22 +14,23 @@ class Error(BaseModel):
 
 class BucketIn(BaseModel):
     title: str
-    username: str
     cover_photo: str
-    descriptionxxx: str
-    url: str
-    user_id: int
+    details: str
+    account_id: int
 
 
 class BucketOut(BaseModel):
     id: int
     title: str
     cover_photo: str
-    descriptionxxx: str
-    url: str
-    username: str
-    ## See above - shouldnt username be accountOut? cant get it to work with just account out 
-    owner: AccountOut  
+    details: str
+    owner: AccountOut
+
+
+class UpdateBucketOut(BaseModel):
+    title: str
+    cover_photo: str
+    details: str
 
 class BucketPatch(BaseModel):
     title: Optional[str]
@@ -58,17 +58,28 @@ def get_bucket(
         response.status_code = 404
     else:
         return record
-    
 
-@router.put("/api/buckets/{bucket_id}", response_model=BucketOut)
-def update_bucket(
-    bucket_id: int,
-    bucket_in: BucketIn,
+
+@router.get("/api/buckets", response_model=List[BucketOut])
+def get_buckets(
     response: Response,
     queries: BucketQueries = Depends(),
-
 ):
-    record = queries.update(bucket_id, bucket_in)
+    records = queries.get_buckets()
+    if not records:
+        response.status_code = 404
+    else:
+        return records
+
+
+@router.put("/api/buckets/{bucket_id}", response_model=UpdateBucketOut)
+def update_drop(
+    bucket_id: int,
+    bucket: BucketIn,
+    response: Response,
+    queries: BucketQueries = Depends(),
+):
+    record = queries.update_bucket(bucket_id, bucket)
     if record is None:
         response.status_code = 404
     else:

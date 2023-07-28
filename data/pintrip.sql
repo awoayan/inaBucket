@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS bucket_drops;
 CREATE TABLE accounts (
     id SERIAL NOT NULL UNIQUE,
     full_name VARCHAR(250) NOT NULL,
+    avatar TEXT,
     email TEXT NOT NULL UNIQUE,
     username TEXT NOT NULL UNIQUE,
     hashed_password VARCHAR(200) NOT NULL
@@ -14,21 +15,21 @@ CREATE TABLE accounts (
 CREATE TABLE buckets (
     id SERIAL NOT NULL UNIQUE,
     title TEXT NOT NULL,
-    username TEXT NOT NULL REFERENCES accounts("username") ON DELETE CASCADE,
     cover_photo TEXT NOT NULL,
-    descriptionxxx TEXT NOT NULL,
-    url TEXT NOT NULL, 
-    user_id INTEGER NOT NULL REFERENCES accounts("id") ON DELETE CASCADE
+    details TEXT NOT NULL, 
+    account_id INTEGER NOT NULL REFERENCES accounts("id") ON DELETE CASCADE
 );
 
 CREATE TABLE drops (
     id SERIAL NOT NULL UNIQUE,
     name TEXT NOT NULL,
-    photo BYTEA,
-    description TEXT NOT NULL,
+    photo TEXT NOT NULL,
+    details TEXT NOT NULL,
     city TEXT NOT NULL,
     address TEXT NOT NULL,
-    url TEXT NOT NULL
+    url TEXT NOT NULL,
+    creator_id INTEGER NOT NULL REFERENCES accounts("id") ON DELETE CASCADE
+
 );
 
 CREATE TABLE bucket_drops (

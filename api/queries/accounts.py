@@ -25,7 +25,6 @@ class AccountOutWithPassword(AccountOut):
 
 
 class AccountQueries:
-
     def get_one(self, email: str) -> AccountOutWithPassword:
         with pool.connection() as conn:
             with conn.cursor() as data:
@@ -39,7 +38,7 @@ class AccountQueries:
                     FROM accounts
                     WHERE email = %s;
                     """,
-                    [email]
+                    [email],
                 )
                 record = result.fetchone()
                 if record is None:
@@ -52,16 +51,29 @@ class AccountQueries:
                     username=record[4],
                 )
 
-    def create(self, account: AccountIn, hashed_password: str) -> AccountOutWithPassword:
+    def create(
+        self, account: AccountIn, hashed_password: str
+    ) -> AccountOutWithPassword:
         with pool.connection() as conn:
             with conn.cursor() as data:
+                print("accountIN Data:", account)
                 result = data.execute(
                     """
-                    INSERT INTO accounts (email, hashed_password, full_name, username)
+                    INSERT INTO accounts (
+                        email,
+                        hashed_password,
+                        full_name,
+                        username
+                    )
                     VALUES (%s, %s, %s, %s)
                     RETURNING id;
                     """,
-                    [account.email, hashed_password, account.full_name, account.username]
+                    [
+                        account.email,
+                        hashed_password,
+                        account.full_name,
+                        account.username,
+                    ],
                 )
                 id = result.fetchone()[0]
                 return AccountOutWithPassword(
