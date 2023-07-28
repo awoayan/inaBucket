@@ -33,6 +33,8 @@
 	height: 65%;
 	width: 100%;
 	display: block;
+	opacity: 1;
+	transition: .2s ease;
 }
 
 .drop-card-container {
@@ -52,6 +54,7 @@
 	height: 60%;
 	width: 100%;
 	display: block;
+	
 }
 
 .home-bucket-card {
@@ -142,4 +145,78 @@ footer {
 }
 .grad {
 	background-image: linear-gradient(to right, rgb(215, 240, 250), yellow);
+}
+
+
+.modal2-background {
+  z-index: 1;
+  position: fixed;
+  left: 40%;
+  right: 30%;
+  top: 10%;
+  display: none;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100vw;
+  height: 100vh;
+}
+
+.reveal-modal-bg {
+    width: auto !important;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.45);
+    display: none;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom:0;
+    z-index: 40;
+}
+
+
+.drop-card:hover .card-image {
+  opacity: 0.8;
+}
+
+.drop-card:hover .middle {
+  opacity: 1;
+}
+
+.middle {
+  transition: .2s ease;
+  opacity: 0;
+  position: absolute;
+  top: 20%;
+  left: 65%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+
+.save-button2 {
+            outline: none;
+			height: 40px;
+			text-align: center;
+			width: 130px;
+			border-radius: 40px;
+			background: rgb(3, 90, 166);
+			border: 2px solid white;
+			color: white;
+			letter-spacing: 1px;
+			text-shadow: 0;
+			font-size: 18px;
+			font-weight: bold;
+			cursor: pointer;
+			transition: all 0.25s ease;
+        }
+
+.save-card {
+	border-radius: 10px;
+	height: 170px;
+	width: 220px;
+	background-color: whitesmoke;
+	position: absolute;
+	z-index: 2;
+
 }

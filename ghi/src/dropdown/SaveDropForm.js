@@ -1,6 +1,7 @@
 import { useGetTokenQuery } from "../app/api";
 import Notification from "../login_signup/Notification";
 import React, { useState, useEffect } from "react";
+import '../App.css'
 
 function SaveDropForm({ dropId }) {
     const [selectedBucket, setSelectedBucket] = useState(null);
@@ -25,9 +26,7 @@ function SaveDropForm({ dropId }) {
     let userBuckets = null;
     if (!tokenData) {
         return (
-            <div className="container">
-                <Notification type="info"> Please Login</Notification>
-            </div>
+            <h3>Login to save a drop</h3>
         );
     } else {
         userBuckets = buckets.filter(
@@ -58,7 +57,7 @@ function SaveDropForm({ dropId }) {
         }
     };
     return (
-        <div>
+        <div className="save-card">
             <div className="field">
                 <label className="label">Save to Bucket</label>
                 <div className="control">
@@ -83,7 +82,7 @@ function SaveDropForm({ dropId }) {
                 </div>
             </div>
             <button className="button is-primary" onClick={handleSaveToBucket}>
-                Save to Bucket
+                Save
             </button>
         </div>
     );

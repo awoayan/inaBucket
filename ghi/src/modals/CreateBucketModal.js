@@ -14,7 +14,7 @@ export default function CreateBucketModal() {
 			{showModal &&
 				createPortal(
 					<CreateBucketModalContent onClose={() => setShowModal(false)} />,
-					document.body
+					document.getElementById("render-modal-here")
 				)}
 		</>
 	);

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import './App.css'
+import Dropdown from "./dropdown/DropdownContent";
+
 
 function HomePage() {
 	const [mixedItems, setMixedItems] = useState([]);
-	
+
 	useEffect(() => {
 		const fetchBucketsAndDrops = async () => {
 			try {
@@ -12,7 +14,7 @@ function HomePage() {
 				const dropUrl = "http://localhost:8000/api/drops";
 				const bucketResponse = await fetch(bucketUrl);
 				const dropResponse = await fetch(dropUrl);
-				
+
 				if (bucketResponse.ok && dropResponse.ok) {
 					const bucketData = await bucketResponse.json();
 					const dropData = await dropResponse.json();
@@ -41,6 +43,7 @@ function HomePage() {
 	return (
 		<div>
 			<h2 style={{ textAlign: 'center' }} >Welcome to the homepage! Let's explore!</h2>
+
 			<div className="container">
 				<div className="masonry-container">
 					<div className="columns is-multiline">

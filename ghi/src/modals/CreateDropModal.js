@@ -14,7 +14,7 @@ export default function CreateDropModal() {
 			{showModal &&
 				createPortal(
 					<CreateDropModalContent onClose={() => setShowModal(false)} />,
-					document.body
+					document.getElementById("render-modal-here")
 				)}
 		</>
 	);
