@@ -41,6 +41,7 @@ function DropsPage() {
 
 
     return (
+        <body>
         <div>
             <div className='column'>
                 <div className='drop-card-container'>
@@ -76,8 +77,6 @@ function DropsPage() {
 
                                 )}
                             </div>
-
-
                         </div>
                     </div>
                 </div>
@@ -90,6 +89,7 @@ function DropsPage() {
                     Bcket
                 </footer>
         </div>
+        </body>
             );
 }
             export default DropsPage;
