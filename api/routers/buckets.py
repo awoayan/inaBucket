@@ -1,4 +1,4 @@
-from typing import List
+from typing import Literal, Optional
 from fastapi import APIRouter, Depends, Response
 from pydantic import BaseModel
 
@@ -32,6 +32,12 @@ class UpdateBucketOut(BaseModel):
     cover_photo: str
     details: str
 
+class BucketPatch(BaseModel):
+    title: Optional[str]
+    cover_photo: Optional[str]
+    descriptionxxx: Optional[str]
+    url: Optional[str]
+    
 
 @router.post("/api/buckets", response_model=BucketOut)
 def create_bucket(

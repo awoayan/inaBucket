@@ -1,6 +1,6 @@
 import os
 from psycopg_pool import ConnectionPool
-
+from typing import List, Optional, Union
 
 pool = ConnectionPool(conninfo=os.environ["DATABASE_URL"])
 
@@ -56,6 +56,45 @@ class BucketQueries:
                 if row is None:
                     return None
                 return self.bucket_record_to_dict(row, cur.description)
+            
+
+    def update(self, bucket_id):
+        with pool.connection() as conn:
+            with conn.cursor() as cur:
+                params = [
+                    data.title,
+                    data.cover_photo,
+                    data.descriptionxxx,
+                    data.url,
+                    bucket_id,
+                ]
+                cur.execute(
+                    """
+                    UPDATE buckets
+                    SET title = %s, 
+                      cover_photo = %s, 
+                      descriptionxxx = %s, 
+                       url = %s
+                     
+                    WHERE id = %s, owner = %s
+                    RETURNING id, 
+                    title, 
+                    cover_photo, 
+                    descriptionxxx, 
+                    url, 
+                    owner
+                    """,
+                    params,
+                )
+
+                record = None
+                row = cur.fetchone()
+                if row is not None:
+                    record = {}
+                    for i, column in enumerate(cur.description):
+                        record[column.name] = row[i]
+
+                return record
 
     def create_bucket(self, bucket):
         id = None
