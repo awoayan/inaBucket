@@ -7,7 +7,7 @@ pool = ConnectionPool(conninfo=os.environ["DATABASE_URL"])
 
 class BucketDropQueries:
     def save_drop(self, bucket_drop):
-        # bucket_drop_id = None
+        
         with pool.connection() as conn:
             with conn.cursor() as cur:
                 cur.execute(

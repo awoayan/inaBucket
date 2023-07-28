@@ -149,13 +149,3 @@ def test_create_drop():
     assert response.status_code == 200
     assert response.json() == expected
 
-
-# def test_delete_drop():
-#     app.dependency_overrides[DropQueries] = DeleteDropQueries
-
-#     response = client.delete("/api/drops/11"),
-
-#     app.dependency_overrides = {}
-
-#     # assert response.status_code == 200
-#     assert response == 200

@@ -76,7 +76,7 @@ def get_drops(
         response.status_code = 404
     else:
         return records
-
+    
 
 @router.put("/api/drops/{drop_id}", response_model=UpdateDropOut)
 def update_drop(
