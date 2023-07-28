@@ -18,10 +18,6 @@ root.render(
 			<BrowserRouter basename={basename}>
 				<Nav />
 				<Routes>
-					{/* <Route
-						path="/"
-						element={<App />}
-					/> */}
 					<Route
 						path="*"
 						element={<Navigate to="/" />}
