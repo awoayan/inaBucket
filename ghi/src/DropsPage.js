@@ -67,7 +67,7 @@ function DropsPage() {
 
 
                             <div className="edit-buttons">
-                                {token.account.id === drop.creator_id.id ? (
+                                {!token || token.account.id === drop.creator_id.id ? (
 
                                     <DeleteDrops dropId={dropId} />,
 
