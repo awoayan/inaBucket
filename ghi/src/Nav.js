@@ -61,7 +61,7 @@ function DisplayAvatar() {
 
 	if (tokenData) {
 		let avatar = tokenData.avatar;
-		console.log("avatar", avatar);
+
 
 		if (avatar === undefined) {
 			return (

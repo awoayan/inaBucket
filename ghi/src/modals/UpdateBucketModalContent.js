@@ -17,7 +17,6 @@ export default function UpdateBucketModalContent({ onClose }) {
                     <UpdateBucketForm />
                 </section>
                 <footer className="modal-card-foot">
-                    {/* <button class="button is-success">Save changes</button> */}
                 </footer>
             </div>
         </div>

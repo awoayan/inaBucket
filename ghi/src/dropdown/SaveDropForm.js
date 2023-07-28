@@ -13,7 +13,6 @@ function SaveDropForm({ dropId }) {
                 const response = await fetch('http://localhost:8000/api/buckets');
                 if (response.ok) {
                     const data = await response.json();
-                    console.log("HERE IS DATA FROM API CALL", data)
                     setBuckets(data);
                 } else {
                     console.error(response);

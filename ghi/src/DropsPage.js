@@ -15,7 +15,9 @@ function DropsPage() {
     const [showSave, setShowSave] = useState(false)
 
     function toggle() {
+
         setShowSave((showSave) => !showSave);
+
     }
 
     useEffect(() => {

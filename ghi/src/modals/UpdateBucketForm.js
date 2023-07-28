@@ -35,8 +35,6 @@ function UpdateBucketForm() {
 		accountId = tokenData.account.id;
 	}
 
-	// Need to add the Get Functionality
-
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();

@@ -54,16 +54,11 @@ function BucketsDropsPage() {
             </div>
             <div className="columns is-multiline">
                 <div className="column is-12">
-                    {/* <div className="create-dropdown" id="render-modal-here">
-                        <div className="button is-primary">
-                            <Dropdown />
-                        </div>
-                    </div> */}
                 </div>
                 {bucketDrops.map((bucketDrop) => (
                     <div
-                        className="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
                         key={bucketDrop.id}
+                        className="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
                         style={{ transition: 'transform 0.2s' }}
                         onMouseEnter={(e) => {
                             e.currentTarget.classList.add('card-scaled');
@@ -78,12 +73,8 @@ function BucketsDropsPage() {
                                 <div className='card-content'>
                                     <div className='media'>
                                     </div>
-                                    <div className='card-details'>
+                                    <div className='card-details' >
                                         <h2>{bucketDrop.drop_name}</h2>
-                                        {/* <p>{bucketDrop.drop_details}</p>
-                                            <p>{bucketDrop.drop_city}</p>
-                                            <p>{bucketDrop.drop_address}</p>
-                                            <p>{bucketDrop.drop_url}</p> */}
                                         <div className='move-left'>
                                             <Icon path={mdiArrowRight} size={2} />
                                         </div>
@@ -95,7 +86,7 @@ function BucketsDropsPage() {
                 ))}
             </div>
             <footer>
-                Footer Note
+                PinTrip
             </footer>
         </div>
     );
