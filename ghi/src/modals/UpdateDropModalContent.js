@@ -18,7 +18,6 @@ export default function UpdateDropModalContent({ onClose }) {
                 </section>
 
                 <footer className="modal-card-foot">
-                    {/* <button class="button is-success">Save changes</button> */}
                 </footer>
             </div>
         </div>

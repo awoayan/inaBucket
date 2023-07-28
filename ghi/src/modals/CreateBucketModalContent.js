@@ -17,9 +17,7 @@ export default function CreateBucketModalContent({ onClose }) {
 				<section className="modal-card-body">
 					<CreateBucketForm />
 				</section>
-
 				<footer className="modal-card-foot">
-					{/* <button class="button is-success">Save changes</button> */}
 				</footer>
 			</div>
 		</div>

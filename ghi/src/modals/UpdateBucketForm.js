@@ -54,7 +54,7 @@ function UpdateBucketForm() {
 		};
 		const response = await fetch(bucketUrl, fetchConfig);
 		if (response.ok) {
-			const newBucket = await response.json();
+
 
 			updateTitle("");
 			updateDetails("");

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useGetTokenQuery } from "../app/api";
 import Notification from "../login_signup/Notification";
+import { useParams } from "react-router-dom";
 
 function UpdateDropForm({ dropData }) {
     const [name, setName] = useState("");
@@ -13,6 +14,8 @@ function UpdateDropForm({ dropData }) {
     const [bucket, setBucket] = useState("");
 
     const { data: tokenData } = useGetTokenQuery();
+
+    const { dropId } = useParams();
 
     useEffect(() => {
         const fetchBuckets = async () => {
@@ -93,6 +96,10 @@ function UpdateDropForm({ dropData }) {
         setBucket(value);
     };
 
+    function refreshPage() {
+        window.location.reload(false);
+    }
+
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -106,7 +113,7 @@ function UpdateDropForm({ dropData }) {
         data.creator_id = creator_id;
         data.bucket_id = bucket;
 
-        const updateDropUrl = `http://localhost:8000/api/drops/${dropData.id}`;
+        const updateDropUrl = `http://localhost:8000/api/drops/${dropId}`;
         const fetchConfig = {
             method: "put",
             body: JSON.stringify(data),
@@ -115,8 +122,8 @@ function UpdateDropForm({ dropData }) {
 
         const response = await fetch(updateDropUrl, fetchConfig);
         if (response.ok) {
-        }
-
+        
+        refreshPage();
         setName("");
         setPhoto("");
         setDetails("");
@@ -124,6 +131,8 @@ function UpdateDropForm({ dropData }) {
         setAddress("");
         setUrl("");
         setBucket("");
+
+        }
     };
 
     return (

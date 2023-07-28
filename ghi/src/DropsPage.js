@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useGetTokenQuery, useLogOutMutation } from "./app/api";
+import { useGetTokenQuery } from "./app/api";
 import { useParams } from 'react-router-dom';
 import SaveDropForm from './dropdown/SaveDropForm';
-
-import DeleteDrops from './dropdown/DeleteDrop';
 import EditDropDropdown from './dropdown/EditDropDropdown';
 import './App.css'
 
@@ -70,8 +68,6 @@ function DropsPage() {
 
                             <div className="edit-buttons">
                                 {!token || token.account.id === drop.creator_id.id ? (
-
-                                    <DeleteDrops dropId={dropId} />,
 
                                     <EditDropDropdown dropId={dropId} />
                                 ) : (

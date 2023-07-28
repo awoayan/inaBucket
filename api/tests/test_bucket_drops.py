@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from queries.bucket_drops import BucketDropQueries
 from main import app
-import json
+
 
 client = TestClient(app)
 
@@ -31,8 +31,7 @@ class FakeCreateBucketQueries:
         result = {
             "bucket_id": 1,
             "drop_id": 0
-        }       
-
+        }
         return result
 
 

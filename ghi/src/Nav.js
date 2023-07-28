@@ -107,9 +107,6 @@ function Nav() {
 					<div>
 						<SearchPage />
 					</div>
-
-
-
 					<button
 						className="navbar-burger"
 						aria-label="menu"

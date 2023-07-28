@@ -8,8 +8,6 @@ function CreateBucketForm() {
 	const [coverPhoto, setCoverPhoto] = useState("");
 	const [details, setDetails] = useState("");
 
-
-
 	const handleTitleChange = (event) => {
 		const value = event.target.value;
 		setTitle(value);
@@ -51,15 +49,12 @@ function CreateBucketForm() {
 		data.details = details;
 		data.account_id = accountId;
 
-		console.log("data being submitted:", data);
-
 		const bucketUrl = "http://localhost:8000/api/buckets";
 		const fetchConfig = {
 			method: "post",
 			body: JSON.stringify(data),
 			headers: { "Content-Type": "application/json" },
 		};
-		console.log("fetch Config:", fetchConfig);
 		const response = await fetch(bucketUrl, fetchConfig);
 		if (response.ok) {
 			refreshPage()

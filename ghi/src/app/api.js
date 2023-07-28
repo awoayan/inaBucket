@@ -77,22 +77,6 @@ export const apiSlice = createApi({
 			}),
 			providesTags: ["Token"],
 		}),
-		// addBucket: builder.mutation({
-		// 	query: (info) => {
-		// 		let formData = new FormData(form)
-		// 		formData.append("title", info.title )
-		// 		formData.append("coverPhoto", info.cover_photo)
-		// 		formData.append("details", info.details)
-		// 		formData.append("accountId", info.accountId)
-		// 		return {
-		// 			url: "api/buckets",
-		// 			method: "post",
-		// 			body: formData,
-		// 			credentials: 'include' ,
-		// 		}
-		// 	}
-
-		// })
 	}),
 });
 
@@ -101,5 +85,4 @@ export const {
 	useLogOutMutation,
 	useSignUpMutation,
 	useGetTokenQuery,
-	// useAddBucketMutation
 } = apiSlice;

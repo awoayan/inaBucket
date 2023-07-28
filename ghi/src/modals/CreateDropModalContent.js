@@ -16,7 +16,6 @@ export default function CreateDropModalContent({ onClose }) {
 				<section class="modal-card-body">
 					<CreateDropForm />
 				</section>
-
 				<footer class="modal-card-foot">
 				</footer>
 			</div>
