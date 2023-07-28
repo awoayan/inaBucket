@@ -9,7 +9,6 @@ import "./App.css"
 
 function ProfilePage() {
     const [buckets, setBuckets] = useState([]);
-    const [bucketUsername, setBucketUsername] = useState("");
 
     useEffect(() => {
         const fetchBuckets = async () => {
@@ -18,9 +17,6 @@ function ProfilePage() {
                 if (response.ok) {
                     const data = await response.json();
                     setBuckets(data);
-                    if (data.length > 0) {
-                        setBucketUsername(data[0].owner.username)
-                    }
                 } else {
                     console.error(response);
                 }
@@ -51,7 +47,7 @@ function ProfilePage() {
             <h1 className="create-dropdown">
                 <Dropdown userBuckets={userBuckets} />
             </h1>
-            <h2 style={{ textAlign: 'center' }} id="render-modal-here" className="title is-1">@{bucketUsername}</h2>
+            <h2 style={{ textAlign: 'center' }} id="render-modal-here" className="title is-1">@{tokenData.account.username}</h2>
             <div className="columns is-multiline ">
                 {userBuckets.map((bucket) => (
                     <div

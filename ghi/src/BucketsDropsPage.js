@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import Icon from '@mdi/react';
 import { mdiArrowRight } from '@mdi/js';
 import './App.css'
-import CreateDropModal from './modals/CreateDropModal';
+
 
 function BucketsDropsPage() {
     const { bucketId } = useParams();
@@ -46,7 +46,7 @@ function BucketsDropsPage() {
     if (!bucketDrops) {
         return null;
     }
-    
+
     return (
         <div>
             <div>
@@ -54,11 +54,11 @@ function BucketsDropsPage() {
             </div>
             <div className="columns is-multiline">
                 <div className="column is-12">
-                    <div className="create-dropdown">
+                    {/* <div className="create-dropdown" id="render-modal-here">
                         <div className="button is-primary">
-                            <CreateDropModal />
+                            <Dropdown />
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 {bucketDrops.map((bucketDrop) => (
                     <div
