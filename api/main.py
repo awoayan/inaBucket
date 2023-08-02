@@ -14,6 +14,9 @@ app.include_router(bucket_drops.router)
 
 origins = [
     "http://localhost:3000",
+    "https://macstephens.gitlab.io/module3-project-gamma",
+    "https://fastapi.mod3projects.com",
+
     os.environ.get("CORS_HOST", None),
 ]
 
