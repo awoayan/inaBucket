@@ -40,29 +40,20 @@ function HomePage() {
 
 	return (
 		<div>
-			<body>
-				<h2 style={{ textAlign: 'center' }} >Welcome to the homepage! Let's explore!</h2>
-
-				<div className="container">
-					<div className="masonry-container">
+			<h2 className="has-text-centered">Welcome to the homepage! Let's explore!</h2>
+					{/* <div className="container is-variable"> */}
 						<div className="columns is-multiline">
 							{mixedItems.map((item, index) => (
 								<div
-									className="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
+									className="column is-one-third"
 									key={index}
-									style={{ transition: 'transform 0.2s' }}
-									onMouseEnter={(e) => {
-										e.currentTarget.classList.add('card-scaled');
-									}}
-									onMouseLeave={(e) => {
-										e.currentTarget.classList.remove('card-scaled');
-									}} key2={item.id}>
+									key2={item.id}>
 									{("title" in item) ? (
 										<Link to={`/bucketdrops/${item.id}`} className="card-link">
-											<div className="home-bucket-card">
+											<div className="card has-background-grey-light">
 												<div>
-													<figure>
-														<img className='home-bucket-image' src={item.cover_photo} alt={item.title} />
+													<figure className="image is-128x128x">
+														<img className='card-image' src={item.cover_photo} alt={item.title} />
 													</figure>
 												</div>
 												<div>
@@ -78,10 +69,10 @@ function HomePage() {
 										</Link>
 									) : (
 										<Link to={`/drops/${item.id}`} className="card-link">
-											<div className="home-drop-card">
+											<div className="card">
 												<div>
 													<figure>
-														<img className='home-drop-image' src={item.photo} alt={item.name} />
+														<img className='card-image' src={item.photo} alt={item.name} />
 													</figure>
 												</div>
 												<div className="card-details" >
@@ -95,14 +86,9 @@ function HomePage() {
 									)}
 								</div>
 							))}
-							<footer>
-								Footer Note
-							</footer>
 						</div>
-					</div>
-				</div >
-			</body>
-		</div>
+					{/* </div> */}
+			</div>
 	);
 }
 

@@ -8,10 +8,10 @@ import LogInModal from "./login_signup/LoginModal";
 import SignUpModal from "./login_signup/SignUpModal";
 import { useEffect } from "react";
 import SearchPage from "./Searchbar";
-import { Link } from "react-router-dom";
 import './App.css'
 import Icon from '@mdi/react';
 import { mdiAccountCircle } from '@mdi/js';
+import { mdiWaterCircle } from '@mdi/js';
 
 
 
@@ -65,19 +65,14 @@ function DisplayAvatar() {
 
 		if (avatar === undefined) {
 			return (
-				<figure className="image is-64x64">
-					<Icon path={mdiAccountCircle} size={3} />
-
+				<figure className="image is-70x70 mt-2 ml-4">
+					<Icon path={mdiAccountCircle} title="Profile" size={2} color="hsl(0, 0%, 71%)" />
 				</figure>
 			);
 		} else {
 			return (
 				<figure className="image is-64x64">
-					<img
-						className="is-rounded"
-						src={avatar}
-						alt="avatar, ya'll"
-					/>
+					<img className="is-rounded" src={avatar} alt="avatar, ya'll"/>
 				</figure>
 			);
 		}
@@ -90,22 +85,24 @@ function Nav() {
 	return (
 		<>
 			<nav
-				className="navbar is-fixed-top nav-color"
+				className="navbar is-fixed-top has-background-success-dark"
 				role="navigation"
 				aria-label="main navigation">
 				<div className="navbar-brand">
 					<NavLink
 						className="navbar-item"
 						to="/">
-						<img
-							src={homeLogo}
-							height="86"
-							width="43"
-							alt="Home Logo"
-						/>
+						<figure className="image is-64x64">
+							<Icon path={mdiWaterCircle} title="Home" size={2}></Icon>
+						</figure>
 					</NavLink>
 					<div>
 						<SearchPage />
+					</div>
+					<div>
+						<NavLink to={"/profile"}>
+							<DisplayAvatar />
+						</NavLink>
 					</div>
 					<button
 						className="navbar-burger"
@@ -116,11 +113,6 @@ function Nav() {
 						<span aria-hidden="true"></span>
 						<span aria-hidden="true"></span>
 					</button>
-				</div>
-				<div>
-					<Link to={"/profile"}>
-						<DisplayAvatar />
-					</Link>
 				</div>
 				<div
 					id="navbarBasicExample"
