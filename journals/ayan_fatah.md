@@ -2,4 +2,4 @@ i honestly forgot to journal but i make notes on my notion on what to do daily s
 
 We all worked together during the duration of this project. At first we were taking turns screensharing and walking through the code and finding solutions as a team so we can make sure we all knew what was happening within our app and how it worked collectively. As the due date approached we started working on our tasks as either pairs and individually. Regardless of the amount of work we all had individually we all make time to help answer question and share our screens to show errors and also to show updates on how we got something to work! 
 
-i made the delete functions for the back end and the delete buttons for drops. for the backend we all 
+i made the delete functions for the back end and the delete buttons for drops. for the backend we all took turns creating routes and queries. i mostly help debug any errors and did the readme file, and the authenticator.py as well as the unit tests and did code clean up make sure the identents and all the comments were deleted.

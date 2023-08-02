@@ -14,29 +14,53 @@ A Note: As I mentioned to Candice, in the spirit of learning, we traded off shar
 7/11
     It was authentication and authorization day for the team. We had to navigate the differences with our code because we weren't using migrations. This was my first real hands on experience with FastAPI, and it definitely is going to take some getting used to.
 
-7/12:
+7/12
     Today we added completed our authorization. We have tokens! Then we started working on our API. I began with buckets, walking through a get and create function with Amanda. 
 
-13:
-    Countinued working on our API. Today we were able to get almost all of the functionality for get and git 
+7/13
+    Countinued working on our API. Today we were able to get almost all of the functionality done.
 
-July 14:
-Optimized the database queries and made use of caching to improve the website's performance. Users are now experiencing faster load times, especially when browsing through their collections.
+7/14
+    We finished up the backend today (or at least for now), and we started to build the front end, starting with authentication. We're trying to use Redux, so we'll see how that goes. 
 
-July 15:
-Prepared a detailed changelog for the upcoming official launch of PinTrip. Documented all the new features, bug fixes, and improvements made during the development process. This will be valuable for future reference and communication with users.
+7/17
+    Today I worked with Amanda to make allow for users to only see buckets that are attached to your account. I also added client id and username to bucket drops.
 
-July 18:
-Conducted a final round of testing and resolved the last few remaining issues. Verified that the website works smoothly across different browsers and devices. Everything looks good, and we are ready for the big launch!
+7/18
+    I worked on the backend to add our PUT statements and make some tweaks.
 
-July 19:
-Coordinated with the marketing team to prepare promotional materials for the PinTrip launch. Created social media posts, press releases, and blog content to generate interest in our new product. Excitement is building up within the team!
+7/19
+    Worked on the onClick for the profile page and started to work on editing and updating. 
 
-July 20:
-Launched PinTrip to the public! It's an exciting day as we share our hard work with the world. Monitored the website closely to ensure everything runs smoothly during the initial traffic surge. Users are signing up, and the positive feedback is pouring in.
+7/20
+    Today Amanda and I finished the drops page, which was great. We're working on adding dropdown functionality for all of the elements on the page. 
 
-July 22:
-Addressed some minor user-reported issues and made necessary updates to the PinTrip website. We appreciate the feedback and are committed to continuously enhancing the user experience.
+7/24
+    We needed to finish up troubleshooting some of the errors we're getting when we are creating and deleting drops. Also, today we wrote in page refresh functionality for onSubmit and account-based hiding or revealing of elements. Had to touch the join table quite a bit.
 
-July 25:
-Started planning for future updates and features based on user feedback and team discussions. We have exciting ideas for the next iteration of PinTrip, and we can't wait to start working on them!
+7/25
+    I started prepping for CI today, reading through the docs again and watching Dalonte's talk on it. I also dealt with some CSS issues with Brian. 
+
+7/26
+    Today was all CI and it took all day, but we got everything working by 6.
+
+7/27
+    About the same as yesterday, it took almost all day, but we deployed! We are having an openSSL issue, but we expected it because we haven't added a legitimate key.
+
+7/28
+    Last day! At least until stretch goals. We flopped today when Candice came in but then realized it was because I was tinkering with our http/https stuff. So that was an easy fix. We went through and made sure we cleaned everything up and then updated our version and deployed again. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
