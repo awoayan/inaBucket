@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
+import './style/hidden-card.css'
 import './App.css'
+
+import Icon from '@mdi/react';
+import { mdiPail } from '@mdi/js';
+
+
 
 function HomePage() {
 	const [mixedItems, setMixedItems] = useState([]);
@@ -38,71 +44,48 @@ function HomePage() {
 		return newArray;
 	};
 
+
 	return (
 		<div>
 			<body>
-				<h2 style={{ textAlign: 'center' }} >Welcome to the homepage! Let's explore!</h2>
+				<h1 style={{ textAlign: 'center' }} >PINTRIP </h1>
+				<h2 style={{ textAlign: 'center' }} >Let's explore!</h2>
 
-				<div className="container">
-					<div className="masonry-container">
-						<div className="columns is-multiline">
+				<div>
+					<div className="floating-masonry-container">
+						<div>
 							{mixedItems.map((item, index) => (
-								<div
-									className="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
-									key={index}
-									style={{ transition: 'transform 0.2s' }}
-									onMouseEnter={(e) => {
-										e.currentTarget.classList.add('card-scaled');
-									}}
-									onMouseLeave={(e) => {
-										e.currentTarget.classList.remove('card-scaled');
-									}} key2={item.id}>
+								<div key={index}>
 									{("title" in item) ? (
-										<Link to={`/bucketdrops/${item.id}`} className="card-link">
-											<div className="home-bucket-card">
-												<div>
-													<figure>
-														<img className='home-bucket-image' src={item.cover_photo} alt={item.title} />
-													</figure>
-												</div>
-												<div>
-													<div className="media">
-														<div className="card-details">
-															<h4>{item.title}</h4>
-															<p>@{item.owner.username}</p>
-														</div>
-													</div>
-													<div className="card-details">{item.details}</div>
-												</div>
-											</div>
-										</Link>
+										<div className="floating-masonry-item floating-white-container">
+											<Link to={`/bucketdrops/${item.id}`}>
+
+												<img className="floating-card" src={item.cover_photo} alt={item.title} />
+												<h5 className="floating-text">{item.address} {item.title}  <Icon path={mdiPail} size={.9} /></h5>
+
+											</Link>
+										</div>
 									) : (
-										<Link to={`/drops/${item.id}`} className="card-link">
-											<div className="home-drop-card">
-												<div>
-													<figure>
-														<img className='home-drop-image' src={item.photo} alt={item.name} />
-													</figure>
-												</div>
-												<div className="card-details" >
-													<div>
-														<h3>{item.name}</h3>
-														<h5>{item.city}</h5>
-													</div>
-												</div>
-											</div>
-										</Link>
+										<div className="floating-masonry-item floating-white-container">
+
+											<Link to={`/drops/${item.id}`} className="card-link">
+
+												<img className="floating-card" src={item.photo} alt={item.name} />
+												<p className="floating-text">{item.name}</p>
+												<h5 className="floating-text" >@{item.creator_id.username} </h5>
+											</Link>
+										</div>
+
 									)}
 								</div>
 							))}
-							<footer>
-								Footer Note
-							</footer>
+
 						</div>
 					</div>
 				</div >
-			</body>
-		</div>
+			</body >
+
+		</div >
 	);
 }
 

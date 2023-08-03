@@ -34,7 +34,7 @@ class BucketDropQueries:
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    SELECT b.id AS bucket_id, b.title AS bucket_title,
+                    SELECT b.id AS bucket_id, b.title AS bucket_title, b.details AS bucket_details,
                         d.id AS drop_id, d.name AS drop_name,
                         d.photo AS drop_photo, d.details AS drop_details,
                         d.city AS drop_city, d.address AS drop_address,

@@ -19,6 +19,7 @@ class BucketDropsOut(BaseModel):
 class ABucketsDropsOut(BaseModel):
     bucket_id: int
     bucket_title: str
+    bucket_details: str
     drop_id: int
     drop_name: str
     drop_photo: str

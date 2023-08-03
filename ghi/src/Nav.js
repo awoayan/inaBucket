@@ -10,8 +10,7 @@ import { useEffect } from "react";
 import SearchPage from "./Searchbar";
 import { Link } from "react-router-dom";
 import './App.css'
-import Icon from '@mdi/react';
-import { mdiAccountCircle } from '@mdi/js';
+import UseDisplayAvatar from "./Avatar";
 
 
 
@@ -56,33 +55,7 @@ function LogoutButton() {
 	);
 }
 
-function DisplayAvatar() {
-	const { data: tokenData } = useGetTokenQuery();
 
-	if (tokenData) {
-		let avatar = tokenData.avatar;
-
-
-		if (avatar === undefined) {
-			return (
-				<figure className="image is-64x64">
-					<Icon path={mdiAccountCircle} size={3} />
-
-				</figure>
-			);
-		} else {
-			return (
-				<figure className="image is-64x64">
-					<img
-						className="is-rounded"
-						src={avatar}
-						alt="avatar, ya'll"
-					/>
-				</figure>
-			);
-		}
-	}
-}
 
 function Nav() {
 	const { data: token, isLoading: tokenLoading } = useGetTokenQuery();
@@ -119,7 +92,7 @@ function Nav() {
 				</div>
 				<div>
 					<Link to={"/profile"}>
-						<DisplayAvatar />
+						<UseDisplayAvatar size={2} />
 					</Link>
 				</div>
 				<div
