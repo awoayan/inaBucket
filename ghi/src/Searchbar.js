@@ -4,7 +4,7 @@ import Icon from "@mdi/react";
 
 const SearchPage = () => {
     return (
-        <div className="column is-12 mt-2 mr-2">
+        <div className="column is-12 mt-2">
             <div className="field has-addons">
                 <div className="control">
                     <button className="button is-info">

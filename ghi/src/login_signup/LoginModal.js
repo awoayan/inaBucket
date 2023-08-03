@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLogInMutation } from "../app/api";
 import { eventTargetSelector as target, preventDefault } from "../app/utils";
 import { showModal, updateField, LOG_IN_MODAL } from "../app/accountSlice";
-import Notification from "./Notification";
+import "../style/modal.css"
 
 function LogInModal() {
 	const dispatch = useDispatch();
@@ -18,25 +18,16 @@ function LogInModal() {
 
 	return (
 		<div
-			className={modalClass}
-			key="login-modal">
-			<div className="modal-background"></div>
-			<div className="modal-content">
-				<div className="box content">
+			className={modalClass} key="modal">
+				<div className="modal-content">
+					<div className="modal-form">
 					<h3>Log In</h3>
 					{error ? (
-						<Notification type="danger">{error.data.detail}</Notification>
+						<div classname="error-notification">{error.data.detail}</div>
 					) : null}
-					<form
-						method="POST"
-						onSubmit={preventDefault(logIn, target)}>
-						<div className="field">
-							<label
-								className="label"
-								htmlFor="email">
-								Email
-							</label>
-							<div className="control">
+					<form method="POST" onSubmit={preventDefault(logIn, target)}>
+						<div className="form-field">
+							<label className="form-label" htmlFor="email">Email</label>
 								<input
 									required
 									onChange={field}
@@ -46,11 +37,9 @@ function LogInModal() {
 									type="email"
 									placeholder="you@example.com"
 								/>
-							</div>
 						</div>
-						<div className="field">
-							<label className="label">Password</label>
-							<div className="control">
+						<div className="form-field">
+							<label className="form-label">Password</label>
 								<input
 									required
 									onChange={field}
@@ -60,21 +49,16 @@ function LogInModal() {
 									type="password"
 									placeholder="secret..."
 								/>
-							</div>
 						</div>
-						<div className="field is-grouped">
+						<div className="form-buttons">
 							<div className="control">
-								<button
-									disabled={logInLoading}
-									className="button is-info">
-									Submit
-								</button>
+								<button disabled={logInLoading} className="submit-button">Submit</button>
 							</div>
 							<div className="control">
 								<button
 									type="button"
 									onClick={() => dispatch(showModal(null))}
-									className="button">
+									className="cancel-button">
 									Cancel
 								</button>
 							</div>

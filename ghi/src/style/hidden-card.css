@@ -15,8 +15,12 @@
 }
 
 .floating-masonry-container {
-	column-count: 7;
-	column-gap: 5px;
+    -webkit-columns: 100px 4;
+    -moz-columns: 100px 4;
+    columns: 250px 7;
+    -webkit-column-gap: 0;
+    -moz-column-gap: 0;
+    column-gap: 0;
 }
 .floating-masonry-item {
 	display: inline-block;

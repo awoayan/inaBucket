@@ -7,9 +7,9 @@ import LogInModal from "./login_signup/LoginModal";
 import SignUpModal from "./login_signup/SignUpModal";
 import { useEffect } from "react";
 import SearchPage from "./Searchbar";
-import './App.css'
+import './style/nav.css'
 import Icon from '@mdi/react';
-import { mdiAccountCircle, mdiWaterCircle } from '@mdi/js';
+import { mdiWaterCircle } from '@mdi/js';
 import UseDisplayAvatar from "./Avatar";
 
 
@@ -23,12 +23,12 @@ function LoginButtons(props) {
 		<div className={classNames}>
 			<button
 				onClick={() => dispatch(showModal(SIGN_UP_MODAL))}
-				className="button is-info">
+				className="button">
 				<strong>Sign up</strong>
 			</button>
 			<button
 				onClick={() => dispatch(showModal(LOG_IN_MODAL))}
-				className="button is-light">
+				className="button">
 				Log in
 			</button>
 		</div>
@@ -57,38 +57,20 @@ function LogoutButton() {
 }
 
 
-
-
-		if (avatar === undefined) {
-			return (
-				<figure className="image is-64x64 mt-4 ml-5">
-					<Icon path={mdiAccountCircle} title="Profile" size={2} color="hsl(207, 61%, 51%)" />
-				</figure>
-			);
-		} else {
-			return (
-				<figure className="image is-64x64">
-					<img className="is-rounded" src={avatar} alt="avatar, ya'll"/>
-				</figure>
-			);
-		}
-	}
-}
-
 function Nav() {
 	const { data: token, isLoading: tokenLoading } = useGetTokenQuery();
 
 	return (
 		<>
 			<nav 
-				className="navbar is-fixed-top has-background-link-dark" 
+				className="navbar" 
 				role="navigation" 
 				aria-label="main navigation">
-				<div className="navbar-brand">
+				<div className="navbar-container">
 					<NavLink
-						className="navbar-item"
+						className=""
 						to="/">
-						<figure className="image is-64x64 mt-2">
+						<figure className="">
 							<Icon path={mdiWaterCircle} title="Home" size={2} color="hsl(207, 61%, 51%)" />
 						</figure>
 					</NavLink>
@@ -96,14 +78,14 @@ function Nav() {
 						<SearchPage />
 					</div>
 					<div>
-						<NavLink to={"/profile"}>
-							<UseDisplayAvatar size={2} />
-						</NavLink>
+					<NavLink to={"/profile"}>
+						<UseDisplayAvatar size={2} />
+					</NavLink>
 					</div>
 				</div>
-				<div id="navbarBasicExample" className="navbar-menu "> 
-					<div className="navbar-end">
-						<div className="navbar-item ">
+				<div id="navbarBasicExample" className="navbar-container"> 
+					<div className="">
+						<div className="navbar_link">
 							{tokenLoading ? (
 								<LoginButtons show={false} />
 							) : token ? (

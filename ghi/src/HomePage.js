@@ -48,9 +48,10 @@ function HomePage() {
 	return (
 		<div>
 			<body>
-				<h1 style={{ textAlign: 'center' }} >PINTRIP </h1>
-				<h2 style={{ textAlign: 'center' }} >Let's explore!</h2>
-
+				<div className="has-text-centered">
+					<h1>PINTRIP </h1>
+					<h2>Let's explore!</h2>
+				</div>
 				<div>
 					<div className="floating-masonry-container">
 						<div>
