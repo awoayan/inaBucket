@@ -9,8 +9,8 @@ import { useEffect } from "react";
 import SearchPage from "./Searchbar";
 import './App.css'
 import Icon from '@mdi/react';
-import { mdiAccountCircle } from '@mdi/js';
-import { mdiWaterCircle } from '@mdi/js';
+import { mdiAccountCircle, mdiWaterCircle } from '@mdi/js';
+
 
 
 
