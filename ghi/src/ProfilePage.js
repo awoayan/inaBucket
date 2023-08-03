@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import { useGetTokenQuery } from "./app/api";
 import Dropdown from "./dropdown/DropdownContent";
 import Notification from "./login_signup/Notification";
+import UseDisplayAvatar from "./Avatar";
 import "./App.css"
-
+import './style/hidden-card.css'
+import './style/profile.css'
 
 
 function ProfilePage() {
@@ -41,49 +43,37 @@ function ProfilePage() {
             (bucket) => bucket.owner.id === tokenData.account.id
         );
     }
-
+    console.log(userBuckets)
     return (
         <div>
-            <h1 className="create-dropdown">
-                <Dropdown userBuckets={userBuckets} />
-            </h1>
-            <h2 style={{ textAlign: 'center' }} id="render-modal-here" className="title is-1">@{tokenData.account.username}</h2>
-            <div className="columns is-multiline ">
-                {userBuckets.map((bucket) => (
-                    <div
-                        className="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
-                        key={bucket.id}
-                        style={{ transition: 'transform 0.2s' }}
-                        onMouseEnter={(e) => {
-                            e.currentTarget.classList.add('card-scaled');
-                        }}
-                        onMouseLeave={(e) => {
-                            e.currentTarget.classList.remove('card-scaled');
-                        }}
-                    >
-                        <Link to={`/bucketdrops/${bucket.id}`} className="card-link">
-                            <div className="card">
-                                <img className="card-image" src={bucket.cover_photo} alt={bucket.title} />
-                                <div className="card-content">
-                                    <div className="media">
-                                        <div className="card-details">
-                                            <h2>{bucket.title}</h2>
-                                            <p>@{bucket.owner.username}</p>
-                                            <div style={{ maxHeight: '100px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                                                {bucket.details.length > 150 ? `${bucket.details.slice(0, 150)}...` : bucket.details}
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </Link>
-                    </div>
-                ))}
+            <div>
+                <h2 className="create-dropdown">
+                    <Dropdown userBuckets={userBuckets} />
+                </h2>
             </div>
-            <footer>
-                FOOTER NOTER
-            </footer>
+
+            <h2 id="home-avatar"> <UseDisplayAvatar size={4} /></h2>
+            <h3 style={{ textAlign: 'center' }} id="render-modal-here" className="title is-1">{tokenData.account.full_name}</h3>
+            <h4 style={{ textAlign: 'center' }}>Buckets Created: {userBuckets.length}</h4>
+            <p style={{ textAlign: 'center' }}> @{tokenData.account.username}</p>
+            <div className="floating-masonry-container">
+                {userBuckets.map((bucket) => (
+                    <div key={bucket.id} >
+                        <div className="floating-masonry-item floating-white-container">
+                            <Link to={`/bucketdrops/${bucket.id}`}>
+                                <div className="floating-card">
+                                    <img src={bucket.cover_photo} alt={bucket.title} />
+                                    <h5 className="floating-text">{bucket.address} {bucket.title}</h5>
+                                    {/* <p>{bucket.details}</p> */}
+                                </div>
+
+                            </Link>
+                        </div>
+                    </div>
+                ))
+                }
+            </div>
+
         </div>
 
     );

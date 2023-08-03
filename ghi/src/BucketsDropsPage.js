@@ -46,49 +46,35 @@ function BucketsDropsPage() {
     if (!bucketDrops) {
         return null;
     }
+    console.log(bucketDrops)
 
     return (
         <div>
             <div>
                 <h2 style={{ textAlign: 'center' }} className="title is-1">{bucketName}</h2>
+                <p style={{ textAlign: 'center' }}>{bucketDrops.bucket_details}</p>
             </div>
-            <div className="columns is-multiline">
-                <div className="column is-12">
-                </div>
+            <div className="floating-masonry-container">
                 {bucketDrops.map((bucketDrop) => (
-                    <div
-                        key={bucketDrop.id}
-                        className="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
-                        style={{ transition: 'transform 0.2s' }}
-                        onMouseEnter={(e) => {
-                            e.currentTarget.classList.add('card-scaled');
-                        }}
-                        onMouseLeave={(e) => {
-                            e.currentTarget.classList.remove('card-scaled');
-                        }}
-                    >
-                        <Link to={`/drops/${bucketDrop.drop_id}`} className="card-link">
-                            <div className="card hover-drop">
-                                <img className='card-image' src={bucketDrop.drop_photo} alt={bucketDrop.drop_name} />
-                                <div className='card-content'>
-                                    <div className='media'>
-                                    </div>
-                                    <div className='card-details' >
-                                        <h2>{bucketDrop.drop_name}</h2>
-                                        <div className='move-left'>
-                                            <Icon path={mdiArrowRight} size={2} />
-                                        </div>
-                                    </div>
+                    <div key={bucketDrop.id}>
+                        <div className="floating-masonry-item floating-white-container">
+                            <Link to={`/drops/${bucketDrop.drop_id}`} className="card-link">
+                                <div className="floating-card">
+                                    <img src={bucketDrop.drop_photo} alt={bucketDrop.drop_name} />
+
+
+                                    <h2>{bucketDrop.drop_name}</h2>
+
                                 </div>
-                            </div>
-                        </Link>
+                            </Link>
+                        </div>
                     </div>
-                ))}
-            </div>
-            <footer>
-                PinTrip
-            </footer>
-        </div>
+                ))
+                }
+            </div >
+        </div >
+
+
     );
 }
 

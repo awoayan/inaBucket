@@ -20,20 +20,14 @@ function EditDropDropdown({ onEdit, onDelete }) {
     };
 
     return (
-        <div className="dropdown">
+        <>
             <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="button is-danger"
-                aria-haspopup="true"
-                aria-controls="dropdown-menu3">
-                <span>Edit</span>
-                <span className="icon is-small">
-                    <i
-                        className="fas fa-angle-down"
-                        area-hidden="true"
-                    />
-                </span>
+                onClick={() => setIsOpen(!isOpen)}>
+                <span>Update</span>
+
             </button>
+
+
             {isOpen && (
                 <div className="dropdown-menu" role="menu">
                     <div className="dropdown-content">
@@ -48,7 +42,7 @@ function EditDropDropdown({ onEdit, onDelete }) {
             )}
             {isOpen && <UpdateDropModal dropId={dropId} />}
             {isOpen && <DeleteDrop dropId={dropId} />}
-        </div>
+        </>
     );
 }
 

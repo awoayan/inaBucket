@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useGetTokenQuery } from "./app/api";
 import { useParams } from 'react-router-dom';
 import SaveDropForm from './dropdown/SaveDropForm';
-import EditDropDropdown from './dropdown/EditDropDropdown';
-import './App.css'
+import UpdateDropModal from './modals/UpdateDropModal'
+import './style/card.css'
+import DeleteDrop from './dropdown/DeleteDrop';
 
 
 function DropsPage() {
@@ -41,52 +42,57 @@ function DropsPage() {
 
 
     return (
-
         <div>
-            <div className='column'>
-                <div className='drop-card-container'>
-                    <div className="drop-card">
-                        <div>
-                            <img className='card-image' src={drop.photo} alt={drop.name} />
-                            <div className="middle">
-                                <div>
-                                    {showSave && <SaveDropForm dropId={dropId} />}
-                                    <button className="save-button2" onClick={toggle}>
-                                        save
-                                    </button>
-                                </div>
-                            </div>
-                            <div className="card-details">
-                                <h1>{drop.name}</h1>
-                                <p>{drop.details}</p>
-                                <p>{drop.city}</p>
-                                <p>{drop.address}</p>
-                                <p>{drop.url}</p>
-                                {/*  */}
-                            </div>
+            <div className="drop-two-container">
+                <div className="images">
+                    <img className="image" src={drop.photo} />
+                </div>
+                <div className="product">
+                    <p></p>
+                    <h1>{drop.name}</h1>
+                    <h2>{drop.city}</h2>
+                    <p className="desc">{drop.details}</p>
+                    <p>{drop.url}</p>
 
 
-                            <div className="edit-buttons">
-                                {!token || token.account.id === drop.creator_id.id ? (
+                    <div className='buttons'>
+                        {showSave && <SaveDropForm dropId={dropId} />}
+                        <button onClick={toggle}>
+                            Save to Bucket
+                        </button>
+                        <button className='like modal-button'><span>{!token || token.account.id === drop.creator_id.id ? (
 
-                                    <EditDropDropdown dropId={dropId} />
-                                ) : (
-                                    <p></p>
+                            <p><UpdateDropModal dropId={dropId} />
+                            </p>
+                        ) : (
+                            <p></p>
 
-                                )}
-                            </div>
+                        )}</span></button>
+                        <button className='like modal-button'><span>{!token || token.account.id === drop.creator_id.id ? (
+
+                            <p>
+                                <DeleteDrop dropId={dropId} /></p>
+                        ) : (
+                            <p></p>
+
+                        )}</span></button>
 
 
-                        </div>
+
+
                     </div>
                 </div>
-
-
             </div>
+
         </div>
+
+
 
 
 
     );
 }
 export default DropsPage;
+
+
+

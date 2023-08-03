@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
+import './style/hidden-card.css'
 import './App.css'
+
+import Icon from '@mdi/react';
+import { mdiPail } from '@mdi/js';
+
+
 
 function HomePage() {
 	const [mixedItems, setMixedItems] = useState([]);
@@ -38,57 +44,48 @@ function HomePage() {
 		return newArray;
 	};
 
+
 	return (
 		<div>
-			<h2 className="has-text-centered">Welcome to the homepage! Let's explore!</h2>
-					{/* <div className="container is-variable"> */}
-						<div className="columns is-multiline">
+			<body>
+				<h1 style={{ textAlign: 'center' }} >PINTRIP </h1>
+				<h2 style={{ textAlign: 'center' }} >Let's explore!</h2>
+
+				<div>
+					<div className="floating-masonry-container">
+						<div>
 							{mixedItems.map((item, index) => (
-								<div
-									className="column is-one-third"
-									key={index}
-									key2={item.id}>
+								<div key={index}>
 									{("title" in item) ? (
-										<Link to={`/bucketdrops/${item.id}`} className="card-link">
-											<div className="card has-background-grey-light">
-												<div>
-													<figure className="image is-128x128x">
-														<img className='card-image' src={item.cover_photo} alt={item.title} />
-													</figure>
-												</div>
-												<div>
-													<div className="media">
-														<div className="card-details">
-															<h4>{item.title}</h4>
-															<p>@{item.owner.username}</p>
-														</div>
-													</div>
-													<div className="card-details">{item.details}</div>
-												</div>
-											</div>
-										</Link>
+										<div className="floating-masonry-item floating-white-container">
+											<Link to={`/bucketdrops/${item.id}`}>
+
+												<img className="floating-card" src={item.cover_photo} alt={item.title} />
+												<h5 className="floating-text">{item.address} {item.title}  <Icon path={mdiPail} size={.9} /></h5>
+
+											</Link>
+										</div>
 									) : (
-										<Link to={`/drops/${item.id}`} className="card-link">
-											<div className="card">
-												<div>
-													<figure>
-														<img className='card-image' src={item.photo} alt={item.name} />
-													</figure>
-												</div>
-												<div className="card-details" >
-													<div>
-														<h3>{item.name}</h3>
-														<h5>{item.city}</h5>
-													</div>
-												</div>
-											</div>
-										</Link>
+										<div className="floating-masonry-item floating-white-container">
+
+											<Link to={`/drops/${item.id}`} className="card-link">
+
+												<img className="floating-card" src={item.photo} alt={item.name} />
+												<p className="floating-text">{item.name}</p>
+												<h5 className="floating-text" >@{item.creator_id.username} </h5>
+											</Link>
+										</div>
+
 									)}
 								</div>
 							))}
+
 						</div>
-					{/* </div> */}
-			</div>
+					</div>
+				</div >
+			</body >
+
+		</div >
 	);
 }
 

@@ -20,7 +20,7 @@ function DeleteDrop({ dropId }) {
     };
     return (
         <div>
-            <button className='button is-primary' onClick={handleDelete}>Delete</button>
+            <button onClick={handleDelete}>Delete</button>
         </div >
     )
 }

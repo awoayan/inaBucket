@@ -1,0 +1,36 @@
+.floating-card {
+	display: block;
+	width: 250px;
+	max-height: 400px;
+	min-height: 200px;
+	min-height: 100px;
+	object-fit: contain;
+	padding-top: 10px;
+	column-gap: 10px;
+	background-color: none;
+}
+
+.floating-text {
+	padding-left: 13px;
+}
+
+.floating-masonry-container {
+	column-count: 7;
+	column-gap: 5px;
+}
+.floating-masonry-item {
+	display: inline-block;
+	width: 250px;
+}
+
+img {
+	border-radius: 25px;
+	border-top-left-radius: 25px;
+	border-top-right-radius: 25px;
+}
+
+.floating-white-container {
+	border-top-left-radius: 25px;
+	border-top-right-radius: 25px;
+	padding-bottom: 20px;
+}

@@ -10,6 +10,7 @@ import SearchPage from "./Searchbar";
 import './App.css'
 import Icon from '@mdi/react';
 import { mdiAccountCircle, mdiWaterCircle } from '@mdi/js';
+import UseDisplayAvatar from "./Avatar";
 
 
 
@@ -55,11 +56,7 @@ function LogoutButton() {
 	);
 }
 
-function DisplayAvatar() {
-	const { data: tokenData } = useGetTokenQuery();
 
-	if (tokenData) {
-		let avatar = tokenData.avatar;
 
 
 		if (avatar === undefined) {
@@ -100,7 +97,7 @@ function Nav() {
 					</div>
 					<div>
 						<NavLink to={"/profile"}>
-							<DisplayAvatar />
+							<UseDisplayAvatar size={2} />
 						</NavLink>
 					</div>
 				</div>
