@@ -66,7 +66,7 @@ function LogInModal() {
 							<div className="control">
 								<button
 									disabled={logInLoading}
-									className="button is-primary">
+									className="button is-info">
 									Submit
 								</button>
 							</div>

@@ -3,7 +3,6 @@ import { useGetTokenQuery, useLogOutMutation } from "./app/api";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { showModal, LOG_IN_MODAL, SIGN_UP_MODAL } from "./app/accountSlice";
-import homeLogo from "./homeLogo.svg";
 import LogInModal from "./login_signup/LoginModal";
 import SignUpModal from "./login_signup/SignUpModal";
 import { useEffect } from "react";
@@ -23,7 +22,7 @@ function LoginButtons(props) {
 		<div className={classNames}>
 			<button
 				onClick={() => dispatch(showModal(SIGN_UP_MODAL))}
-				className="button is-primary">
+				className="button is-info">
 				<strong>Sign up</strong>
 			</button>
 			<button
@@ -49,7 +48,7 @@ function LogoutButton() {
 		<div className="buttons">
 			<button
 				onClick={logOut}
-				className="button is-light">
+				className="button is-info">
 				Log out
 			</button>
 		</div>
@@ -65,8 +64,8 @@ function DisplayAvatar() {
 
 		if (avatar === undefined) {
 			return (
-				<figure className="image is-70x70 mt-2 ml-4">
-					<Icon path={mdiAccountCircle} title="Profile" size={2} color="hsl(0, 0%, 71%)" />
+				<figure className="image is-64x64 mt-4 ml-5">
+					<Icon path={mdiAccountCircle} title="Profile" size={2} color="hsl(207, 61%, 51%)" />
 				</figure>
 			);
 		} else {
@@ -84,16 +83,16 @@ function Nav() {
 
 	return (
 		<>
-			<nav
-				className="navbar is-fixed-top has-background-success-dark"
-				role="navigation"
+			<nav 
+				className="navbar is-fixed-top has-background-link-dark" 
+				role="navigation" 
 				aria-label="main navigation">
 				<div className="navbar-brand">
 					<NavLink
 						className="navbar-item"
 						to="/">
-						<figure className="image is-64x64">
-							<Icon path={mdiWaterCircle} title="Home" size={2}></Icon>
+						<figure className="image is-64x64 mt-2">
+							<Icon path={mdiWaterCircle} title="Home" size={2} color="hsl(207, 61%, 51%)" />
 						</figure>
 					</NavLink>
 					<div>
@@ -104,19 +103,8 @@ function Nav() {
 							<DisplayAvatar />
 						</NavLink>
 					</div>
-					<button
-						className="navbar-burger"
-						aria-label="menu"
-						aria-expanded="false"
-						data-target="navbarBasicExample">
-						<span aria-hidden="true"></span>
-						<span aria-hidden="true"></span>
-						<span aria-hidden="true"></span>
-					</button>
 				</div>
-				<div
-					id="navbarBasicExample"
-					className="navbar-menu ">
+				<div id="navbarBasicExample" className="navbar-menu "> 
 					<div className="navbar-end">
 						<div className="navbar-item ">
 							{tokenLoading ? (

@@ -102,7 +102,7 @@ function SignUpModal() {
 							<div className="control">
 								<button
 									disabled={signUpLoading}
-									className="button is-primary">
+									className="button is-info">
 									Submit
 								</button>
 							</div>
