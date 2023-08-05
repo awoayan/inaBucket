@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useSignUpMutation } from "../app/api";
 import { preventDefault } from "../app/utils";
 import { showModal, updateField, SIGN_UP_MODAL } from "../app/accountSlice";
-import Notification from "./Notification";
+import "../style/modal.css"
 
 function SignUpModal() {
 	const dispatch = useDispatch();
@@ -20,19 +20,16 @@ function SignUpModal() {
 	);
 
 	return (
-		<div
-			className={modalClass}
-			key="signup-modal">
-			<div className="modal-background"></div>
+		<div className={modalClass} key="modal">
 			<div className="modal-content">
-				<div className="box content">
+				<div className="modal-form">
 					<h3>Sign Up</h3>
 					{error ? (
-						<Notification type="danger">{("Something went wrong", errorMessage)}</Notification>
+						<div classname="error-notification">{error.data.detail}</div>
 					) : null}
 					<form
-						method="POST"
-						onSubmit={preventDefault(signUp, () => ({
+						method="POST" onSubmit={preventDefault(signUp, () => ({
+							// I stopped here because of differences in how we did login vs signup. Need to chat about it. 
 							email: username,
 							password,
 							full_name,
