@@ -48,8 +48,10 @@ function HomePage() {
 	return (
 		<div>
 			<body>
-				<h1 style={{ textAlign: 'center' }} >PINTRIP </h1>
-				<h2 style={{ textAlign: 'center' }} >Let's explore!</h2>
+				<div className="has-text-centered">
+					<h1>PINTRIP </h1>
+					<h2>Let's explore!</h2>
+				</div>
 
 				<div>
 					<div className="floating-masonry-container">
@@ -58,17 +60,17 @@ function HomePage() {
 								<div key={index}>
 									{("title" in item) ? (
 										<div className="floating-masonry-item floating-white-container">
-											<Link to={`/bucketdrops/${item.id}`}>
+											<Link style={{ textDecoration: 'none' }} to={`/bucketdrops/${item.id}`}>
 
 												<img className="floating-card" src={item.cover_photo} alt={item.title} />
-												<h5 className="floating-text">{item.address} {item.title}  <Icon path={mdiPail} size={.9} /></h5>
+												<p className="floating-text">{item.address} {item.title}  <Icon path={mdiPail} size={.9} /></p>
 
 											</Link>
 										</div>
 									) : (
 										<div className="floating-masonry-item floating-white-container">
 
-											<Link to={`/drops/${item.id}`} className="card-link">
+											<Link style={{ textDecoration: 'none' }} to={`/drops/${item.id}`} className="card-link">
 
 												<img className="floating-card" src={item.photo} alt={item.name} />
 												<p className="floating-text">{item.name}</p>

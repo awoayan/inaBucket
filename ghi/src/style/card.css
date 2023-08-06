@@ -18,7 +18,11 @@ body {
 }
 
 .modal-button {
-	padding: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px
+
 }
 .drop-two-container {
 	position: relative;
@@ -45,6 +49,12 @@ h1 {
 
 h2 {
 	font-size: 1.5em;
+	color: #4e4e4e;
+	margin-top: -5px;
+}
+
+h5 {
+	font-size: 0.9em;
 	color: #4e4e4e;
 	margin-top: -5px;
 }

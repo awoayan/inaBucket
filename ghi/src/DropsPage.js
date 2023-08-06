@@ -62,7 +62,7 @@ function DropsPage() {
                         </button>
                         <button className='like modal-button'><span>{!token || token.account.id === drop.creator_id.id ? (
 
-                            <p><UpdateDropModal dropId={dropId} />
+                            <p>yo
                             </p>
                         ) : (
                             <p></p>
@@ -70,8 +70,8 @@ function DropsPage() {
                         )}</span></button>
                         <button className='like modal-button'><span>{!token || token.account.id === drop.creator_id.id ? (
 
-                            <p>
-                                <DeleteDrop dropId={dropId} /></p>
+                            <p> yo
+                            </p>
                         ) : (
                             <p></p>
 

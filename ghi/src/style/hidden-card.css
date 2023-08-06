@@ -11,13 +11,20 @@
 }
 
 .floating-text {
+	padding-top: 2px;
 	padding-left: 13px;
+	color: #4e4e4e;
 }
 
 .floating-masonry-container {
-	column-count: 7;
-	column-gap: 5px;
+	-webkit-columns: 100px 4;
+	-moz-columns: 100px 4;
+	columns: 250px 7;
+	-webkit-column-gap: 0;
+	-moz-column-gap: 0;
+	column-gap: 0;
 }
+
 .floating-masonry-item {
 	display: inline-block;
 	width: 250px;
@@ -32,5 +39,5 @@ img {
 .floating-white-container {
 	border-top-left-radius: 25px;
 	border-top-right-radius: 25px;
-	padding-bottom: 20px;
+	/* padding-bottom: 10px; */
 }

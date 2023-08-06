@@ -50,28 +50,30 @@ function BucketsDropsPage() {
 
     return (
         <div>
-            <div>
-                <h2 style={{ textAlign: 'center' }} className="title is-1">{bucketName}</h2>
-                <p style={{ textAlign: 'center' }}>{bucketDrops.bucket_details}</p>
-            </div>
-            <div className="floating-masonry-container">
-                {bucketDrops.map((bucketDrop) => (
-                    <div key={bucketDrop.id}>
-                        <div className="floating-masonry-item floating-white-container">
-                            <Link to={`/drops/${bucketDrop.drop_id}`} className="card-link">
-                                <div className="floating-card">
-                                    <img src={bucketDrop.drop_photo} alt={bucketDrop.drop_name} />
+            <body>
+                <div>
+                    <h2 style={{ textAlign: 'center' }} className="title is-1">{bucketName}</h2>
+                    <p style={{ textAlign: 'center' }}>{bucketDrops.bucket_details}</p>
+                </div>
+                <div className="floating-masonry-container">
+                    {bucketDrops.map((bucketDrop) => (
+                        <div key={bucketDrop.id}>
+                            <div className="floating-masonry-item floating-white-container">
+                                <Link style={{ textDecoration: 'none' }} to={`/drops/${bucketDrop.drop_id}`} className="card-link">
+                                    <div className="floating-card">
+                                        <img src={bucketDrop.drop_photo} alt={bucketDrop.drop_name} />
 
 
-                                    <h2>{bucketDrop.drop_name}</h2>
+                                        <p>{bucketDrop.drop_name}</p>
 
-                                </div>
-                            </Link>
+                                    </div>
+                                </Link>
+                            </div>
                         </div>
-                    </div>
-                ))
-                }
-            </div >
+                    ))
+                    }
+                </div >
+            </body>
         </div >
 
 
