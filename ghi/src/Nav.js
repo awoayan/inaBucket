@@ -3,14 +3,15 @@ import { useGetTokenQuery, useLogOutMutation } from "./app/api";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { showModal, LOG_IN_MODAL, SIGN_UP_MODAL } from "./app/accountSlice";
-import homeLogo from "./homeLogo.svg";
 import LogInModal from "./login_signup/LoginModal";
 import SignUpModal from "./login_signup/SignUpModal";
 import { useEffect } from "react";
 import SearchPage from "./Searchbar";
-import { Link } from "react-router-dom";
-import './App.css'
+import './style/nav.css'
+import Icon from '@mdi/react';
+import { mdiWaterCircle } from '@mdi/js';
 import UseDisplayAvatar from "./Avatar";
+
 
 
 
@@ -22,12 +23,12 @@ function LoginButtons(props) {
 		<div className={classNames}>
 			<button
 				onClick={() => dispatch(showModal(SIGN_UP_MODAL))}
-				className="button is-primary">
+				className="button">
 				<strong>Sign up</strong>
 			</button>
 			<button
 				onClick={() => dispatch(showModal(LOG_IN_MODAL))}
-				className="button is-light">
+				className="button">
 				Log in
 			</button>
 		</div>
@@ -48,7 +49,7 @@ function LogoutButton() {
 		<div className="buttons">
 			<button
 				onClick={logOut}
-				className="button is-light">
+				className="button is-info">
 				Log out
 			</button>
 		</div>
@@ -56,50 +57,35 @@ function LogoutButton() {
 }
 
 
-
 function Nav() {
 	const { data: token, isLoading: tokenLoading } = useGetTokenQuery();
 
 	return (
 		<>
-			<nav
-				className="navbar is-fixed-top nav-color"
-				role="navigation"
+			<nav 
+				className="navbar" 
+				role="navigation" 
 				aria-label="main navigation">
-				<div className="navbar-brand">
+				<div className="navbar-container">
 					<NavLink
-						className="navbar-item"
+						className=""
 						to="/">
-						<img
-							src={homeLogo}
-							height="86"
-							width="43"
-							alt="Home Logo"
-						/>
+						<figure className="">
+							<Icon path={mdiWaterCircle} title="Home" size={2} color="hsl(207, 61%, 51%)" />
+						</figure>
 					</NavLink>
 					<div>
 						<SearchPage />
 					</div>
-					<button
-						className="navbar-burger"
-						aria-label="menu"
-						aria-expanded="false"
-						data-target="navbarBasicExample">
-						<span aria-hidden="true"></span>
-						<span aria-hidden="true"></span>
-						<span aria-hidden="true"></span>
-					</button>
-				</div>
-				<div>
-					<Link to={"/profile"}>
+					<div>
+					<NavLink to={"/profile"}>
 						<UseDisplayAvatar size={2} />
-					</Link>
+					</NavLink>
+					</div>
 				</div>
-				<div
-					id="navbarBasicExample"
-					className="navbar-menu ">
-					<div className="navbar-end">
-						<div className="navbar-item ">
+				<div id="navbarBasicExample" className="navbar-container"> 
+					<div className="">
+						<div className="navbar_link">
 							{tokenLoading ? (
 								<LoginButtons show={false} />
 							) : token ? (

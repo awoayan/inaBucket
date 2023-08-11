@@ -1,13 +1,15 @@
 import React from "react";
+import { mdiMagnify } from "@mdi/js";
+import Icon from "@mdi/react";
 
 const SearchPage = () => {
     return (
-        <div className="column is-12">
+        <div className="column is-12 mt-2">
             <div className="field has-addons">
                 <div className="control">
-                    <button className="button is-purple">
-                        <span className="icon is-small">
-                            <div className="has-text-black" /><div />
+                    <button className="button is-info">
+                        <span className="icon">
+                            <Icon path={mdiMagnify} size={1} />
                         </span>
                     </button>
                 </div>
