@@ -5,6 +5,7 @@ import './App.css'
 
 import Icon from '@mdi/react';
 import { mdiPail } from '@mdi/js';
+import useImageUploader from "./ImageUploader";
 
 
 
@@ -85,6 +86,7 @@ function HomePage() {
 						</div>
 					</div>
 				</div >
+				<useImageUploader />
 			</body >
 
 		</div >
