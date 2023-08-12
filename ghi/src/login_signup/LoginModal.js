@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLogInMutation } from "../app/api";
 import { eventTargetSelector as target, preventDefault } from "../app/utils";
 import { showModal, updateField, LOG_IN_MODAL } from "../app/accountSlice";
-import "../style/modal.css"
+import "../style/login-modal.css"
 
 function LogInModal() {
 	const dispatch = useDispatch();
@@ -19,8 +19,8 @@ function LogInModal() {
 	return (
 		<div
 			className={modalClass} key="modal">
-				<div className="modal-content">
-					<div className="modal-form">
+			<div className="modal-content">
+				<div className="modal-form">
 					<h3>Log In</h3>
 					{error ? (
 						<div classname="error-notification">{error.data.detail}</div>
@@ -28,27 +28,27 @@ function LogInModal() {
 					<form method="POST" onSubmit={preventDefault(logIn, target)}>
 						<div className="form-field">
 							<label className="form-label" htmlFor="email">Email</label>
-								<input
-									required
-									onChange={field}
-									value={username}
-									name="username"
-									className="input"
-									type="email"
-									placeholder="you@example.com"
-								/>
+							<input
+								required
+								onChange={field}
+								value={username}
+								name="username"
+								className="input"
+								type="email"
+								placeholder="you@example.com"
+							/>
 						</div>
 						<div className="form-field">
 							<label className="form-label">Password</label>
-								<input
-									required
-									onChange={field}
-									value={password}
-									name="password"
-									className="input"
-									type="password"
-									placeholder="secret..."
-								/>
+							<input
+								required
+								onChange={field}
+								value={password}
+								name="password"
+								className="input"
+								type="password"
+								placeholder="secret..."
+							/>
 						</div>
 						<div className="form-buttons">
 							<div className="control">

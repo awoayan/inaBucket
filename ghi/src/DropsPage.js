@@ -40,7 +40,7 @@ function DropsPage() {
         return <div>Loading...</div>;
     }
 
-
+    console.log(drop)
     return (
         <div>
             <div className="drop-two-container">
@@ -51,8 +51,9 @@ function DropsPage() {
                     <p></p>
                     <h1>{drop.name}</h1>
                     <h2>{drop.city}</h2>
-                    <p className="desc">{drop.details}</p>
+                    <p>{drop.details}</p>
                     <p>{drop.url}</p>
+                    <p>@{drop.creator_id.username}</p>
 
 
                     <div className='buttons'>
@@ -60,22 +61,21 @@ function DropsPage() {
                         <button onClick={toggle}>
                             Save to Bucket
                         </button>
-                        <button className='like modal-button'><span>{!token || token.account.id === drop.creator_id.id ? (
+                        <button className='like modal-button buttons'><span>{!token || token.account.id === drop.creator_id.id ? (
 
-                            <p>yo
+                            <p>update
                             </p>
                         ) : (
                             <p></p>
 
                         )}</span></button>
-                        <button className='like modal-button'><span>{!token || token.account.id === drop.creator_id.id ? (
+                        {/* <button className='like modal-button'><span>{!token || token.account.id === drop.creator_id.id ? (
 
-                            <p> yo
-                            </p>
+                            <p>delete </p>
                         ) : (
                             <p></p>
 
-                        )}</span></button>
+                        )}</span></button> */}
 
 
 

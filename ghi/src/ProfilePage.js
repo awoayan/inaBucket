@@ -4,9 +4,12 @@ import { useGetTokenQuery } from "./app/api";
 import Dropdown from "./dropdown/DropdownContent";
 import Notification from "./login_signup/Notification";
 import UseDisplayAvatar from "./Avatar";
+import CreateBucketModal from "./modals/CreateBucketModal";
+import CreateDropModal from "./modals/CreateDropModal"
 import "./App.css"
 import './style/hidden-card.css'
 import './style/profile.css'
+import './style/dropdown.css'
 
 
 function ProfilePage() {
@@ -47,15 +50,24 @@ function ProfilePage() {
     return (
         <div>
             <body>
-                <div>
-                    <h2 className="create-dropdown">
-                        <Dropdown userBuckets={userBuckets} />
-                    </h2>
+
+
+                <div className="dropdown">
+                    <button className="dropbtn">Create</button>
+                    <div className="dropdown-content">
+                        <p> <CreateBucketModal /> </p>
+
+
+                        <p><CreateDropModal /> </p>
+
+                    </div>
+
                 </div>
 
-                <h2 id="home-avatar"> <UseDisplayAvatar size={4} /></h2>
+
+                {/* <h2 id="home-avatar"> <UseDisplayAvatar size={4} /></h2> */}
                 <h1 id="render-modal-here" className="title is-1 user-name">{tokenData.account.full_name}</h1>
-                <h4 style={{ textAlign: 'center' }}>Buckets Created: {userBuckets.length}</h4>
+                <h2 style={{ textAlign: 'center' }}>Buckets Created: {userBuckets.length}</h2>
                 <p style={{ textAlign: 'center' }}> @{tokenData.account.username}</p>
                 <div>
                     <div className="floating-masonry-container">

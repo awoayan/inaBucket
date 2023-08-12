@@ -62,9 +62,9 @@ function Nav() {
 
 	return (
 		<>
-			<nav 
-				className="navbar" 
-				role="navigation" 
+			<nav
+				className="navbar"
+				role="navigation"
 				aria-label="main navigation">
 				<div className="navbar-container">
 					<NavLink
@@ -74,16 +74,16 @@ function Nav() {
 							<Icon path={mdiWaterCircle} title="Home" size={2} color="hsl(207, 61%, 51%)" />
 						</figure>
 					</NavLink>
-					<div>
+					{/* <div>
 						<SearchPage />
-					</div>
+					</div> */}
 					<div>
-					<NavLink to={"/profile"}>
-						<UseDisplayAvatar size={2} />
-					</NavLink>
+						<NavLink to={"/profile"}>
+							<UseDisplayAvatar size={2} />
+						</NavLink>
 					</div>
 				</div>
-				<div id="navbarBasicExample" className="navbar-container"> 
+				<div id="navbarBasicExample" className="navbar-container">
 					<div className="">
 						<div className="navbar_link">
 							{tokenLoading ? (

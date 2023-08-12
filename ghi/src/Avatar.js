@@ -12,7 +12,7 @@ function UseDisplayAvatar({ size }) {
         if (avatar === undefined) {
             return (
                 <figure id='avatar-profile-page' className="image is-64x64 mt-4 ml-5">
-                    <Icon path={mdiAccountCircle} title="Profile" size={2} color="hsl(207, 61%, 51%)" />
+                    <Icon path={mdiAccountCircle} title="Profile" size={2} color="hsl(180°, 0%, 100%)" />
 
                 </figure>
             );

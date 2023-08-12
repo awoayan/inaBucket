@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import CreateBucketModal from "../modals/CreateBucketModal";
 import CreateDropModal from "../modals/CreateDropModal";
+import '../style/dropdown.css'
 
 function Dropdown({ userBuckets }) {
 	const [isOpen, setIsOpen] = useState(false);
@@ -11,37 +12,23 @@ function Dropdown({ userBuckets }) {
 		<div className="navbar-item dropdown">
 			<div className="dropdown-trigger">
 				<button
-					onClick={() => setIsOpen(!isOpen)}
-					className="button is-danger"
-					aria-haspopup="true"
-					aria-controls="dropdown-menu3">
+					onClick={() => setIsOpen(!isOpen)}>
 					<span>Create</span>
 					<span className="icon is-small">
-						<i
-							className="fas fa-angle-down"
-							aria-hidden="true"
-						/>
+
 					</span>
 				</button>
 				{isOpen && (
-					<div
-						className="dropdown-menu2"
-						id="dropdown-menu32"
-						role="menu">
+					<div className="dropdown">
+						<button className="dropbtn">Create
+
+						</button>
 						<div className="dropdown-content">
-							{userBuckets.length > 0 && (
-								<li className="dropdown-item">
-									<div className="button is-primary">
-										<CreateDropModal />
-									</div>
-								</li>
-							)}
-							<li className="dropdown-item">
-								<div className="button is-primary">
-									<CreateBucketModal />
-								</div>
-							</li>
+
+
 						</div>
+
+
 					</div>
 				)}
 			</div>
@@ -51,3 +38,12 @@ function Dropdown({ userBuckets }) {
 }
 
 export default Dropdown;
+
+
+// <div className="button is-primary">
+// 	<CreateDropModal />
+// </div>
+
+// <div className="button is-primary">
+// 									<CreateBucketModal />
+// 								</div>

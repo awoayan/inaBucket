@@ -1,11 +1,12 @@
 import React from "react";
 import CreateBucketForm from "./CreateBucketForm";
+import '../style/other-modal.css'
 
 export default function CreateBucketModalContent({ onClose }) {
 	return (
 		<div className="modal2">
-			<div className="modal-background"></div>
-			<div className="modal-card">
+
+			<div className="modal-content">
 				<header className="modal-card-head">
 					<p className="modal-card-title">Create a Bucket</p>
 					<div></div>

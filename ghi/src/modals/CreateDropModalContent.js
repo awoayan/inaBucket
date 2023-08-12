@@ -1,22 +1,23 @@
 import CreateDropForm from "./CreateDropForm";
+import '../style/other-modal.css'
 
 export default function CreateDropModalContent({ onClose }) {
 	return (
-		<div class="modal2">
-			<div class="modal-background"></div>
-			<div class="modal-card">
-				<header class="modal-card-head">
-					<p class="modal-card-title">Create a Drop</p>
+		<div className="modal2">
+
+			<div className="modal-content">
+				<header className="modal-card-head">
+					<p className="modal-card-title">Create a Drop</p>
 					<div></div>
 					<button
 						onClick={onClose}
-						class="delete"
+						className="delete"
 						aria-label="close"></button>
 				</header>
-				<section class="modal-card-body">
+				<section className="modal-card-body">
 					<CreateDropForm />
 				</section>
-				<footer class="modal-card-foot">
+				<footer className="modal-card-foot">
 				</footer>
 			</div>
 		</div>
