@@ -34,7 +34,12 @@ img {
 	border-radius: 25px;
 	border-top-left-radius: 25px;
 	border-top-right-radius: 25px;
+	width: 250px;
+	max-height: 400px;
+	min-height: 200px;
+	min-height: 100px;
 }
+
 
 .floating-white-container {
 	border-top-left-radius: 25px;

@@ -12,6 +12,12 @@ function DropsPage() {
     const { dropId } = useParams();
     const [drop, setDrop] = useState(null);
     const [showSave, setShowSave] = useState(false)
+    const [showUpdate, setShowUpdate] = useState(false)
+
+    function toggleUpdate() {
+        setShowUpdate((showUpdate) => !showUpdate)
+    }
+
 
     function toggle() {
 
@@ -40,7 +46,7 @@ function DropsPage() {
         return <div>Loading...</div>;
     }
 
-    console.log(drop)
+
     return (
         <div>
             <div className="drop-two-container">
@@ -61,30 +67,23 @@ function DropsPage() {
                         <button onClick={toggle}>
                             Save to Bucket
                         </button>
-                        <button className='like modal-button buttons'><span>{!token || token.account.id === drop.creator_id.id ? (
+                        {!token || token.account.id === drop.creator_id.id ? (
+                            <>
+                                <UpdateDropModal dropId={dropId} />
 
-                            <p>update
-                            </p>
+                                <DeleteDrop dropId={dropId} />
+                            </>
+
                         ) : (
                             <p></p>
 
-                        )}</span></button>
-                        {/* <button className='like modal-button'><span>{!token || token.account.id === drop.creator_id.id ? (
-
-                            <p>delete </p>
-                        ) : (
-                            <p></p>
-
-                        )}</span></button> */}
-
-
-
+                        )}
 
                     </div>
                 </div>
             </div>
 
-        </div>
+        </div >
 
 
 

@@ -19,9 +19,15 @@ function DeleteDrop({ dropId }) {
         }
     };
     return (
-        <div>
-            <button onClick={handleDelete}>Delete</button>
-        </div >
+        <>
+            <button className='like' onClick={handleDelete}> Delete
+
+
+            </button>
+
+        </>
+
     )
 }
 export default DeleteDrop;
+
