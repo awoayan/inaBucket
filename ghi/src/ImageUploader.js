@@ -9,7 +9,7 @@ AWS.config.update({
     maxRetries: 3,
 });
 
-function useImageUploader() {
+function UseImageUploader() {
     const [imageUrl, setImageUrl] = useState(null);
 
     const uploadImage = async (selectedImage) => {
@@ -40,4 +40,4 @@ function useImageUploader() {
         setImageUrl,
     };
 }
-export default useImageUploader
+export default UseImageUploader

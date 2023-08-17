@@ -46,54 +46,54 @@ function ProfilePage() {
             (bucket) => bucket.owner.id === tokenData.account.id
         );
     }
-    console.log(userBuckets)
+
     return (
         <div>
-            <body>
 
 
-                <div className="dropdown">
-                    <button className="dropbtn">Create</button>
-                    <div className="dropdown-content">
-                        <p> <CreateBucketModal /> </p>
+
+            <div className="dropdown">
+                <button className="dropbtn">Create</button>
+                <div className="dropdown-content">
+                    <p> <CreateBucketModal /> </p>
 
 
-                        <p><CreateDropModal /> </p>
-
-                    </div>
+                    <p><CreateDropModal /> </p>
 
                 </div>
 
-
-                {/* <h2 id="home-avatar"> <UseDisplayAvatar size={4} /></h2> */}
-                <h1 id="render-modal-here" className="title is-1 user-name">{tokenData.account.full_name}</h1>
-                <h2 style={{ textAlign: 'center' }}>Buckets Created: {userBuckets.length}</h2>
-                <p style={{ textAlign: 'center' }}> @{tokenData.account.username}</p>
-                <div>
-                    <div className="floating-masonry-container">
-                        <div>
-                            {userBuckets.map((item, index) => (
-                                <div key={index}>
-
-                                    <div className="floating-masonry-item floating-white-container">
-                                        <Link style={{ textDecoration: 'none' }} to={`/bucketdrops/${item.id}`}>
-
-                                            <img className="floating-card" src={item.cover_photo} alt={item.title} />
-                                            <p className="floating-text">{item.address} {item.title}</p>
-
-                                        </Link>
-                                    </div>
+            </div>
 
 
+            {/* <h2 id="home-avatar"> <UseDisplayAvatar size={4} /></h2> */}
+            <h1 id="render-modal-here" className="title is-1 user-name">{tokenData.account.full_name}</h1>
+            <h2 style={{ textAlign: 'center' }}>Buckets Created: {userBuckets.length}</h2>
+            <p style={{ textAlign: 'center' }}> @{tokenData.account.username}</p>
+            <div>
+                <div className="floating-masonry-container">
+                    <div>
+                        {userBuckets.map((item, index) => (
+                            <div key={index}>
 
+                                <div className="floating-masonry-item floating-white-container">
+                                    <Link style={{ textDecoration: 'none' }} to={`/bucketdrops/${item.id}`}>
+
+                                        <img className="floating-card" src={item.cover_photo} alt={item.title} />
+                                        <p className="floating-text">{item.address} {item.title}</p>
+
+                                    </Link>
                                 </div>
-                            ))}
 
-                        </div>
+
+
+                            </div>
+                        ))}
+
                     </div>
-                </div >
+                </div>
+            </div >
 
-            </body>
+
 
         </div>
 
