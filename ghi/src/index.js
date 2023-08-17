@@ -2,7 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { store } from "./app/store";
 import { Provider } from "react-redux";
-import HomePage from "./HomePage";
+
+import App from "./App";
 import ProfilePage from "./ProfilePage";
 import Nav from "./Nav";
 import BucketsDropsPage from "./BucketsDropsPage";
@@ -24,7 +25,7 @@ root.render(
 					/>
 					<Route
 						path="/"
-						element={<HomePage />}
+						element={<App />}
 					/>
 					<Route
 						path="/profile"
@@ -43,3 +44,4 @@ root.render(
 		</Provider>
 	</React.StrictMode>
 );
+
