@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import Icon from '@mdi/react';
-import { mdiArrowRight } from '@mdi/js';
+
 import './App.css'
 
 
 function BucketsDropsPage() {
     const { bucketId } = useParams();
     const [bucketDrops, setBucketDrops] = useState([]);
-    const [bucketName, setBucketName] = useState('');
+    const [bucket, setBucket] = useState('');
 
     useEffect(() => {
         const fetchBucketInfo = async () => {
@@ -16,7 +15,7 @@ function BucketsDropsPage() {
                 const response = await fetch(`http://localhost:8000/api/buckets/${bucketId}`);
                 if (response.ok) {
                     const data = await response.json();
-                    setBucketName(data.title);
+                    setBucket(data);
                 } else {
                     console.error(response);
                 }
@@ -46,14 +45,15 @@ function BucketsDropsPage() {
     if (!bucketDrops) {
         return null;
     }
-    console.log(bucketDrops)
 
+    console.log("BUCKET", bucket)
     return (
-        <div>
+        <>
             <body>
                 <div>
-                    <h2 style={{ textAlign: 'center' }} className="title is-1">{bucketName}</h2>
-                    <p style={{ textAlign: 'center' }}>{bucketDrops.bucket_details}</p>
+                    <h2 style={{ textAlign: 'center' }} className="title is-1">{bucket.title}</h2>
+                    {/* <h3 style={{ textAlign: 'center' }}>Created by @{bucket.owner.username}</h3> */}
+                    <p style={{ textAlign: 'center' }}>{bucket.details}</p>
                 </div>
                 <div className="floating-masonry-container">
                     {bucketDrops.map((bucketDrop) => (
@@ -74,7 +74,7 @@ function BucketsDropsPage() {
                     }
                 </div >
             </body>
-        </div >
+        </ >
 
 
     );
