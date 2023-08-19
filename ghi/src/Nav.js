@@ -78,8 +78,8 @@ function Nav() {
 						<SearchPage />
 					</div> */}
 					<div>
-						<NavLink to={"/profile"}>
-							<UseDisplayAvatar size={2} />
+						<NavLink to={"/profile"} style={{ textDecoration: 'none' }}>
+							<h1 className="profile">My Profile</h1>
 						</NavLink>
 					</div>
 				</div>

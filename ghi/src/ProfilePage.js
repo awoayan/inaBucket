@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useGetTokenQuery } from "./app/api";
-import Dropdown from "./dropdown/DropdownContent";
 import Notification from "./login_signup/Notification";
 import UseDisplayAvatar from "./Avatar";
 import CreateBucketModal from "./modals/CreateBucketModal";

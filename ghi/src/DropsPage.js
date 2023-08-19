@@ -14,11 +14,6 @@ function DropsPage() {
     const [showSave, setShowSave] = useState(false)
     const [showUpdate, setShowUpdate] = useState(false)
 
-    function toggleUpdate() {
-        setShowUpdate((showUpdate) => !showUpdate)
-    }
-
-
     function toggle() {
 
         setShowSave((showSave) => !showSave);
@@ -59,7 +54,7 @@ function DropsPage() {
                     <h2>{drop.city}</h2>
                     <p>{drop.details}</p>
                     <p>{drop.url}</p>
-                    <p>@{drop.creator_id.username}</p>
+                    <p>Created by @{drop.creator_id.username}</p>
 
 
                     <div className='buttons'>
@@ -67,7 +62,7 @@ function DropsPage() {
                         <button onClick={toggle}>
                             Save to Bucket
                         </button>
-                        {!token || token.account.id === drop.creator_id.id ? (
+                        {token && token.account.id === drop.creator_id.id ? (
                             <>
                                 <UpdateDropModal dropId={dropId} />
 

@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react'
-import HomePage from '../HomePage'
+import App from '../App'
 
 
 global.fetch = jest.fn()
